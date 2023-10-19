@@ -7,3 +7,9 @@ const howManyDataTypes = (arr) => arr.reduce((obj, item) => {
 }, {})
 
 console.log(howManyDataTypes(arr))
+
+// first
+
+const multiplyArray = (arr) => arr.map((item) => (Number.isFinite(item) ? item * 2 : item));
+
+console.log(multiplyArray(arr))
