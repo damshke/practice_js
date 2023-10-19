@@ -1,10 +1,5 @@
 // four
 
+const newArr = (...args) => (args.map(element => element * args.length))
 
-function interestingMultiplication(...args) {
-    let newArr = []
-    args.forEach(element => newArr.push(element * args.length))
-    return newArr
-}
-
-console.log(interestingMultiplication(3, 5, 8, 10))
+console.log(newArr(3, 4, 5, 6))
