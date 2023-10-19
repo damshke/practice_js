@@ -18,10 +18,9 @@ console.log(multiplyArray(arr))
 
 function specialSorting(arr) {
     const dataTypes = ['boolean', 'number', 'string', 'object']
-    let sotredArr = dataTypes.reduce((newArr, item) => {
+    return dataTypes.reduce((newArr, item) => {
         return newArr.concat(arr.filter(elem => { return typeof (elem) === item }))
     }, [])
-    return sotredArr
 }
 
 const newArr = specialSorting(arr)
