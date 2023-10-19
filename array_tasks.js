@@ -1,19 +1,9 @@
+// two
 const arr = ['banana', true, 1, 'car', {}, { a: 1 }, 5, true, true, false, 455, {}]
 
-// three
+const howManyDataTypes = (arr) => arr.reduce((obj, item) => {
+    obj[typeof (item)] = (obj[typeof (item)] || 0) + 1;
+    return obj;
+}, {})
 
-function specialSorting(arr) {
-    const dataTypes = ['boolean', 'number', 'string', 'object']
-    let newArr = []
-    dataTypes.forEach(element => {
-        const tmpArr = arr.filter(function (elem) {
-            return typeof (elem) === element
-        })
-        newArr.push(...tmpArr)
-    })
-    return newArr
-}
-
-const newArr = specialSorting(arr)
-
-console.log(newArr)
+console.log(howManyDataTypes(arr))
