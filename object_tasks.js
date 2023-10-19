@@ -1,9 +1,6 @@
 // two
 
-function convertObject(obj) {
-    obj.d = obj.a + obj.c
-    return obj
-}
+const convertObject = (obj) => ({ ...obj, d: obj.a + obj.c });
 
 const obj = { a: 1, b: 2, c: 3 }
 
