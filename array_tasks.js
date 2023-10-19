@@ -14,3 +14,16 @@ const multiplyArray = (arr) => arr.map((item) => (Number.isFinite(item) ? item *
 
 console.log(multiplyArray(arr))
 
+// three
+
+function specialSorting(arr) {
+    const dataTypes = ['boolean', 'number', 'string', 'object']
+    let sotredArr = dataTypes.reduce((newArr, item) => {
+        return newArr.concat(arr.filter(elem => { return typeof (elem) === item }))
+    }, [])
+    return sotredArr
+}
+
+const newArr = specialSorting(arr)
+
+console.log(newArr)
