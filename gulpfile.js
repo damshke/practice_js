@@ -79,7 +79,7 @@ const serverFunction = () =>
     });
 
 const watchFunction = () => {
-    gulp.watch('src/styles/*.css', gulp.series(buildCSS));
+    gulp.watch('src/css/*.css', gulp.series(buildCSS));
     gulp.watch('src/js/*.js', gulp.series(buildJs));
     gulp.watch('src/*.*', gulp.series(buildHtml));
     gulp.watch('src/img', gulp.series(buildImg));
