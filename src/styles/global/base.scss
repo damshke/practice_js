@@ -1,5 +1,9 @@
 @import './fonts.scss';
 
+body {
+    margin: auto;
+}
+
 .header {
     &__title {
         font-family: "Roboto Medium", sans-serif;
