@@ -10,7 +10,7 @@ function sortingWordsArr(arr) {
 // console.log(sortingWordsArr(wordsArr))
 
 const sorting = (arr) => {
-    const dict = arr.reduce((acc, item) => { acc[item] = acc[item] ? acc[item] + 1 : acc[item] = 1; return acc }, {});
+    const dict = arr.reduce((acc, item) => { acc[item] = acc[item] ? acc[item] + 1 : 1; return acc }, {});
     return Object.keys(dict).sort((a, b) => dict[b] !== dict[a] ? dict[b] - dict[a] : a.localeCompare(b))
 }
 
