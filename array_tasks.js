@@ -32,3 +32,16 @@ const multiplyArray = (arr) => arr.map((item) => (Number.isFinite(item) ? item *
 
 console.log(multiplyArray(arr))
 
+// three
+
+function specialSorting(arr) {
+    const dataTypes = ['boolean', 'number', 'string', 'object']
+    return dataTypes.reduce((newArr, item) => {
+        return newArr.concat(arr.filter(elem => { return typeof (elem) === item }))
+    }, [])
+}
+
+const newArr = specialSorting(arr)
+
+console.log(newArr)
+
