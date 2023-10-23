@@ -1,2 +1,23 @@
 @import './global/colors.scss';
 
+.header {
+    text-align: left;
+    margin: 40px auto auto 40px;
+}
+
+.filters-section {
+    @extend .header;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+
+    &__filter {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        &__select {
+            height: 44px;
+        }
+    }
+}
