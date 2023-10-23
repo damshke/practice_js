@@ -1,8 +1,20 @@
+const wordsArr = ['fruit', 'keyboard', 'word', 'word', 'keyboard', 'word', 'fruit', 'banana']
+
+// fifth
+
+const sorting = (arr) => {
+    const dict = arr.reduce((acc, item) => { acc[item] = acc[item] ? acc[item] + 1 : 1; return acc }, {});
+    return Object.keys(dict).sort((a, b) => dict[b] !== dict[a] ? dict[b] - dict[a] : a.localeCompare(b))
+}
+
+console.log(sorting(wordsArr))
+
 // four
 
 const newArr = (...args) => (args.map(element => element * args.length))
 
 console.log(newArr(3, 4, 5, 6))
+
 
 // two
 const arr = ['banana', true, 1, 'car', {}, { a: 1 }, 5, true, true, false, 455, {}]
