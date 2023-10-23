@@ -1,3 +1,9 @@
+// four
+
+const newArr = (...args) => (args.map(element => element * args.length))
+
+console.log(newArr(3, 4, 5, 6))
+
 // two
 const arr = ['banana', true, 1, 'car', {}, { a: 1 }, 5, true, true, false, 455, {}]
 
@@ -26,3 +32,4 @@ function specialSorting(arr) {
 const newArr = specialSorting(arr)
 
 console.log(newArr)
+
