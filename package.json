@@ -1,0 +1,19 @@
+{
+  "name": "practice_js",
+  "version": "1.0.0",
+  "description": "Internship at Greensight, project assembly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damshke/practice_js.git"
+  },
+  "author": "Egorova Daria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damshke/practice_js/issues"
+  },
+  "homepage": "https://github.com/damshke/practice_js#readme"
+}
