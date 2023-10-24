@@ -29,9 +29,7 @@
         color: $black;
         box-shadow: none;
         width: 265.5px;
-        font-family: "Roboto Regular", sans-serif;
-        font-size: 14px;
-        line-height: 140%;  
+        @include _reg(14px, 140%); 
         color: $grey600;
 
         @media (max-width: 840px) {
@@ -42,5 +40,11 @@
     &__button {
         background-color: $blue;
         margin-top: auto;
+        @include _bold; 
+
+        &:hover {
+            background-color: $blueHover;
+            cursor: pointer;
+        }
     }
 }

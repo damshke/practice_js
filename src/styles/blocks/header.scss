@@ -15,13 +15,9 @@
     }
 
     &__title {
-        font-family: "Roboto Medium", sans-serif;
-        font-size: 48px;
-        line-height: 58px;
-
+        @include _h(48px, 58px);
         @media (max-width: 768px) {
-            font-size: 34px;
-            line-height: 120%;
+            @include _h(34px, 120%);
         }
     }
 }

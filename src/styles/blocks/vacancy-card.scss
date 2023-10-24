@@ -14,18 +14,21 @@
     }
 
     &__title {
-        font-family: "Roboto Medium", sans-serif;
-        font-size: 24px;
-        line-height: 30px;
+        @include _h(24px, 30px); 
 
         @media (max-width: 768px) {
-            font-size: 20px;
-            line-height: 24px;
+            @include _h(20px, 24px); 
         }
     }
 
     &__respond-button {
         background-color: $grey900;
+        @include _bold; 
+
+        &:hover {
+            background-color: $black;
+            cursor: pointer;
+        }
 
         @media (max-width: 750px) {
             width: 100%;
@@ -78,24 +81,21 @@
     }
 
     &__text {
-        font-family: 'Roboto Meduim', sans-serif;
-        font-size: 16px;
-        line-height: 140%;
+        @include _h(16px, 140px); 
         letter-spacing: 0em;
         text-align: left;
     }
 
     &__option {
         color: $grey700;
-        font-family: 'Roboto Regular', sans-serif;
-        font-size: 16px;
-        line-height: 145%; 
+        @include _reg(16px, 145%); 
     }
 
     &__description-content {
         @extend .vacancy-card__text;
         line-height: 145%; 
         margin-top: 32px;
+        @include _reg(16px, 145%); 
 
         &::after {
             content: "";

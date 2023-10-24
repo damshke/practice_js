@@ -14,13 +14,12 @@
     }
 
     &__title {
-        font-family: "Roboto Medium", sans-serif;
+        @include _h(34px, 125%); 
         text-align: center;
-        font-size: 34px;
-        line-height: 125%;
         letter-spacing: -0.34px;
 
         @media (max-width: 768px) {
+            @include _h(28px, 120%); 
             font-size: 28px;
             line-height: 120%;
             letter-spacing: -0.28px; 
@@ -29,9 +28,7 @@
 
     &__description {
         text-align: center;
-        font-family: 'Roboto Regular', sans-serif;
-        font-size: 18px;
-        line-height: 140%; 
+        @include _reg(18px, 140%); 
     }
 
     &__input-section {
@@ -51,9 +48,7 @@
     &__email,
     &__phone,
     &__comment {
-        font-family: "Roboto Regular", sans-serif;
-        font-size: 14px;
-        line-height: 140%; 
+        @include _reg(14px, 140%); 
         color: $grey600;
     }
 
@@ -75,14 +70,16 @@
         align-items: center;
         background: $blue;
         margin-top: 32px;
+        @include _bold; 
+
+        &:hover {
+            background-color: $blueHover;
+            cursor: pointer;
+        }
     }
 
     &__text {
-        font-family: "Roboto Regular", sans-serif;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 145%; 
+        @include _reg(16px, 145%); 
         text-align: center;
     }
 }
