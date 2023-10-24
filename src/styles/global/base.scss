@@ -1,46 +1,8 @@
 @import './fonts.scss';
+@import './colors.scss';
 
 body {
     margin: auto;
-}
-
-.header {
-    &__title {
-        font-family: "Roboto Medium", sans-serif;
-        font-size: 48px;
-        line-height: 58px;
-
-        @media (max-width: 768px) {
-            font-size: 34px;
-            line-height: 40.8px;
-        }
-    }
-}
-
-.vacancy-card {
-    &__title {
-        font-family: "Roboto Medium", sans-serif;
-        font-size: 24px;
-        line-height: 30px;
-
-        @media (max-width: 768px) {
-            font-size: 20px;
-            line-height: 24px;
-        }
-    }
-}
-
-.form-request  {
-    &__title {
-        font-family: "Roboto Medium", sans-serif;
-        font-size: 34px;
-        line-height: 42.5px;
-
-        @media (max-width: 768px) {
-            font-size: 28px;
-            line-height: 33.6px;
-        }
-    }
 }
 
 h3 {
@@ -52,5 +14,17 @@ h3 {
         font-size: 24px;
         line-height: 28.6px;
     }
+}
+
+.button {
+    height: 44px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+    box-shadow: none;
+    border: none;
+    font-family: "Roboto Bold", sans-serif;
+    font-size: 15px;
+    padding: 8px 32px 8px 32px;
 }
 

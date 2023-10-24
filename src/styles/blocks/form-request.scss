@@ -1,0 +1,21 @@
+@import './global/colors.scss';
+@import './global/fonts.scss';
+
+.form-request__title {
+    font-family: "Roboto Medium", sans-serif;
+    font-size: 34px;
+    line-height: 42.5px;
+
+    @media (max-width: 768px) {
+        font-size: 28px;
+        line-height: 33.6px;
+    }
+}
+
+.form-request {
+    background-color: #F7F9FB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 120px 88px 120px;
+}
