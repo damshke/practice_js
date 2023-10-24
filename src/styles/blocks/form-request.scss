@@ -21,6 +21,13 @@
         }
     }
 
+    &__description {
+        text-align: center;
+        font-family: 'Roboto Regular', sans-serif;
+        font-size: 18px;
+        line-height: 140%; 
+    }
+
     &__input-section {
         display: flex;
         width: 590px;
