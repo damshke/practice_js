@@ -45,17 +45,6 @@ input {
     border: 1px solid $grey400;
 }
 
-textarea {
-    display: flex;
-    padding: 12px;
-    align-items: flex-start;
-    gap: 8px;
-    flex: 1 0 0;
-    align-self: stretch;
-    border-radius: 4px;
-    border: 1px solid $grey400;
-}
-
 label {
     font-family: 'Roboto Medium', sans-serif;;
     font-size: 12px;
