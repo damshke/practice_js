@@ -44,4 +44,19 @@
         gap: 48px;
         align-self: stretch;
     }
+
+    &__text {
+        font-family: 'Roboto Meduim', sans-serif;
+        font-size: 16px;
+        line-height: 140%;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    &__option {
+        color: $grey700;
+        font-family: 'Roboto Regular', sans-serif;
+        font-size: 16px;
+        line-height: 145%; 
+    }
 }
