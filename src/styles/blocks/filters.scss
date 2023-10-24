@@ -1,13 +1,13 @@
-@import './global/colors.scss';
-@import './global/fonts.scss';
+@import '../global/colors.scss';
+@import '../global/fonts.scss';
+@import '../global/base.scss';
 
 .filters-section {
     display: flex;
     flex-direction: row;
     gap: 32px;
 
-
-    @media (max-width: 840px) {
+    @include _840 {
         flex-direction: column;
         gap: 16px;
         align-self: stretch;
@@ -26,13 +26,12 @@
         padding: 4px 12px 4px 12px;
         border-radius: 4px;
         background-color: $white;
-        color: $black;
         box-shadow: none;
         width: 265.5px;
         @include _reg(14px, 140%); 
         color: $grey600;
 
-        @media (max-width: 840px) {
+        @include _840 {
             width: auto;
         }
     }

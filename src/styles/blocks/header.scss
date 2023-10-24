@@ -1,5 +1,6 @@
 @import '../global/fonts.scss';
 @import '../global/colors.scss';
+@import '../global/base.scss';
 
 .header { 
     display: flex;
@@ -16,7 +17,7 @@
 
     &__title {
         @include _h(48px, 58px);
-        @media (max-width: 768px) {
+        @include _768 {
             @include _h(34px, 120%);
         }
     }

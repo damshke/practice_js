@@ -6,13 +6,10 @@ body {
 }
 
 h3 {
-    font-family: "Roboto Medium", sans-serif;
-    font-size: 28px;
-    line-height: 35px;
+    @include _h(28px, 35px); 
 
     @media (max-width: 768px) {
-        font-size: 24px;
-        line-height: 28.6px;
+        @include _h(24px, 120%); 
     }
 }
 
@@ -20,11 +17,10 @@ h3 {
     height: 44px;
     border-radius: 4px;
     text-align: center;
-    color: white;
+    color: $white;
     box-shadow: none;
     border: none;
-    font-family: "Roboto Bold", sans-serif;
-    font-size: 15px;
+    @include _bold;
     padding: 8px 32px 8px 32px;
 }
 
@@ -40,12 +36,28 @@ input {
 }
 
 label {
-    font-family: 'Roboto Medium', sans-serif;;
-    font-size: 12px;
-    line-height: 125%; 
+    @include _h(12px, 125%);
 }
 
 a {
     color: #0D7AD9;
     text-decoration: none;
+}
+
+@mixin _840 {
+    @media (max-width: 840px) {
+        @content;
+    }
+}
+
+@mixin _768 {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin _785 {
+    @media (max-width: 785px) {
+        @content;
+    }
 }
