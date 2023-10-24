@@ -1,21 +1,38 @@
 @import './global/colors.scss';
 @import './global/fonts.scss';
 
-.form-request__title {
-    font-family: "Roboto Medium", sans-serif;
-    font-size: 34px;
-    line-height: 42.5px;
-
-    @media (max-width: 768px) {
-        font-size: 28px;
-        line-height: 33.6px;
-    }
-}
-
 .form-request {
-    background-color: #F7F9FB;
+    background-color: $grey100;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 64px 120px 88px 120px;
+
+    &__title {
+        font-family: "Roboto Medium", sans-serif;
+        text-align: center;
+        font-size: 34px;
+        line-height: 125%;
+        letter-spacing: -0.34px;;
+
+        @media (max-width: 768px) {
+            font-size: 28px;
+            line-height: 33.6px;
+        }
+    }
+
+    &__input-section {
+        display: flex;
+        width: 590px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    &__submit-button {
+        width: 386px;
+        padding: 8px 32px;
+        align-items: center;
+        background: $blue;
+    }
 }

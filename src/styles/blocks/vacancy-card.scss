@@ -1,22 +1,47 @@
 @import './global/colors.scss';
 @import './global/fonts.scss';
 
-.vacancy-card__title {
-    font-family: "Roboto Medium", sans-serif;
-    font-size: 24px;
-    line-height: 30px;
-
-    @media (max-width: 768px) {
-        font-size: 20px;
-        line-height: 24px;
-    }
-}
-
 .vacancy-card {
-    background-color: white;
-    padding: 40px 40px 48px 40px;
-    margin-bottom: 32px;
+    background-color: $white;
+    padding: 40px 40px 48px;
     box-sizing: border-box;
-    box-shadow: 0px 0px 16px 0px #1E1E1E1A;
+    box-shadow: 0px 0px 16px 0px rgba(30, 30, 30, 0.10);
     border-radius: 16px;
+    margin: auto 120px 104px;
+
+    &__title {
+        font-family: "Roboto Medium", sans-serif;
+        font-size: 24px;
+        line-height: 30px;
+
+        @media (max-width: 768px) {
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+    &__respond-button {
+        background-color: $grey900;
+    }
+
+    &__head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+    }
+
+    &__info {
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    }
+
+    &__about {
+        display: flex;
+        align-items: flex-start;
+        gap: 48px;
+        align-self: stretch;
+    }
 }

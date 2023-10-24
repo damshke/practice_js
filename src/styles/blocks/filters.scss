@@ -3,7 +3,6 @@
 @import './header.scss';
 
 .filters-section {
-    @extend .header;
     display: flex;
     flex-direction: row;
     gap: 32px;
@@ -12,25 +11,18 @@
         display: flex;
         flex-direction: column;
         gap: 4px;
+    }
 
-        &__select {
-            height: 44px;
-            border-color: $grey400;
-            border-width: 1px;
-            padding: 4px 12px 4px 12px;
-            border-radius: 4px;
-            background-color: $white;
-            color: $black;
-            box-shadow: none;
-            width: 265.5px;
-        }
-
-        &__label {
-            font-family: 'Roboto Medium', sans-serif;
-            font-size: 12px;
-            line-height: 15px;
-            font-weight: 500;
-        }
+    &__select {
+        height: 44px;
+        border-color: $grey400;
+        border-width: 1px;
+        padding: 4px 12px 4px 12px;
+        border-radius: 4px;
+        background-color: $white;
+        color: $black;
+        box-shadow: none;
+        width: 265.5px;
     }
 
     &__button {

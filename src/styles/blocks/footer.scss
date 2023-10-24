@@ -2,35 +2,26 @@
 @import './global/fonts.scss';
 
 .footer {
-    background-color: #383838;
-    color: white;
+    background-color: $grey900;
+    color: $white;
     height: 140px;
+    padding: 40px 120px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
 
     &__left {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 25px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 20px;
-    margin-left: 120px;
-    display: grid;
-    padding-top: 10px;
-    gap: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 
     &__right {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 0em;
-    margin-top: 20px;
-    margin-right: 120px;
-    text-align: right;
-    display: grid;
-    gap: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
     }
 }
