@@ -10,8 +10,16 @@ async function fetchData(page, per_page) {
     const response = await fetch(`https://api.hh.ru/vacancies?${params}`);
     const data = await response.json();
     return data;
-
 }
+
+async function fetchFiltersData() {
+    const response = await fetch('https://api.hh.ru/dictionaries');
+    const data = await response.json();
+
+    return data.employment, data.experience;
+}
+
+
 
 async function getVacancyData(page, per_page) {
 
@@ -77,3 +85,4 @@ async function getVacancyData(page, per_page) {
 }
 
 window.addEventListener('load', getVacancyData(1, 5));
+window.addEventListener('load', fetchFiltersData());
