@@ -9,6 +9,10 @@
     border-radius: 16px;
     margin: auto 120px 104px;
 
+    @media (max-width: 768px) {
+        margin: auto 16px 32px;
+    }
+
     &__title {
         font-family: "Roboto Medium", sans-serif;
         font-size: 24px;
