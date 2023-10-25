@@ -93,18 +93,22 @@ async function loadMoreData() {
 function changeVisibility() {
     if (visibility_flag === 0) {
         const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
-        showDetailsButton.innerHTML = 'Less details';
+        showDetailsButton.innerHTML = '<img class="vacancy-card__icon" src="./img/chevronUp.svg" /> Less details';
+
         const contentSpace = document.querySelector('.vacancy-card__description-content');
         contentSpace.classList.remove('vacancy-card__description-content');
-        contentSpace.classList.add('vacancy-card__description-content--expand')
+        contentSpace.classList.add('vacancy-card__description-content--expand');
+
         visibility_flag = 1;
     }
     else {
         const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
-        showDetailsButton.innerHTML = 'More details';
+        showDetailsButton.innerHTML = '<img class="vacancy-card__icon" src="./img/chevronDown.svg" /> More details';
+
         const contentSpace = document.querySelector('.vacancy-card__description-content--expand');
         contentSpace.classList.remove('vacancy-card__description-content--expand');
         contentSpace.classList.add('vacancy-card__description-content')
+
         visibility_flag = 0;
     }
 }
@@ -132,6 +136,9 @@ window.addEventListener('load', async function () {
         });
         clearButton.style.display = 'none';
     });
+
+    const submitButton = document.querySelector('.form-request__submit-button');
+    submitButton.addEventListener('click', submitForm);
 });
 
 
@@ -204,4 +211,51 @@ function logoChecking(item) {
     else {
         return '';
     }
+}
+
+// forn validation
+
+function submitForm() {
+    const nameInput = document.querySelector('.form-request__initials');
+    const emailInput = document.querySelector('.form-request__email');
+    const phoneInput = document.querySelector('.form-request__phone');
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    if (name === '') {
+        alert('Please, enter your name');
+        return;
+    }
+
+    if (email === '') {
+        alert('Please, enter your email');
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        alert('Please, enter a valid email address');
+        return;
+    }
+
+    if (phone === '') {
+        alert('Please, enter your phone number');
+        return;
+    }
+
+    if (!validatePhone(phone)) {
+        alert('Please enter a valid phone number');
+        return;
+    }
+}
+
+function validateEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function validatePhone(phone) {
+    const re = /^\+?\d{0,2}\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/;
+    return re.test(phone);
 }
