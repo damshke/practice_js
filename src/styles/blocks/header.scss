@@ -21,4 +21,21 @@
             @include _h(34px, 120%);
         }
     }
+
+    &__clear-button {
+        box-shadow: none;
+        border: none;
+        background-color: $white;
+        text-align: left;
+        color: $blue;
+        @include _reg(16px, 23px);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        text-decoration-line: underline;
+        text-decoration-color: rgb($blue, .2);
+        padding: 4px;
+        margin-top: -24px;
+        cursor: pointer;
+    }
 }
