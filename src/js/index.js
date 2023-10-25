@@ -92,46 +92,46 @@ async function loadMoreData() {
 window.addEventListener('load', async function () {
     await getVacancyData(0, PER_PAGE);
     await fetchFiltersData();
+
+    const selectForm = document.querySelectorAll('.filters-section__filter select');
+    const clearButton = document.querySelector('.header__clear-button');
+
+    selectForm.forEach(select => {
+        select.addEventListener('change', function () {
+            if (select.value !== "") {
+                clearButton.style.display = 'flex';
+            } else {
+                clearButton.style.display = 'none';
+            }
+        });
+    });
+
+    clearButton.addEventListener('click', async function () {
+        selectForm.forEach(select => {
+            select.value = '';
+        });
+        clearButton.style.display = 'none';
+    });
 });
 
-// const selectForm = [];
-
-// window.addEventListener('load', function () {
-//     selectForm = document.querySelectorAll('.filters-section__filter select');
-// });
-
-// selectForm.forEach(item =>
-//     item.addEventListener('change', function () {
-//         const clearButton = document.querySelector('.header__clear-button');
-//         if (item.value !== "") clearButton.style.display = 'flex';
-//     }))
 
 function fillingCard(data) {
 
     const vacancyCardContainer = document.querySelector(".vacancy-card-container");
-    const vacancyCardTemplate = document.querySelector('template');
+    const vacancyCardTemplate = document.querySelector("template");
 
     data.items.forEach(item => {
-
         const vacancyCard = vacancyCardTemplate.content.cloneNode(true);
 
         vacancyCard.querySelector('.vacancy-card__title').innerHTML = item.name;
-
-        // const text = {
-        //     form: item.employment.name,
-        //     company: item.employer.name,
-        //     experience: item.experience.name,
-        //     address: addressChecking(item),
-        //     salary: salaryChecking(item),
-        // }
-
-        // vacancyCard.querySelectorAll('.vacancy-card__text').forEach(item => 
-        //     item.textContent = text
-        //     )
-
+        vacancyCard.querySelector('p:nth-of-type(1) .vacancy-card__text').innerHTML = item.employment.name;
+        vacancyCard.querySelector('p:nth-of-type(2) .vacancy-card__text').innerHTML = item.employer.name;
+        vacancyCard.querySelector('p:nth-of-type(3) .vacancy-card__text').innerHTML = item.experience.name;
+        vacancyCard.querySelector('p:nth-of-type(4) .vacancy-card__text').innerHTML = addressChecking(item);
+        vacancyCard.querySelector('p:nth-of-type(5) .vacancy-card__text').innerHTML = salaryChecking(item);
         fetchDescription(item, vacancyCard.querySelector('.vacancy-card__description-content'));
 
-        vacancyCardContainer.append(item)
+        vacancyCardContainer.appendChild(vacancyCard);
     });
 }
 
