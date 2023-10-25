@@ -1,4 +1,5 @@
 const PER_PAGE = 5;
+let visibility_flag = 0;
 
 let currentPage = 0;
 
@@ -87,6 +88,25 @@ async function loadMoreData() {
         await getVacancyData(next_page, 5);
     }
     await getVacancyData(next_page, PER_PAGE, employmentSelect.value, experienceSelect.value);
+}
+
+function changeVisibility() {
+    if (visibility_flag === 0) {
+        const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
+        showDetailsButton.innerHTML = 'Less details';
+        const contentSpace = document.querySelector('.vacancy-card__description-content');
+        contentSpace.classList.remove('vacancy-card__description-content');
+        contentSpace.classList.add('vacancy-card__description-content--expand')
+        visibility_flag = 1;
+    }
+    else {
+        const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
+        showDetailsButton.innerHTML = 'More details';
+        const contentSpace = document.querySelector('.vacancy-card__description-content--expand');
+        contentSpace.classList.remove('vacancy-card__description-content--expand');
+        contentSpace.classList.add('vacancy-card__description-content')
+        visibility_flag = 0;
+    }
 }
 
 window.addEventListener('load', async function () {
