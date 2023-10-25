@@ -1,3 +1,5 @@
+//class task is done
+
 const PI = 3.14159
 
 class AreaCalculator {
