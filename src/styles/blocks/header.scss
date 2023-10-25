@@ -29,7 +29,6 @@
         text-align: left;
         color: $blue;
         @include _reg(16px, 23px);
-        display: flex;
         align-items: center;
         gap: 4px;
         text-decoration-line: underline;
@@ -37,5 +36,6 @@
         padding: 4px;
         margin-top: -24px;
         cursor: pointer;
+        display: none;
     }
 }

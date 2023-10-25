@@ -94,169 +94,44 @@ window.addEventListener('load', async function () {
     await fetchFiltersData();
 });
 
+// const selectForm = [];
 
+// window.addEventListener('load', function () {
+//     selectForm = document.querySelectorAll('.filters-section__filter select');
+// });
+
+// selectForm.forEach(item =>
+//     item.addEventListener('change', function () {
+//         const clearButton = document.querySelector('.header__clear-button');
+//         if (item.value !== "") clearButton.style.display = 'flex';
+//     }))
 
 function fillingCard(data) {
 
     const vacancyCardContainer = document.querySelector(".vacancy-card-container");
+    const vacancyCardTemplate = document.querySelector('template');
 
     data.items.forEach(item => {
 
-        // create vacancy card div
-        const vacancyCard = document.createElement('div');
-        vacancyCard.classList.add('vacancy-card');
+        const vacancyCard = vacancyCardTemplate.content.cloneNode(true);
 
-        //create vacancy card head
+        vacancyCard.querySelector('.vacancy-card__title').innerHTML = item.name;
 
-        const vacancyCardHead = document.createElement('div');
-        vacancyCardHead.classList.add('vacancy-card__head');
+        // const text = {
+        //     form: item.employment.name,
+        //     company: item.employer.name,
+        //     experience: item.experience.name,
+        //     address: addressChecking(item),
+        //     salary: salaryChecking(item),
+        // }
 
-        // create vacancy card info
+        // vacancyCard.querySelectorAll('.vacancy-card__text').forEach(item => 
+        //     item.textContent = text
+        //     )
 
-        const vacancyCardInfo = document.createElement('div');
-        vacancyCardInfo.classList.add('vacancy-card__info');
+        fetchDescription(item, vacancyCard.querySelector('.vacancy-card__description-content'));
 
-        // vacancy card info <--- vacancy card left
-
-        const vacancyCardLeft = document.createElement('div');
-        vacancyCardLeft.classList.add('vacancy-card__left');
-
-        // vacancy card left <--- vacancy card title
-
-        const vacancyCardTitle = document.createElement('h4');
-        vacancyCardTitle.innerHTML = item.name;
-        vacancyCardTitle.classList.add('vacancy-card__title');
-
-        // vacancy card left <--- vacancy card log
-
-        const vacancyCardImg = document.createElement('img');
-        vacancyCardImg.src = logoChecking(item);
-        vacancyCardImg.classList.add('vacancy-card__logo');
-
-        // append child for vacancy card left
-        vacancyCardLeft.appendChild(vacancyCardTitle);
-        vacancyCardLeft.appendChild(vacancyCardImg);
-
-        // vacancy card info <--- vacancy card button
-
-        const vacancyCardButton = document.createElement('button');
-        vacancyCardButton.innerHTML = 'Respond';
-        vacancyCardButton.classList.add('vacancy-card__respond-button', 'button');
-
-        // append child for vacancy card info
-        vacancyCardInfo.appendChild(vacancyCardLeft);
-        vacancyCardInfo.appendChild(vacancyCardButton);
-
-        // vacancy card head <--- vacancy card about
-
-        const vacancyCardAbout = document.createElement('div');
-        vacancyCardAbout.classList.add('vacancy-card__about');
-
-        // common <p>
-
-        const paragraphForm = document.createElement('p');
-        const paragraphCompany = document.createElement('p');
-        const paragraphExp = document.createElement('p');
-        const paragraphAddress = document.createElement('p');
-        const paragraphSalary = document.createElement('p');
-
-        vacancyCardAbout.appendChild(paragraphForm);
-
-        const vacancyForm = document.createElement('span');
-        vacancyForm.classList.add('vacancy-card__option');
-        vacancyForm.innerHTML = 'Form';
-
-        const vacancyFormText = document.createElement('span');
-        vacancyFormText.classList.add('vacancy-card__text');
-        vacancyFormText.innerHTML = item.employment.name;
-
-        paragraphForm.appendChild(vacancyForm);
-        paragraphForm.appendChild(vacancyFormText);
-
-        //
-
-        vacancyCardAbout.appendChild(paragraphCompany);
-
-        const vacancyCompany = document.createElement('span');
-        vacancyCompany.classList.add('vacancy-card__option');
-        vacancyCompany.innerHTML = 'Company';
-
-        const vacancyCompanyText = document.createElement('span');
-        vacancyCompanyText.classList.add('vacancy-card__text');
-        vacancyCompanyText.innerHTML = item.employer.name;
-
-        paragraphCompany.appendChild(vacancyCompany);
-        paragraphCompany.appendChild(vacancyCompanyText);
-
-        // 
-
-        vacancyCardAbout.appendChild(paragraphExp);
-
-        const vacancyExperience = document.createElement('span');
-        vacancyExperience.classList.add('vacancy-card__option');
-        vacancyExperience.innerHTML = 'Experience';
-
-        const vacancyExperienceText = document.createElement('span');
-        vacancyExperienceText.classList.add('vacancy-card__text');
-        vacancyExperienceText.innerHTML = item.experience.name;
-
-        paragraphExp.appendChild(vacancyExperience);
-        paragraphExp.appendChild(vacancyExperienceText);
-
-        // 
-
-        vacancyCardAbout.appendChild(paragraphAddress);
-
-        const vacancyAddress = document.createElement('span');
-        vacancyAddress.classList.add('vacancy-card__option');
-        vacancyAddress.innerHTML = 'Address';
-
-        const vacancyAddressText = document.createElement('span');
-        vacancyAddressText.classList.add('vacancy-card__text');
-        vacancyAddressText.innerHTML = addressChecking(item);
-
-        paragraphAddress.appendChild(vacancyAddress);
-        paragraphAddress.appendChild(vacancyAddressText);
-
-        //
-
-        vacancyCardAbout.appendChild(paragraphSalary);
-
-        const vacancySalary = document.createElement('span');
-        vacancySalary.classList.add('vacancy-card__option');
-        vacancySalary.innerHTML = 'Salary';
-
-        const vacancySalaryText = document.createElement('span');
-        vacancySalaryText.classList.add('vacancy-card__text');
-        vacancySalaryText.innerHTML = salaryChecking(item);
-
-        paragraphSalary.appendChild(vacancySalary);
-        paragraphSalary.appendChild(vacancySalaryText);
-
-        vacancyCardHead.appendChild(vacancyCardInfo);
-        vacancyCardHead.appendChild(vacancyCardAbout);
-
-        // added description
-
-        const vacancyCardDescription = document.createElement('div');
-        vacancyCardDescription.classList.add('vacancy-card__description');
-
-        const vacancyCardContent = document.createElement('div');
-        vacancyCardContent.classList.add('vacancy-card__description-content');
-        fetchDescription(item, vacancyCardContent);
-
-        const showMoreButton = document.createElement('button');
-        showMoreButton.classList.add('vacancy-card__expand-button');
-        showMoreButton.innerHTML = 'More details';
-
-        vacancyCardDescription.appendChild(vacancyCardContent);
-        vacancyCardDescription.appendChild(showMoreButton);
-
-        vacancyCard.appendChild(vacancyCardHead);
-        vacancyCard.appendChild(vacancyCardDescription);
-        vacancyCardContainer.appendChild(vacancyCard);
-
-        return vacancyCardContainer;
+        vacancyCardContainer.append(item)
     });
 }
 
