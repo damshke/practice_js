@@ -5,6 +5,12 @@ body {
     margin: auto;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h3 {
     @include _h(28px, 35px); 
 

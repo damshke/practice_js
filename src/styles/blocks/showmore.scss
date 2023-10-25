@@ -1,0 +1,16 @@
+@import '../global/fonts.scss';
+@import '../global/colors.scss';
+@import '../global/base.scss';
+
+.show-more {
+    background-color: $blue;
+    margin-top: auto;
+    margin-bottom: 32px;
+
+    @include _bold; 
+
+    &:hover {
+        background-color: $blueHover;
+        cursor: pointer;
+    }
+}
