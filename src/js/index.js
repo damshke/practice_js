@@ -1,7 +1,6 @@
 // TO DO: 
 // 1. фильтрация 
 // 3. разобраться, почему стили не работают на данных
-// 4. сделать проверки наличия необязательных полей
 // 5. сделать валидацию формы
 
 
@@ -11,11 +10,19 @@ let description;
 
 let currentPage = 0;
 
-async function fetchData(page, per_page) {
+async function fetchData(page, per_page, form, experience) {
 
     const search = {
         page: String(page),
         per_page: String(per_page)
+    }
+
+    if (form) {
+        search.employment = form;
+    }
+
+    if (experience) {
+        search.experience = experience;
     }
 
     const params = new URLSearchParams(search).toString();
@@ -29,14 +36,30 @@ async function fetchFiltersData() {
     const response = await fetch('https://api.hh.ru/dictionaries');
     const data = await response.json();
 
-    return data.employment, data.experience;
+    const employmentSelect = document.querySelector('.filters-section__filter:nth-of-type(1) select');
+    const experienceSelect = document.querySelector('.filters-section__filter:nth-of-type(2) select');
+
+    employmentSelect.innerHTML = '';
+    experienceSelect.innerHTML = '';
+
+    data.employment.forEach(employment => {
+        const option = document.createElement('option');
+        option.text = employment.name;
+        option.value = employment.id;
+        employmentSelect.add(option);
+    });
+
+    data.experience.forEach(exp => {
+        const option = document.createElement('option');
+        option.text = exp.name;
+        option.value = exp.id;
+        experienceSelect.add(option);
+    });
 }
 
 async function fetchDescription(item, displayItem) {
     const response = await fetch(item.url);
     const data = await response.json();
-
-    console.log(data.description);
 
     displayItem.innerHTML = data.description;
 }
@@ -229,9 +252,9 @@ function fillingCard(data) {
     });
 }
 
-async function getVacancyData(page, per_page) {
+async function getVacancyData(page, per_page, form, experience) {
 
-    const data = await fetchData(page, per_page);
+    const data = await fetchData(page, per_page, form, experience);
 
     if (!data || data.items.length === 0) {
         const loadMoreButton = document.querySelector('.show-more');
@@ -244,6 +267,17 @@ async function getVacancyData(page, per_page) {
     fillingCard(data);
 
     currentPage = page;
+}
+
+async function findVacancies() {
+    const employmentSelect = document.querySelector('.filters-section__filter:nth-of-type(1) select');
+    const experienceSelect = document.querySelector('.filters-section__filter:nth-of-type(2) select');
+
+    const vacancyCardContainer = document.querySelector(".vacancy-card-container");
+    vacancyCardContainer.forEach(child => vacancyCardContainer.removeChild(child));
+
+    currentPage = 0;
+    await getVacancyData(0, 5, employmentSelect.value, experienceSelect.value);
 }
 
 async function loadMoreData() {

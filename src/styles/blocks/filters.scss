@@ -29,7 +29,6 @@
         box-shadow: none;
         width: 265.5px;
         @include _reg(14px, 140%); 
-        color: $grey600;
 
         @include _840 {
             width: auto;
