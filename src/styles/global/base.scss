@@ -11,14 +11,6 @@ main {
     align-items: center;
 }
 
-h3 {
-    @include _h(28px, 35px); 
-
-    @media (max-width: 768px) {
-        @include _h(24px, 120%); 
-    }
-}
-
 .button {
     height: 44px;
     border-radius: 4px;
@@ -65,5 +57,23 @@ a {
 @mixin _785 {
     @media (max-width: 785px) {
         @content;
+    }
+}
+
+img {
+    max-height: 50px;
+    max-width: 100%;
+    vertical-align: middle;
+
+    @include _768 {
+        align-self: baseline;
+    }
+}
+
+h3 {
+    @include _h(28px, 35px); 
+
+    @include _768 {
+        @include _h(24px, 120%); 
     }
 }

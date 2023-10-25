@@ -41,6 +41,50 @@ async function fetchDescription(item, displayItem) {
     displayItem.innerHTML = data.description;
 }
 
+function addressChecking(item) {
+    if (item.address) {
+        return item.address.raw;
+    }
+    if (item.area) {
+        return item.area.name;
+    }
+    return '';
+}
+
+function salaryChecking(item) {
+    const { salary } = item;
+
+    if (!salary) {
+        return '';
+    }
+
+    const { from, to, currency } = salary;
+    const parts = [];
+
+    if (from) {
+        parts.push(`from ${from}`);
+    }
+
+    if (to) {
+        parts.push(`to ${to}`);
+    }
+
+    if (currency) {
+        parts.push(currency);
+    }
+
+    return parts.join(' ');
+}
+
+function logoChecking(item) {
+    if (item.employer && item.employer.logo_urls) {
+        return item.employer.logo_urls.original;
+    }
+    else {
+        return '';
+    }
+}
+
 function fillingCard(data) {
     const vacancyCardContainer = document.querySelector(".vacancy-card-container");
 
@@ -74,7 +118,7 @@ function fillingCard(data) {
         // vacancy card left <--- vacancy card log
 
         const vacancyCardImg = document.createElement('img');
-        vacancyCardImg.src = item.employer.logo_urls; //сделать проверку на наличие картинки
+        vacancyCardImg.src = logoChecking(item);
         vacancyCardImg.classList.add('vacancy-card__logo');
 
         // append child for vacancy card left
@@ -138,7 +182,7 @@ function fillingCard(data) {
 
         const vacancyAddressText = document.createElement('span');
         vacancyAddressText.classList.add('vacancy-card__text');
-        vacancyAddressText.innerHTML = item.area.name; // проверку на адрес
+        vacancyAddressText.innerHTML = addressChecking(item);
 
         paragraph.appendChild(vacancyAddress);
         paragraph.appendChild(vacancyAddressText);
@@ -153,7 +197,7 @@ function fillingCard(data) {
 
         const vacancySalaryText = document.createElement('span');
         vacancySalaryText.classList.add('vacancy-card__text');
-        vacancySalaryText.innerHTML = `from ${item.salary.from} to ${item.salary.to} ${item.salary.currency}`; // проверку на поля зп
+        vacancySalaryText.innerHTML = salaryChecking(item);
 
         paragraph.appendChild(vacancySalary);
         paragraph.appendChild(vacancySalaryText);
