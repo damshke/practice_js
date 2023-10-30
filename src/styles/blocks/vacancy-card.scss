@@ -72,7 +72,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            gap: 8px;
+            gap: $major-step;
         }
     }
 
@@ -82,7 +82,7 @@
         gap: $major-step * 6;
         align-self: stretch;
 
-        @include _785 {
+        @include _768 {
             flex-direction: column;
             gap: $major-step;
         }

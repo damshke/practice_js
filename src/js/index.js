@@ -1,4 +1,6 @@
-const PER_PAGE = 5;
+import PER_PAGE from './utils/constant'
+import { emailRegex, phoneRegex } from './utils/regex'
+
 let visibility_flag = 0;
 
 let currentPage = 0;
@@ -182,38 +184,23 @@ function addressChecking(item) {
 function salaryChecking(item) {
     const { salary } = item;
 
-    if (!salary) {
-        return '';
-    }
+    if (!salary) return '';
 
     const { from, to, currency } = salary;
     const parts = [];
 
-    if (from) {
-        parts.push(`from ${from}`);
-    }
+    if (from) parts.push(`from ${from}`);
 
-    if (to) {
-        parts.push(`to ${to}`);
-    }
+    if (to) parts.push(`to ${to}`);
 
-    if (currency) {
-        parts.push(currency);
-    }
+    if (currency) parts.push(currency);
 
     return parts.join(' ');
 }
 
-function logoChecking(item) {
-    if (item.employer && item.employer.logo_urls) {
-        return item.employer.logo_urls.original;
-    }
-    else {
-        return '';
-    }
-}
+function logoChecking(item) { return item.employer && item.employer.logo_urls ? item.employer.logo_urls.original : '' }
 
-// forn validation
+// form validation
 
 function submitForm() {
     const nameInput = document.querySelector('.form-request__initials');
@@ -251,11 +238,11 @@ function submitForm() {
 }
 
 function validateEmail(email) {
-    const re = /\S+@\S+\.\S+/;
+    const re = emailRegex;
     return re.test(email);
 }
 
 function validatePhone(phone) {
-    const re = /^\+?\d{0,2}\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{2}[-.\s]?\d{2}$/;
+    const re = phoneRegex;
     return re.test(phone);
 }

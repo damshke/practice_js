@@ -10,8 +10,8 @@
     gap: $major-step * 5;
     align-self: stretch;
     padding: $major-step * 8 $major-step * 15 $major-step * 6 $major-step * 15;
-
-    @media (max-width: 768px) {
+    
+    @include _768 {
         padding: $major-step * 4 $major-step * 2;
         gap: $major-step * 3;
     }

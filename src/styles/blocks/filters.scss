@@ -8,7 +8,7 @@
     flex-direction: row;
     gap: $major-step * 4;
 
-    @include _840 {
+    @include _768 {
         flex-direction: column;
         gap: $major-step * 2;
         align-self: stretch;
@@ -33,7 +33,7 @@
         width: 265.5px;
         @include _reg(14px, 140%); 
 
-        @include _840 {
+        @include _768 {
             width: auto;
         }
     }

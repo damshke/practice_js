@@ -20,7 +20,7 @@
         gap: $major-step;
         align-self: center;
 
-        @media (max-width: 750px) {
+        @include _768 {
             gap: $major-step;
             align-self: stretch;
         }
@@ -38,7 +38,7 @@
         gap: $major-step;
         align-self: center;
 
-        @media (max-width: 750px) {
+        @include _768 {
             align-items: center;
             gap: $major-step;
             align-items: flex-start;
@@ -55,13 +55,13 @@
         line-height: 145%; 
     }
 
-    @media (max-width: 750px) {
+    @include _768 {
         flex-direction: column;
         align-items: center;
         gap: $major-step * 3;
-    }
+    } 
 
-    @media (max-width: 320px) {
+    @include _320 {
         padding: $major-step * 4 $major-step * 2;
-    }
+    } 
 }

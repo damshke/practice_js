@@ -54,9 +54,9 @@ img {
 }
 
 h3 {
-    @include _h(28px, 35px); 
+    @include _h($minor-step * 7, 35px); 
 
     @include _768 {
-        @include _h(24px, 120%); 
+        @include _h($major-step * 6, 120%); 
     }
 }

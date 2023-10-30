@@ -1,20 +1,15 @@
 $major-step: 8px;
 $minor-step: 4px;
 
-@mixin _840 {
-    @media (max-width: 840px) {
-        @content;
-    }
-}
-
 @mixin _768 {
     @media (max-width: 768px) {
         @content;
     }
 }
 
-@mixin _785 {
-    @media (max-width: 785px) {
+@mixin _320 {
+    @media (max-width: 320px) {
         @content;
     }
 }
+
