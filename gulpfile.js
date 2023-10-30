@@ -11,6 +11,7 @@ const path = {
         html: 'build/',
         css: 'build/css/',
         js: 'build/js/',
+        utils: 'build/js/utils',
         img: 'build/img/',
         fonts: 'build/fonts/'
     },
@@ -18,6 +19,7 @@ const path = {
         html: 'src/*.*',
         css: 'src/styles/*.scss',
         js: 'src/js/*.js',
+        utils: 'src/js/utils/*.js',
         img: 'src/img/*.*',
         fonts: 'src/fonts/Roboto/*.*'
     },
@@ -60,11 +62,19 @@ const buildJs = () =>
         })
         .pipe(gulp.dest(path.build.js));
 
+const buildUtils = () =>
+    gulp
+        .src(path.src.utils)
+        .on('error', function (e) {
+            gutil.log(e.plugin, gutil.colors.red(e.message));
+        })
+        .pipe(gulp.dest(path.build.utils));
+
 const buildImg = () => gulp.src(path.src.img).pipe(gulp.dest(path.build.img));
 
 const buildFonts = () => gulp.src(path.src.fonts).pipe(gulp.dest(path.build.fonts));
 
-const buildFunction = () => gulp.series(clean, buildHtml, buildCSS, buildJs, buildImg, buildFonts);
+const buildFunction = () => gulp.series(clean, buildHtml, buildCSS, buildJs, buildUtils, buildImg, buildFonts);
 
 exports.build = buildFunction();
 
@@ -81,6 +91,7 @@ const serverFunction = () =>
 const watchFunction = () => {
     gulp.watch('src/css/*.css', gulp.series(buildCSS));
     gulp.watch('src/js/*.js', gulp.series(buildJs));
+    gulp.watch('src/js/utils/*.js', gulp.series(buildUtils));
     gulp.watch('src/*.*', gulp.series(buildHtml));
     gulp.watch('src/img', gulp.series(buildImg));
     gulp.watch('src/fonts', gulp.series(buildFonts));
