@@ -1,12 +1,13 @@
 @import './global/colors.scss';
 @import './global/fonts.scss';
 @import '../global/base.scss';
+@import '../global/grid.scss';
 
 .footer {
     background-color: $grey900;
     color: $white;
-    height: 140px;
-    padding: 40px 120px;
+    height: $minor-step * 35;
+    padding: $minor-step*10 $major-step * 15;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,11 +17,11 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: $major-step;
         align-self: center;
 
         @media (max-width: 750px) {
-            gap: 8px;
+            gap: $major-step;
             align-self: stretch;
         }
     }
@@ -34,12 +35,12 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 8px;
+        gap: $major-step;
         align-self: center;
 
         @media (max-width: 750px) {
             align-items: center;
-            gap: 8px;
+            gap: $major-step;
             align-items: flex-start;
             align-self: stretch;
         }
@@ -48,19 +49,19 @@
     &__address-link,
     &__link {
         color: $white;
-        @include _reg(16px, 145%); 
+        @include _reg($major-step * 2, 145%); 
         font-family: 'Roboto Regular', sans-serif;
-        font-size: 16px;
+        font-size: $major-step * 2;
         line-height: 145%; 
     }
 
     @media (max-width: 750px) {
         flex-direction: column;
         align-items: center;
-        gap: 24px;
+        gap: $major-step * 3;
     }
 
     @media (max-width: 320px) {
-        padding: 32px 16px;
+        padding: $major-step * 4 $major-step * 2;
     }
 }

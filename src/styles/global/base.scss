@@ -1,5 +1,6 @@
 @import './fonts.scss';
 @import './colors.scss';
+@import './grid.scss';
 
 body {
     margin: auto;
@@ -12,7 +13,7 @@ main {
 }
 
 .button {
-    height: 44px;
+    height: $minor-step * 11;
     border-radius: 4px;
     text-align: center;
     color: $white;
@@ -40,24 +41,6 @@ label {
 a {
     color: #0D7AD9;
     text-decoration: none;
-}
-
-@mixin _840 {
-    @media (max-width: 840px) {
-        @content;
-    }
-}
-
-@mixin _768 {
-    @media (max-width: 768px) {
-        @content;
-    }
-}
-
-@mixin _785 {
-    @media (max-width: 785px) {
-        @content;
-    }
 }
 
 img {

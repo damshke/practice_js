@@ -1,18 +1,19 @@
 @import '../global/fonts.scss';
 @import '../global/colors.scss';
 @import '../global/base.scss';
+@import '../global/grid.scss';
 
 .header { 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    gap: $major-step * 5;
     align-self: stretch;
-    padding: 64px 120px 48px 120px;
+    padding: $major-step * 8 $major-step * 15 $major-step * 6 $major-step * 15;
 
     @media (max-width: 768px) {
-        padding: 32px 16px;
-        gap: 24px;
+        padding: $major-step * 4 $major-step * 2;
+        gap: $major-step * 3;
     }
 
     &__title {
@@ -30,11 +31,11 @@
         color: $blue;
         @include _reg(16px, 23px);
         align-items: center;
-        gap: 4px;
+        gap: $minor-step;
         text-decoration-line: underline;
         text-decoration-color: rgb($blue, .2);
-        padding: 4px;
-        margin-top: -24px;
+        padding: $minor-step;
+        margin-top: $major-step * -3;
         cursor: pointer;
         display: none;
     }
