@@ -1,5 +1,5 @@
-import PER_PAGE from './utils/constant'
-import { emailRegex, phoneRegex } from './utils/regex'
+import { PER_PAGE } from './utils/constant.js'
+import { emailRegex, phoneRegex } from './utils/regex.js'
 
 let visibility_flag = 0;
 
@@ -9,16 +9,12 @@ async function fetchData(page, per_page, form, experience) {
 
     const search = {
         page: String(page),
-        per_page: String(per_page)
+        per_page: String(per_page),
     }
 
-    if (form) {
-        search.employment = form;
-    }
+    if (form) search.employment = form;
 
-    if (experience) {
-        search.experience = experience;
-    }
+    if (experience) search.experience = experience;
 
     const params = new URLSearchParams(search).toString();
 
