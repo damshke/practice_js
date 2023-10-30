@@ -6,6 +6,7 @@
 .filters-section {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: $major-step * 4;
 
     @include _768 {

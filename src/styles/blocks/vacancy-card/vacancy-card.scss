@@ -72,6 +72,7 @@
     &__about {
         display: flex;
         align-items: flex-start;
+        flex-wrap: wrap;
         gap: $major-step * 6;
         align-self: stretch;
 
