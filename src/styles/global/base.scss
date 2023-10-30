@@ -60,3 +60,10 @@ h3 {
         @include _h($major-step * 6, 120%); 
     }
 }
+
+p,
+li {
+    @include _reg($major-step * 2, 145%);
+}
+
+

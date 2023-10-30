@@ -1,8 +1,6 @@
 import { PER_PAGE } from './utils/constant.js'
 import { emailRegex, phoneRegex } from './utils/regex.js'
 
-let visibility_flag = 0;
-
 let currentPage = 0;
 
 async function fetchData(page, per_page, form, experience) {
@@ -77,6 +75,27 @@ async function findVacancies() {
     await getVacancyData(0, 5, employmentSelect.value, experienceSelect.value);
 }
 
+async function openDescription() {
+
+    const card = document.querySelectorAll('.vacancy-card');
+    card.forEach(card => {
+        card.querySelector('.vacancy-card__expand-button').addEventListener('click', async function () {
+            const contentSpace = document.getElementById(card.id).querySelector('.vacancy-card__description-content');
+            let visibility_flag = contentSpace.classList.contains('vacancy-card__description-content--expand');
+            if (visibility_flag) {
+                document.getElementById(card.id).querySelector('.vacancy-card__expand-button').innerHTML = '<img class="vacancy-card__icon" src="./img/chevronDown.svg" /> More details';
+
+                contentSpace.classList.remove('vacancy-card__description-content--expand');
+            }
+            else {
+                document.getElementById(card.id).querySelector('.vacancy-card__expand-button').innerHTML = '<img class="vacancy-card__icon" src="./img/chevronUp.svg" /> Less details';
+
+                contentSpace.classList.add('vacancy-card__description-content--expand');
+            }
+        });
+    })
+}
+
 async function loadMoreData() {
     const next_page = currentPage + 1;
     const employmentSelect = document.querySelector('.filters-section__filter:nth-of-type(1) select');
@@ -86,29 +105,8 @@ async function loadMoreData() {
         await getVacancyData(next_page, 5);
     }
     await getVacancyData(next_page, PER_PAGE, employmentSelect.value, experienceSelect.value);
-}
 
-function changeVisibility() {
-    if (visibility_flag === 0) {
-        const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
-        showDetailsButton.innerHTML = '<img class="vacancy-card__icon" src="./img/chevronUp.svg" /> Less details';
-
-        const contentSpace = document.querySelector('.vacancy-card__description-content');
-        contentSpace.classList.remove('vacancy-card__description-content');
-        contentSpace.classList.add('vacancy-card__description-content--expand');
-
-        visibility_flag = 1;
-    }
-    else {
-        const showDetailsButton = document.querySelector('.vacancy-card__expand-button');
-        showDetailsButton.innerHTML = '<img class="vacancy-card__icon" src="./img/chevronDown.svg" /> More details';
-
-        const contentSpace = document.querySelector('.vacancy-card__description-content--expand');
-        contentSpace.classList.remove('vacancy-card__description-content--expand');
-        contentSpace.classList.add('vacancy-card__description-content')
-
-        visibility_flag = 0;
-    }
+    openDescription();
 }
 
 window.addEventListener('load', async function () {
@@ -118,7 +116,6 @@ window.addEventListener('load', async function () {
     const selectForm = document.querySelectorAll('.filters-section__select');
     const clearButton = document.querySelector('.header__button');
     const searchButton = document.querySelector('.filters-section__button');
-    const expandButton = document.querySelectorAll('.vacancy-card__expand-button');
     const showMoreButton = document.querySelector('.show-more');
 
     selectForm.forEach(select => {
@@ -131,16 +128,14 @@ window.addEventListener('load', async function () {
         });
     });
 
-    expandButton.forEach(button => {
-        button.addEventListener('click', changeVisibility);
-    });
-
     searchButton.addEventListener('click', findVacancies);
 
     showMoreButton.addEventListener('click', loadMoreData);
 
     const submitButton = document.querySelector('.form-request__submit-button');
     submitButton.addEventListener('click', submitForm);
+
+    await openDescription();
 });
 
 
@@ -152,6 +147,7 @@ function fillingCard(data) {
     data.items.forEach(item => {
         const vacancyCard = vacancyCardTemplate.content.cloneNode(true);
 
+        vacancyCard.querySelector('.vacancy-card').id = item.id;
         vacancyCard.querySelector('.vacancy-card__form').action = item.alternate_url;
         vacancyCard.querySelector('.vacancy-card__title').innerHTML = item.name;
         vacancyCard.querySelector('.vacancy-card__logo').src = logoChecking(item);
@@ -160,6 +156,7 @@ function fillingCard(data) {
         vacancyCard.querySelector('p:nth-of-type(3) .vacancy-card__text').innerHTML = item.experience.name;
         vacancyCard.querySelector('p:nth-of-type(4) .vacancy-card__text').innerHTML = addressChecking(item);
         vacancyCard.querySelector('p:nth-of-type(5) .vacancy-card__text').innerHTML = salaryChecking(item);
+
         fetchDescription(item, vacancyCard.querySelector('.vacancy-card__description-content'));
 
         vacancyCardContainer.appendChild(vacancyCard);
