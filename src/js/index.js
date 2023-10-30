@@ -132,6 +132,13 @@ window.addEventListener('load', async function () {
 
     showMoreButton.addEventListener('click', loadMoreData);
 
+    clearButton.addEventListener('click', function () {
+        selectForm.forEach(select => {
+            select.value = '';
+        });
+        clearButton.style.display = 'none';
+    });
+
     const submitButton = document.querySelector('.form-request__submit-button');
     submitButton.addEventListener('click', submitForm);
 
