@@ -157,7 +157,9 @@ function fillingCard(data) {
     data.items.forEach(item => {
         const vacancyCard = vacancyCardTemplate.content.cloneNode(true);
 
+        vacancyCard.querySelector('.vacancy-card__form').action = item.alternate_url;
         vacancyCard.querySelector('.vacancy-card__title').innerHTML = item.name;
+        vacancyCard.querySelector('.vacancy-card__logo').src = logoChecking(item);
         vacancyCard.querySelector('p:nth-of-type(1) .vacancy-card__text').innerHTML = item.employment.name;
         vacancyCard.querySelector('p:nth-of-type(2) .vacancy-card__text').innerHTML = item.employer.name;
         vacancyCard.querySelector('p:nth-of-type(3) .vacancy-card__text').innerHTML = item.experience.name;
