@@ -15,20 +15,20 @@
         <h1 class="header__title">List of vacancies</h1>
         <div class="filters-section">
             <div class="filters-section__filter">
-                <label class="filters-section__label">Form</label>
-                <select class="filters-section__select">
+                <label class="filters-section__label label">Form</label>
+                <select class="filters-section__select select">
                     <option value="">Not selected</option>
                 </select>
             </div>
             <div class=" filters-section__filter">
-                <label class="filters-section__label">Experience</label>
-                <select class="filters-section__select">
+                <label class="filters-section__label label">Experience</label>
+                <select class="filters-section__select select">
                     <option value="">Not selected</option>
                 </select>
             </div>
             <button class="filters-section__button button" onclick="findVacancies()">Search</button>
         </div>
-        <button class="header__clear-button">
+        <button class="header__button clear-button">
             <img src="./img/close.svg" />Clear filters</button>
     </header>
 
@@ -85,20 +85,20 @@
         <p class="form-request__description">We will advise you and help you start a new project</p>
 
         <div class="form-request__input-section">
-            <label>Your name</label>
+            <label class="form-request__input-section__label label">Your name</label>
             <input type="text" class="form-request__initials" placeholder='Please introduce yourself' />
         </div>
 
         <div class="form-request__input-section">
-            <label>Email</label>
+            <label class="form-request__input-section__label label">Email</label>
             <input type="email" class="form-request__email" placeholder='ivanov@gmail.com' />
         </div>
         <div class="form-request__input-section">
-            <label>Phone number</label>
+            <label class="form-request__input-section__label label">Phone number</label>
             <input type="tel" class="form-request__phone" placeholder="+7 (___) ___-__-__" />
         </div>
         <div class="form-request__input-section">
-            <label>Comment</label>
+            <label class="form-request__input-section__label label">Comment</label>
             <textarea class="form-request__comment" placeholder="Message text"></textarea>
         </div>
         <button class="form-request__submit-button button">Submit</button>

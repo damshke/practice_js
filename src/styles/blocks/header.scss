@@ -23,20 +23,7 @@
         }
     }
 
-    &__clear-button {
-        box-shadow: none;
-        border: none;
-        background-color: $white;
-        text-align: left;
-        color: $blue;
-        @include _reg(16px, 23px);
-        align-items: center;
-        gap: $minor-step;
-        text-decoration-line: underline;
-        text-decoration-color: rgb($blue, .2);
-        padding: $minor-step;
+    &__button {
         margin-top: $major-step * -3;
-        cursor: pointer;
-        display: none;
     }
 }

@@ -34,7 +34,7 @@ input {
     border: 1px solid $grey400;
 }
 
-label {
+.label {
     @include _h(12px, 125%);
 }
 

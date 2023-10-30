@@ -115,8 +115,8 @@ window.addEventListener('load', async function () {
     await getVacancyData(0, PER_PAGE);
     await fetchFiltersData();
 
-    const selectForm = document.querySelectorAll('.filters-section__filter select');
-    const clearButton = document.querySelector('.header__clear-button');
+    const selectForm = document.querySelectorAll('.filters-section__select');
+    const clearButton = document.querySelector('.header__button');
 
     selectForm.forEach(select => {
         select.addEventListener('change', function () {
