@@ -1,15 +1,7 @@
-@import './global/colors.scss';
-@import './global/fonts.scss';
-@import '../global/base.scss';
-@import '../global/grid.scss';
-
-.vacancy-card-container {
-    display: flex;
-    flex-direction: column;
-    gap: $major-step * 4;
-    align-self: stretch;
-    margin-bottom: $major-step * 13;
-}
+@import 'src/styles/global/colors.scss';
+@import 'src/styles/global/fonts.scss';
+@import 'src/styles/global/base.scss';
+@import 'src/styles/global/grid.scss';
 
 .vacancy-card {
     padding: $major-step * 5 $major-step * 5 $major-step * 6;
@@ -22,10 +14,11 @@
     }
 
     &__title {
-        @include _h(24px, 30px); 
+        @include _h($major-step * 3, 125%); 
+        letter-spacing: -0.24px; 
 
         @include _768 {
-            @include _h(20px, 24px); 
+            @include _h($minor-step * 5, $major-step * 3); 
         }
     }
 
@@ -89,19 +82,18 @@
     }
 
     &__text {
-        @include _h(16px, 140%); 
-        letter-spacing: 0em;
+        @include _h($major-step * 2, 140%); 
         text-align: left;
     }
 
     &__option {
         color: $grey700;
-        @include _reg(16px, 145%); 
+        @include _reg($major-step * 2, 145%); 
     }
 
     &__description-content {
         margin-top: $major-step * 4;
-        @include _reg(16px, 145%); 
+        @include _reg($major-step * 2, 145%); 
         height: $major-step * 25;
         overflow: hidden;
 
@@ -114,7 +106,6 @@
             height: $minor-step * 25;
             width: 100%;
         }
-
 
         &--expand {
             height: fit-content;
@@ -138,6 +129,6 @@
         color: $blue;
         position: relative;
         text-align: center;
-        @include _h(16px, 145%); 
+        @include _h($major-step * 2, 145%); 
     }
 }

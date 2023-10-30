@@ -1,0 +1,12 @@
+@import './global/colors.scss';
+@import './global/fonts.scss';
+@import '../global/base.scss';
+@import '../global/grid.scss';
+
+.vacancy-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: $major-step * 4;
+    align-self: stretch;
+    margin-bottom: $major-step * 13;
+}

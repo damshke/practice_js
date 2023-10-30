@@ -117,6 +117,9 @@ window.addEventListener('load', async function () {
 
     const selectForm = document.querySelectorAll('.filters-section__select');
     const clearButton = document.querySelector('.header__button');
+    const searchButton = document.querySelector('.filters-section__button');
+    const expandButton = document.querySelector('.vacancy-card__expand-button');
+    const showMoreButton = document.querySelector('.show-more button');
 
     selectForm.forEach(select => {
         select.addEventListener('change', function () {
@@ -134,6 +137,12 @@ window.addEventListener('load', async function () {
         });
         clearButton.style.display = 'none';
     });
+
+    searchButton.addEventListener('click', findVacancies());
+
+    expandButton.addEventListener('click', changeVisibility());
+
+    showMoreButton.addEventListener('click', loadMoreData());
 
     const submitButton = document.querySelector('.form-request__submit-button');
     submitButton.addEventListener('click', submitForm);
