@@ -1,0 +1,87 @@
+@import './global/colors.scss';
+@import './global/fonts.scss';
+@import '../global/base.scss';
+@import '../global/grid.scss';
+
+.form-request {
+    background-color: $grey100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $major-step * 8 $major-step * 15 $major-step * 11 $major-step * 15;
+
+    @include _768 {
+        padding: $major-step * 4 $major-step * 2;
+        gap: $major-step * 3;
+    }
+
+    &__title {
+        @include _h(34px, 125%); 
+        text-align: center;
+        letter-spacing: -0.34px;
+
+        @include _768 {
+            @include _h($minor-step * 7, 120%); 
+            font-size: $minor-step * 7;
+            line-height: 120%;
+            letter-spacing: -0.28px; 
+        }
+    }
+
+    &__description {
+        text-align: center;
+        @include _reg(18px, 140%); 
+    }
+
+    &__input-section {
+        display: flex;
+        width: 590px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 16px;
+
+        @include _768 {
+            width: 100%;
+        }
+    }
+
+    &__initials,
+    &__email,
+    &__phone,
+    &__comment {
+        @include _reg(14px, 140%); 
+        color: $grey600;
+    }
+
+    &__comment {
+        display: flex;
+        padding: $minor-step * 3;
+        align-items: flex-start;
+        gap: $major-step;
+        flex: 1 0 0;
+        align-self: stretch;
+        border-radius: $minor-step;
+        border: 1px solid $grey400;
+        min-height: $major-step * 8;
+    }
+
+    &__submit-button {
+        width: 386px;
+        padding: $major-step $major-step * 4;
+        align-items: center;
+        background: $blue;
+        margin-top: $major-step * 4;
+        @include _bold; 
+
+        &:hover {
+            background-color: $blueHover;
+            cursor: pointer;
+        }
+    }
+
+    &__text {
+        @include _reg(16px, 145%); 
+        text-align: center;
+    }
+}

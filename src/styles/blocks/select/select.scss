@@ -1,0 +1,20 @@
+@import 'src/styles/global/colors.scss';
+@import 'src/styles/global/fonts.scss';
+@import 'src/styles/global/base.scss';
+@import 'src/styles/global/grid.scss';
+
+.select {
+    height: $minor-step * 11;
+    border-color: $grey400;
+    border-width: 1px;
+    padding: $minor-step $minor-step * 3 $minor-step $minor-step * 3;
+    border-radius: $minor-step;
+    background-color: $white;
+    box-shadow: none;
+    width: 265.5px;
+    @include _reg(14px, 140%); 
+
+    @include _768 {
+        width: auto;
+    }
+}

@@ -1,0 +1,67 @@
+@import './global/colors.scss';
+@import './global/fonts.scss';
+@import '../global/base.scss';
+@import '../global/grid.scss';
+
+.footer {
+    background-color: $grey900;
+    color: $white;
+    height: $minor-step * 35;
+    padding: $minor-step*10 $major-step * 15;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $major-step;
+        align-self: center;
+
+        @include _768 {
+            gap: $major-step;
+            align-self: stretch;
+        }
+    }
+
+    &__contact-link {
+        @include _h(18px, 140%); 
+        color: $white;
+    }
+
+    &__address {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: $major-step;
+        align-self: center;
+
+        @include _768 {
+            align-items: center;
+            gap: $major-step;
+            align-items: flex-start;
+            align-self: stretch;
+        }
+    }
+
+    &__address-link,
+    &__link {
+        color: $white;
+        @include _reg($major-step * 2, 145%); 
+        font-family: 'Roboto Regular', sans-serif;
+        font-size: $major-step * 2;
+        line-height: 145%; 
+    }
+
+    @include _768 {
+        flex-direction: column;
+        align-items: center;
+        gap: $major-step * 3;
+    } 
+
+    @include _320 {
+        padding: $major-step * 4 $major-step * 2;
+    } 
+}

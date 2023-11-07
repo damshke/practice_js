@@ -1,0 +1,34 @@
+@import '../global/colors.scss';
+@import '../global/fonts.scss';
+@import '../global/base.scss';
+@import '../global/grid.scss';
+
+.filters-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $major-step * 4;
+
+    @include _768 {
+        flex-direction: column;
+        gap: $major-step * 2;
+        align-self: stretch;
+    }
+
+    &__filter {
+        display: flex;
+        flex-direction: column;
+        gap: $minor-step;
+    }
+
+    &__button {
+        background-color: $blue;
+        margin-top: auto;
+        @include _bold; 
+
+        &:hover {
+            background-color: $blueHover;
+            cursor: pointer;
+        }
+    }
+}

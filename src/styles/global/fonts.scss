@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "Roboto Medium";
+    font-weight: 500;
+    src: url(../fonts/Roboto/Roboto.ttf);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Regular";
+    font-weight: 400;
+    src: url(../fonts/Roboto/Roboto.ttf);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    font-weight: 700;
+    src: url(../fonts/Roboto/Roboto.ttf);    
+    font-style: normal;
+}
+
+@mixin _h($size, $height) {
+    font-family: "Roboto Medium";
+    font-size: $size;
+    line-height: $height;
+}
+
+@mixin _reg ($size, $height) {
+    font-family: "Roboto Regular";
+    font-size: $size;
+    line-height: $height;
+}
+
+@mixin _bold {
+    font-family: "Roboto Bold";
+    font-size: 15px;
+    line-height: 140%;
+    letter-spacing: 0.3px;
+}

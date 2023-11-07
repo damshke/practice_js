@@ -1,0 +1,69 @@
+@import './fonts.scss';
+@import './colors.scss';
+@import './grid.scss';
+
+body {
+    margin: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    height: $minor-step * 11;
+    border-radius: 4px;
+    text-align: center;
+    color: $white;
+    box-shadow: none;
+    border: none;
+    @include _bold;
+    padding: 8px 32px 8px 32px;
+}
+
+input {
+    display: flex;
+    height: 44px;
+    padding: 4px 12px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 4px;
+    border: 1px solid $grey400;
+}
+
+.label {
+    @include _h(12px, 125%);
+}
+
+a {
+    color: #0D7AD9;
+    text-decoration: none;
+}
+
+img {
+    max-height: 50px;
+    max-width: 100%;
+    vertical-align: middle;
+
+    @include _768 {
+        align-self: baseline;
+    }
+}
+
+h3 {
+    @include _h($minor-step * 7, 35px); 
+
+    @include _768 {
+        @include _h($major-step * 6, 120%); 
+    }
+}
+
+p,
+li {
+    @include _reg($major-step * 2, 145%);
+}
+
+
