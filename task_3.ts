@@ -11,8 +11,10 @@ type Task = {
     creationData: Date,
 }
 
-type TaskList {
+type TaskList = {
     taskList: Task[],
-    
+    addTask(a: Task): Task[],
+    deleteTask(task: Task): Task[],
+    updateTask(task: Task): Task[],
 }
 
