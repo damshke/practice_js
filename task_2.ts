@@ -1,15 +1,15 @@
 enum Type {
-    Mammal,
-    Bird, 
-    Reptile,
-    Insect,
-    Fish,
+    Mammal = "Mammal",
+    Bird = "Bird", 
+    Reptile = "Reptile",
+    Insect = "Insect",
+    Fish = "Fish",
 }
 
 type Animal = {
     name: string,
     age: number,
-    type: string,
+    type: Type,
 }
 
 interface Cat extends Animal {
@@ -27,7 +27,7 @@ interface Bird extends Animal {
 const Dog: Dog = {
     name: 'dog',
     age: 3,
-    type: Type[0],
+    type: Type.Mammal,
     isBarking: true,
 }
 
