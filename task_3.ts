@@ -14,7 +14,7 @@ type Task = {
 type TaskList = {
     taskList: Task[],
     addTask: (task: Task) => Task[],
-    deleteTask(task: Task): Task[],
-    updateTask(task: Task): Task[],
+    deleteTask: (task: Task) => Task[],
+    updateTask: (task: Task) => Task[],
 }
 
