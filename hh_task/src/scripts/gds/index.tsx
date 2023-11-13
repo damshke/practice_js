@@ -1,4 +1,5 @@
 import { CSSObject } from '@emotion/core';
+
 import {
     ComponentsTheme,
     Theme,
@@ -31,7 +32,7 @@ const theme = createTheme({
     settings,
 }) as ExtendedTheme;
 
-const typography = (name: TypographyParam = 'h1') => gdsTypography(name, theme) as CSSObject;
+const typography = (name: TypographyParam = 'xs') => gdsTypography(name, theme) as CSSObject;
 const useTheme = () => useGDSTheme() as ExtendedTheme;
 
 export * from '@greensight/gds';

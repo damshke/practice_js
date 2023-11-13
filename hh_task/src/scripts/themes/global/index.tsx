@@ -6,7 +6,6 @@ export const global = {
             typography: 'body',
             color: tokens.colors.black,
             bg: tokens.colors.white,
-            boxSizing: 'border-box',
         },
         focus: {
             width: 2,
@@ -28,14 +27,14 @@ export const global = {
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Regular.woff2") format("woff2"), url("../../../fonts/Roboto-Regular.woff") format("woff")',
+                    src: 'url("../../../fonts/Roboto-Regular.ttf") format("ttf")',
                     fontDisplay: 'swap',
                 },
             },
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Medium.woff2") format("woff2"), url("../../../fonts/Roboto-Medium.woff") format("woff")',
+                    src: 'url("../../../fonts/Roboto-Medium.ttf") format("ttf")',
                     fontDisplay: 'swap',
                     fontWeight: 500,
                 },
@@ -43,7 +42,7 @@ export const global = {
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Bold.woff2") format("woff2"), url("../../../onts/Roboto-Bold.woff") format("woff")',
+                    src: 'url("../../../fonts/Roboto-Bold.ttf") format("ttf"), url("../../../onts/Roboto-Bold.ttf") format("ttf")',
                     fontDisplay: 'swap',
                     fontWeight: 700,
                 },
