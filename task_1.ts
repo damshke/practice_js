@@ -1,6 +1,6 @@
 enum Sex {
-    Male,
-    Female,
+    MALE = 'male',
+    FEMALE = 'female',
 }
 
 type Person = {
@@ -10,7 +10,9 @@ type Person = {
 }
 
 interface User {
-    person: Person,
+    name: string,
+    age: number,
+    sex: Sex,
     email: string,
     password: string,
 }
