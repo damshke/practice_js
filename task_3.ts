@@ -1,7 +1,7 @@
 enum Status {
-    ToDo = "To Do",
-    InProgress = "In progress",
-    Done = "Done",
+    TODO = "To Do",
+    INPROGRESS = "In progress",
+    DONE = "Done",
 }
 
 type Task = {
@@ -13,7 +13,7 @@ type Task = {
 
 type TaskList = {
     taskList: Task[],
-    addTask(task: Task): Task[],
+    addTask: (task: Task) => Task[],
     deleteTask(task: Task): Task[],
     updateTask(task: Task): Task[],
 }
