@@ -14,7 +14,6 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>({
     optionsList = new Set(),
     selected = false,
     handleClick,
-    meta,
     utils,
 }: SelectBaseProps<V, S>) => {
     const state = useMemo<SelectStateFull<V, S>>(
@@ -42,7 +41,7 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>({
         <div css={selectContainerCSS as CSSObject} onClick={handleClick}>
             <span css={labelCSS as CSSObject}>{label}</span>
             <div css={totalCSS as CSSObject}>
-                {meta.value || 'Not selected'}
+                'Not selected'
                 {Icon && <Icon css={iconCSS as CSSObject} />}
             </div>
             <ul css={optionsListCSS as CSSObject}>

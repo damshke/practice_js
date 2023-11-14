@@ -1,10 +1,10 @@
-import { CSSObject } from '@emotion/react';
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds';
 import { ReactNode } from 'react';
 
 export interface InputState {
     focus: boolean;
     textArea: boolean;
+    info?: any;
 }
 
 export type InputStateFull<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> & InputState;
@@ -22,6 +22,7 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     children?: ReactNode;
     block?: boolean;
     label?: string;
+    name?: string;
     placeholder?: string;
-    css?: CSSObject;
+    info?: any;
 }

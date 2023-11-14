@@ -27,14 +27,14 @@ export const global = {
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Regular.ttf") format("ttf")',
+                    src: 'url("../../../fonts/Roboto.ttf") format("ttf")',
                     fontDisplay: 'swap',
                 },
             },
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Medium.ttf") format("ttf")',
+                    src: 'url("../../../fonts/Roboto.ttf") format("ttf")',
                     fontDisplay: 'swap',
                     fontWeight: 500,
                 },
@@ -42,7 +42,7 @@ export const global = {
             {
                 '@font-face': {
                     fontFamily: 'Roboto',
-                    src: 'url("../../../fonts/Roboto-Bold.ttf") format("ttf"), url("../../../onts/Roboto-Bold.ttf") format("ttf")',
+                    src: 'url("../../../fonts/Roboto.ttf") format("ttf")',
                     fontDisplay: 'swap',
                     fontWeight: 700,
                 },

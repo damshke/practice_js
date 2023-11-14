@@ -6,5 +6,6 @@ export enum Variants {
 }
 
 export enum Sizes {
-    xs = 'xs',
+    md = 'md',
+    sm = 'sm',
 }

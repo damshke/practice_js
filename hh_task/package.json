@@ -20,7 +20,9 @@
         "emotion-rgba": "^0.0.12",
         "next": "^14.0.2",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "react-hook-use-form": "^1.2.0",
+        "yup": "^1.3.2"
     },
     "devDependencies": {
         "@types/node": "^20",

@@ -6,8 +6,12 @@ import { Variants, Sizes } from '../enums';
 export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, TypographyParam> = {
     button: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            xs: {
-                padding: `${scale(1, true) + 0.5}px ${scale(1)}px`,
+            md: {
+                padding: `${scale(1)}px ${scale(4)}px`,
+                ...(typography('xs') as any),
+            },
+            sm: {
+                padding: `${scale(1)}px ${scale(4)}px`,
                 ...(typography('xs') as any),
             },
         };
@@ -81,7 +85,12 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
     },
     icon: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            xs: {
+            md: {
+                width: scale(2),
+                height: scale(2),
+                ...typography('xs'),
+            },
+            sm: {
                 width: scale(2),
                 height: scale(2),
                 ...typography('xs'),

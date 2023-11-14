@@ -14,11 +14,11 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
         variant,
         label,
         placeholder,
-        css,
+        info,
         focus = false,
         textArea = false,
     }: InputBaseProps<V, S>,
-    ref: Ref<HTMLButtonElement>
+    ref: Ref<HTMLInputElement>
 ) => {
     const hasChildren = !!children;
     const state = useMemo<InputStateFull<V, S>>(
@@ -45,8 +45,12 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
     return (
         <div css={inputBlockCSS as CSSObject}>
             <label css={labelCSS as CSSObject}>{label}</label>
-            <input></input>
-            <span css={errorCSS as CSSObject}>{meta.error}</span>
+            {textArea ? (
+                <textarea css={totalCSS as CSSObject} placeholder={placeholder} />
+            ) : (
+                <input css={totalCSS as CSSObject} placeholder={placeholder} />
+            )}
+            {/* <span css={errorCSS as CSSObject}>{info.error}</span> */}
         </div>
     );
 };
@@ -63,13 +67,10 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
     const renderThemedInput = ((
         { theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props },
         ref
-    ) => (
-        <InputRef ref={ref} theme={theme as any} variant={variant as any} size={size as any} {...(props as any)} />
-    )) as <T extends React.ElementType<any> = 'input'>(
+    ) => <InputRef theme={theme} variant={variant} size={size} {...props} />) as (
         props: InputBaseProps<V, S>,
-        ref: Ref<HTMLButtonElement>
+        ref: Ref<HTMLInputElement>
     ) => InputReturn;
-
     (renderThemedInput as any).displayName = 'Input';
 
     return forwardRef(renderThemedInput) as typeof renderThemedInput;

@@ -26,8 +26,6 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     selectContainer: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
-                display: 'flex',
-                flexDirection: 'column',
                 gap: scale(1, true),
                 [MEDIA_QUERIES.sm]: {
                     width: '100%',
@@ -43,11 +41,11 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     select: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
-                display: 'flex',
-                height: '44px',
+                height: scale(11, true),
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
-                alignItems: 'center',
                 gap: scale(1),
+                borderRadius: scale(1, true),
+                // добавить ширину
             },
         };
 
@@ -55,7 +53,6 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
             primary: {
                 color: colors.grey600,
                 backgroundColor: colors.white,
-                borderRadius: scale(1, true),
                 border: `${scale(1, true)}px solid ${colors.grey400}`,
                 background: colors.white,
                 ...(state.selected && {
