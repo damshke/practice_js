@@ -4,10 +4,8 @@ export default function Header() {
     return (
         <header
             css={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
                 gap: scale(5),
+                padding: `${scale(8)}px ${scale(15)}px ${scale(13)}px ${scale(15)}px`,
             }}
         >
             <h1
