@@ -4,7 +4,9 @@ import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import { FC, ReactNode } from 'react';
 
 export interface SelectState {
-    selected: boolean;
+    isOpen: boolean;
+    isSearch?: boolean;
+    hasSelected?: boolean;
 }
 
 export type SelectStateFull<V extends EnumLike, S extends EnumLike> = BaseThemeState<V, S> & SelectState;
@@ -15,7 +17,7 @@ export interface SelectTheme<V extends EnumLike, S extends EnumLike> {
     option: StyleDefinition<SelectStateFull<V, S>>;
     selectContainer: StyleDefinition<SelectStateFull<V, S>>;
     select: StyleDefinition<SelectStateFull<V, S>>;
-    icon: StyleDefinition<SelectStateFull<V, S>>;
+    arrowButton: StyleDefinition<SelectStateFull<V, S>>;
 }
 
 export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>

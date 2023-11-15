@@ -12,25 +12,25 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>({
     Icon,
     label,
     optionsList = new Set(),
-    selected = false,
+    isOpen = false,
     handleClick,
     utils,
 }: SelectBaseProps<V, S>) => {
     const state = useMemo<SelectStateFull<V, S>>(
         () => ({
-            selected,
+            isOpen,
             size,
             variant,
             label,
         }),
-        [selected, size, variant, label]
+        [isOpen, size, variant, label]
     );
     if (!theme) {
         throw new Error('[Select] theme is required');
     }
     const {
         select: totalCSS,
-        icon: iconCSS,
+        arrowButton: iconCSS,
         option: optionCSS,
         optionsList: optionsListCSS,
         label: labelCSS,

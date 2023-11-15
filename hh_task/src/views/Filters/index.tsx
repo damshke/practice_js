@@ -1,3 +1,9 @@
-import { Select } from '@components/controls/Select';
+import { SelectionFields } from './SelectionFields';
 
-export default function Filters() {}
+const Filters = () => (
+    <div>
+        <SelectionFields />
+    </div>
+);
+
+export default Filters;

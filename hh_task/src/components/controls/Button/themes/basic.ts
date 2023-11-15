@@ -47,7 +47,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                 display: 'flex',
                 alignItems: 'start',
                 justifyContent: 'center',
-                gap: '0',
+                gap: scale(1, true),
                 [MEDIA_QUERIES.md]: {
                     width: '100%',
                 },

@@ -55,7 +55,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
                 backgroundColor: colors.white,
                 border: `${scale(1, true)}px solid ${colors.grey400}`,
                 background: colors.white,
-                ...(state.selected && {
+                ...(state.isOpen && {
                     border: `${scale(1, true)}px solid ${colors.blue}`,
                 }),
             },
@@ -67,7 +67,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         };
     },
 
-    icon: state => {
+    arrowButton: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
                 width: scale(2),
@@ -79,7 +79,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
             primary: {
                 backgroundColor: colors.white,
                 color: colors.grey800,
-                ...(state.selected && {
+                ...(state.isOpen && {
                     color: colors.black,
                 }),
             },
@@ -95,7 +95,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
                 boxShadow: shadows.box,
-                ...(state.selected && {
+                ...(state.isOpen && {
                     display: 'block',
                 }),
             },
@@ -118,7 +118,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
             primary: {
                 color: colors.black,
                 backgroundColor: colors.black,
-                ...(state.selected && {
+                ...(state.isOpen && {
                     color: colors.white,
                     backgroundColor: colors.blue,
                     cursor: 'pointer',

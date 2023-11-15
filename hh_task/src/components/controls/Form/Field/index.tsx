@@ -1,6 +1,7 @@
-import { Children, cloneElement, isValidElement } from 'react';
 import { useField } from 'formik';
 import { Input } from '@components/controls/Input';
+import { Children, isValidElement, cloneElement } from 'react';
+
 import { FieldProps } from './types';
 
 const Field = ({ name, children, ...props }: FieldProps) => {
@@ -17,7 +18,7 @@ const Field = ({ name, children, ...props }: FieldProps) => {
     return (
         <div css={{ width: '100%' }}>
             {children ? (
-                <div css={{ width: '100%' }}>
+                <>
                     {Children.map(children, child => {
                         if (isValidElement(child)) {
                             const formikProps: FieldProps = {
@@ -29,7 +30,7 @@ const Field = ({ name, children, ...props }: FieldProps) => {
                             return cloneElement(child, { ...formikProps });
                         }
                     })}
-                </div>
+                </>
             ) : (
                 cloneElement(<Input {...inputProps} />)
             )}

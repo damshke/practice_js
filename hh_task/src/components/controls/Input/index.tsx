@@ -12,12 +12,13 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
         size,
         theme,
         variant,
-        label,
-        placeholder,
-        info,
+        label = '',
+        placeholder = '',
+        meta,
         focus = false,
         textArea = false,
     }: InputBaseProps<V, S>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ref: Ref<HTMLInputElement>
 ) => {
     const hasChildren = !!children;
@@ -50,7 +51,7 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
             ) : (
                 <input css={totalCSS as CSSObject} placeholder={placeholder} />
             )}
-            {/* <span css={errorCSS as CSSObject}>{info.error}</span> */}
+            {/* <span css={errorCSS as CSSObject}>{meta.error}</span> */}
         </div>
     );
 };
@@ -64,13 +65,9 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
 ) => {
     type InputReturn = ReturnType<typeof InputRef>;
 
-    const renderThemedInput = ((
-        { theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props },
-        ref
-    ) => <InputRef theme={theme} variant={variant} size={size} {...props} />) as (
-        props: InputBaseProps<V, S>,
-        ref: Ref<HTMLInputElement>
-    ) => InputReturn;
+    const renderThemedInput = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }) => (
+        <InputRef theme={theme} variant={variant} size={size} {...props} />
+    )) as (props: InputBaseProps<V, S>, ref: Ref<HTMLInputElement>) => InputReturn;
     (renderThemedInput as any).displayName = 'Input';
 
     return forwardRef(renderThemedInput) as typeof renderThemedInput;
