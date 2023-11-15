@@ -14,15 +14,19 @@
         "@emotion/core": "^10.1.1",
         "@emotion/styled": "^11.3.0",
         "@greensight/gds": "3.0.2",
+        "@tanstack/react-form": "^0.9.0",
         "@tanstack/react-query": "^5.8.3",
         "@tanstack/react-query-devtools": "^5.8.3",
+        "@tanstack/solid-form": "^0.9.0",
+        "@tanstack/zod-form-adapter": "^0.9.0",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
         "emotion-rgba": "^0.0.12",
         "next": "^14.0.2",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-hook-use-form": "^1.2.0",
-        "yup": "^1.3.2"
+        "react-hook-form": "^7.48.2",
+        "yup": "^1.3.2",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
         "@types/node": "^20",
