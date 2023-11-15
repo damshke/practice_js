@@ -1,16 +1,17 @@
 import { Input } from '@components/controls/Input';
-import { useField } from '@tanstack/react-form';
+import { Field, useForm } from '@tanstack/react-form';
 import { Children, isValidElement, cloneElement } from 'react';
-import { useForm } from 'react-hook-form';
 
 import { FieldProps } from './types';
 
-const Field = ({ name, children, ...props }: FieldProps) => {
-    // const [field, meta, helpers] = useField(name);
+const FormField = ({ name, children, ...props }: FieldProps) => {
+    const { field } = useForm(name as keyof Field);
+
     const inputProps = {
         type: 'text',
         name,
         ...props,
+        ...field,
     };
 
     return (
@@ -19,13 +20,13 @@ const Field = ({ name, children, ...props }: FieldProps) => {
                 <>
                     {Children.map(children, child => {
                         if (isValidElement(child)) {
-                            const formikProps: FieldProps = {
+                            const formProps: FieldProps = {
                                 id: name,
                                 ...inputProps,
                                 ...child.props,
                             };
 
-                            return cloneElement(child, { ...formikProps });
+                            return cloneElement(child, { ...formProps });
                         }
                     })}
                 </>
@@ -36,4 +37,4 @@ const Field = ({ name, children, ...props }: FieldProps) => {
     );
 };
 
-export default Field;
+export default FormField;

@@ -1,29 +1,16 @@
-import useVacancies from '@api/vacancies';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
-import CardList from '@views/CardList';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 import FeedbackForm from '@views/FeedbackForm';
-import Filters from '@views/Filters';
-
-export async function getStaticProps() {
-    const queryClient = new QueryClient();
-
-    return {
-        props: {
-            dehydratedState: dehydrate(queryClient),
-        },
-    };
-}
+z;
 
 export default function Home() {
-    const { isPending, isError, data, error } = useVacancies();
-
-    if (isPending) {
-        return <span>Loading...</span>;
-    }
-
-    if (isError) {
-        return <span>Error: {error.message}</span>;
-    }
-
-    return <div></div>;
+    return (
+        <>
+            <main>
+                <Header />
+                <FeedbackForm />
+                <Footer />
+            </main>
+        </>
+    );
 }

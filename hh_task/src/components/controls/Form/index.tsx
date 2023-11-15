@@ -1,6 +1,6 @@
-import { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback, useMemo, useRef } from 'react';
-import { DefaultValues, FieldValues, FormProvider, UseFormProps, UseFormReturn, useForm } from 'react-hook-form';
-import type { AnyObjectSchema } from 'yup';
+import React, { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback, useMemo, useRef } from 'react';
+import { DefaultValues, FieldValues, UseFormReturn, useForm } from 'react-hook-form';
+import { AnyObjectSchema } from 'yup';
 
 import Field from './Field';
 import { FieldProps } from './Field/types';
@@ -10,12 +10,11 @@ export interface FormCompositionProps {
 }
 
 export interface FormProps<T extends FieldValues>
-    extends Omit<UseFormProps<T>, 'children'>,
-        Omit<HTMLProps<HTMLFormElement>, 'onSubmit' | 'children' | 'onChange'> {
+    extends Omit<HTMLProps<HTMLFormElement>, 'onSubmit' | 'children' | 'onChange'> {
     initialValues: DefaultValues<T>;
     validationSchema?: AnyObjectSchema;
     onSubmit: (values: T, formProps: UseFormReturn<T, any>) => void | Promise<any>;
-    children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T, any>) => ReactNode | ReactNode[]);
+    children?: ReactNode | ReactNode[] | ((props: any) => ReactNode | ReactNode[]);
 }
 
 export interface FormFieldProps<T> {
@@ -46,7 +45,8 @@ const Form = <T extends FieldValues>({
 }: FormProps<T> & Partial<FormCompositionProps>) => {
     const form = useForm<T>({
         defaultValues: initialValues,
-        ...validationSchema,
+        resolver: validationSchema,
+        onSubmit,
         ...props,
     });
 
@@ -56,18 +56,14 @@ const Form = <T extends FieldValues>({
     );
 
     const formHandlerRef = useRef<any>();
-    formHandlerRef.current = form.handleSubmit(v => onSubmit(v, form));
+    formHandlerRef.current = form.handleSubmit(onSubmit);
 
     const onSubmitHandler = useCallback((event: SyntheticEvent) => {
         event.stopPropagation();
         if (formHandlerRef.current) formHandlerRef.current(event);
     }, []);
 
-    return (
-        <FormProvider {...form}>
-            <form onSubmit={onSubmitHandler}>{children}</form>
-        </FormProvider>
-    );
+    return <form onSubmit={onSubmitHandler}>{children}</form>;
 };
 
 Form.Field = Field;
