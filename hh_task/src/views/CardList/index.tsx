@@ -1,4 +1,4 @@
-import { Section } from '@greensight/gds/types/src';
+import { Section } from '@greensight/gds';
 import Card from './Card';
 import { Item } from './types';
 
