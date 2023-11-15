@@ -20,7 +20,8 @@
         "paths": {
             "@components/*": ["src/components/*"],
             "@views/*": ["src/views/*"],
-            "@scripts/*": ["src/scripts/*"]
+            "@scripts/*": ["src/scripts/*"],
+            "@api/*": ["src/api/*"]
         },
         "incremental": true
     },

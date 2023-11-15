@@ -1,17 +1,15 @@
-import { useField } from 'formik';
 import { Input } from '@components/controls/Input';
+import { useField } from '@tanstack/react-form';
 import { Children, isValidElement, cloneElement } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { FieldProps } from './types';
 
 const Field = ({ name, children, ...props }: FieldProps) => {
-    const [field, meta, helpers] = useField(name);
+    // const [field, meta, helpers] = useField(name);
     const inputProps = {
         type: 'text',
         name,
-        field,
-        meta,
-        helpers,
         ...props,
     };
 

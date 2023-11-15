@@ -8,10 +8,12 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
                 padding: `${scale(1)}px ${scale(4)}px`,
+                borderRadius: scale(1, true),
                 ...(typography('xs') as any),
             },
             sm: {
                 padding: `${scale(1)}px ${scale(4)}px`,
+                borderRadius: scale(1, true),
                 ...(typography('xs') as any),
             },
         };
