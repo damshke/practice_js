@@ -1,7 +1,14 @@
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
-import { API_URL } from './constants';
+import { useQuery } from '@tanstack/react-query';
 
-export const getVacancies = () => {
-    // key: [],
-    // fetch
+const API_URL = 'https://api.hh.ru/vacancies';
+const VACANCIES_KEY = 'vacancies';
+
+const getVacancies = async () => {
+    const data = await fetch(API_URL);
+    const response = await data.json();
+    return response;
 };
+
+export default function useVacancies() {
+    return useQuery(VACANCIES_KEY, getVacancies());
+}
