@@ -4,6 +4,7 @@ import FeedbackForm from '@views/FeedbackForm';
 import Filters from '@views/Filters';
 import CardList from '@views/CardList';
 import useVacancies from '@api/vacancies';
+import Pagination from '@views/index';
 
 export default function Home() {
     const { isPending, isError, data, error } = useVacancies();
@@ -22,6 +23,7 @@ export default function Home() {
                 <Header />
                 <Filters />
                 <CardList vacancies={data.items} />
+                <Pagination />
                 <FeedbackForm />
                 <Footer />
             </main>

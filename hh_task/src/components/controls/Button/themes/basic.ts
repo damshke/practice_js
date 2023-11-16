@@ -47,7 +47,8 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                 }),
             },
             link: {
-                backgroundColor: 'none',
+                backgroundColor: 'transparent',
+                border: 0,
                 color: colors.blue,
                 width: '20%',
                 textAlign: 'center',
@@ -75,6 +76,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                         padding: 0,
                     },
                 }),
+                ':hover': { cursor: 'pointer' },
             },
             nonactive: {
                 ackgroundColor: colors.grey200,
@@ -113,7 +115,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             },
             link: {
                 ...(state.rounded && {
-                    transform: 'rotate(180deg)',
+                    color: colors.blue,
                 }),
             },
             nonactive: {

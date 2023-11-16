@@ -1,13 +1,17 @@
-import { colors, Layout, MEDIA_QUERIES, scale, typography } from '@scripts/gds';
+import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
 import { Item } from '../types';
+import ArrowDown from '../../../icons/16/chevronDown.svg';
 
 export default function Card({ vacancy }: { vacancy: Item }) {
     return (
         <Layout
             cols={1}
-            css={{ borderRadius: scale(2), padding: `${scale(5)}px ${scale(5)}px ${scale(6)}px ${scale(5)}px` }}
-            gap={scale(4)}
+            css={{
+                borderRadius: scale(2),
+                padding: `${scale(5)}px ${scale(5)}px ${scale(6)}px ${scale(5)}px`,
+                boxShadow: shadows.boxLight,
+            }}
         >
             <Layout.Item
                 cols={2}
@@ -58,7 +62,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
             </Layout.Item>
             <Layout.Item>
                 {/* поменять размер кнопки */}
-                <Button variant="link" size="md" type="link">
+                <Button variant="link" size="md" Icon={ArrowDown}>
                     More details
                 </Button>
             </Layout.Item>

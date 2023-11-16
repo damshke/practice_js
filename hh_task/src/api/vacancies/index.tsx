@@ -9,6 +9,6 @@ const getVacancies = async () => {
     return response;
 };
 
-export default function useVacancies() {
-    return useQuery({ queryKey: [VACANCIES_KEY], queryFn: getVacancies });
+export default function useVacancies(page: number) {
+    return useQuery({ queryKey: [VACANCIES_KEY, page], queryFn: getVacancies });
 }
