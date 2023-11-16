@@ -1,5 +1,6 @@
-import React, { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback, useMemo, useRef } from 'react';
-import { DefaultValues, FieldValues, UseFormReturn, useForm } from 'react-hook-form';
+import React, { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback } from 'react';
+import { useForm, SubmitHandler, UseFormReturn, FieldValues } from 'react-hook-form';
+import { CSSObject } from '@emotion/core';
 import { AnyObjectSchema } from 'yup';
 
 import Field from './Field';
@@ -11,29 +12,11 @@ export interface FormCompositionProps {
 
 export interface FormProps<T extends FieldValues>
     extends Omit<HTMLProps<HTMLFormElement>, 'onSubmit' | 'children' | 'onChange'> {
-    initialValues: DefaultValues<T>;
+    initialValues: T;
     validationSchema?: AnyObjectSchema;
-    onSubmit: (values: T, formProps: UseFormReturn<T, any>) => void | Promise<any>;
-    children?: ReactNode | ReactNode[] | ((props: any) => ReactNode | ReactNode[]);
-}
-
-export interface FormFieldProps<T> {
-    field?: {
-        value: T;
-        onChange: (
-            eventOrValue:
-                | {
-                      target: {
-                          value: T;
-                      };
-                  }
-                | T
-        ) => void;
-    };
-    meta?: {
-        error?: string;
-    };
-    helpers?: { setValue: (value: T) => void };
+    onSubmit: SubmitHandler<T>;
+    children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T>) => ReactNode | ReactNode[]);
+    css?: CSSObject;
 }
 
 const Form = <T extends FieldValues>({
@@ -41,29 +24,33 @@ const Form = <T extends FieldValues>({
     validationSchema,
     onSubmit,
     children: childrenProp,
+    css,
     ...props
 }: FormProps<T> & Partial<FormCompositionProps>) => {
-    const form = useForm<T>({
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<T>({
         defaultValues: initialValues,
         resolver: validationSchema,
-        onSubmit,
-        ...props,
     });
 
-    const children: typeof childrenProp = useMemo(
-        () => (typeof childrenProp === 'function' ? childrenProp({ ...form }) : childrenProp),
-        [childrenProp, form]
+    const onSubmitHandler = useCallback(
+        (data: T, event: SyntheticEvent) => {
+            event.preventDefault();
+            onSubmit(data);
+        },
+        [onSubmit]
     );
 
-    const formHandlerRef = useRef<any>();
-    formHandlerRef.current = form.handleSubmit(onSubmit);
+    const children: ReactNode = typeof childrenProp === 'function' ? childrenProp({ register, errors }) : childrenProp;
 
-    const onSubmitHandler = useCallback((event: SyntheticEvent) => {
-        event.stopPropagation();
-        if (formHandlerRef.current) formHandlerRef.current(event);
-    }, []);
-
-    return <form onSubmit={onSubmitHandler}>{children}</form>;
+    return (
+        <form onSubmit={handleSubmit(onSubmitHandler)} css={css} {...props}>
+            {children}
+        </form>
+    );
 };
 
 Form.Field = Field;

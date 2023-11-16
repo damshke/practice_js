@@ -23,7 +23,13 @@ export const SelectionFields = () => (
 
             <Select Icon={ArrowDown} label="Тест" />
 
-            <Button variant="primary" size="sm">
+            <Button
+                variant="primary"
+                size="md"
+                css={{
+                    margin: 'auto 0',
+                }}
+            >
                 Search
             </Button>
         </div>

@@ -1,5 +1,6 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
+import { typography, scale, colors } from '@scripts/gds';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
 
@@ -14,23 +15,62 @@ export default function FeedbackForm() {
     });
 
     return (
-        <Form
-            initialValues={{ initials: '', phone: '', email: '', comment: '' }}
-            onSubmit={values => {
-                // eslint-disable-next-line no-alert
-                alert(
-                    `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
-                );
+        <div
+            css={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
             }}
-            validationSchema={validationSchema}
         >
-            <Form.Field name="initials" label="Your name" placeholder="Please introduce yourself" />
-            <Form.Field name="email" label="Your name" placeholder="Please introduce yourself" />
-            <Form.Field name="phone" label="Your name" placeholder="Please introduce yourself" />
-            <Form.Field name="comment" label="Your name" placeholder="Please introduce yourself" textArea />
-            <Button variant="primary" size="md">
-                Send
-            </Button>
-        </Form>
+            <h2 css={{ ...typography('h2'), textAlign: 'center' }}>Leave a request</h2>
+            <p css={{ ...typography('l'), textAlign: 'center', marginBottom: scale(5) }}>
+                We will advise you and help you start a new project
+            </p>
+            <Form
+                initialValues={{ initials: '', phone: '', email: '', comment: '' }}
+                onSubmit={values => {
+                    // eslint-disable-next-line no-alert
+                    alert(
+                        `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
+                    );
+                }}
+                validationSchema={validationSchema}
+            >
+                <div
+                    css={{
+                        rowGap: scale(4),
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        maxWidth: scale(75),
+                        margin: 'auto auto',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Form.Field name="initials" label="Your name" placeholder="Please introduce yourself" />
+                    <Form.Field name="email" label="Email" placeholder="ivanov@gmail.com" />
+                    <Form.Field name="phone" label="Phone number" placeholder="+7 (999) 000 00 00" />
+                    <Form.Field name="comment" label="Comment" placeholder="Message text" textArea />
+                    <Button variant="primary" size="md" css={{ width: '322px', marginBottom: scale(2) }}>
+                        Send
+                    </Button>
+                </div>
+                <div
+                    css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        ...typography('m'),
+                    }}
+                >
+                    <span>By clicking "Send" you confirm your consent to the</span>
+                    <span>
+                        <a href="#" css={{ color: colors.blue }}>
+                            processing of personal data
+                        </a>
+                    </span>
+                </div>
+            </Form>
+        </div>
     );
 }

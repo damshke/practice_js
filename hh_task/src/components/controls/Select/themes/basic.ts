@@ -41,11 +41,14 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     select: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
-                height: scale(11, true),
+                height: scale(9, true),
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
                 gap: scale(1),
                 borderRadius: scale(1, true),
-                // добавить ширину
+                minWidth: `${scale(30) + 2}px`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
             },
         };
 
@@ -53,10 +56,10 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
             primary: {
                 color: colors.grey600,
                 backgroundColor: colors.white,
-                border: `${scale(1, true)}px solid ${colors.grey400}`,
+                border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
                 background: colors.white,
                 ...(state.isOpen && {
-                    border: `${scale(1, true)}px solid ${colors.blue}`,
+                    border: `${scale(1, true) - 3}px solid ${colors.blue}`,
                 }),
             },
         };

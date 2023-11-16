@@ -9,11 +9,13 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             md: {
                 padding: `${scale(1)}px ${scale(4)}px`,
                 borderRadius: scale(1, true),
+                height: `${scale(11, true)}px`,
                 ...(typography('xs') as any),
             },
             sm: {
                 padding: `${scale(1)}px ${scale(4)}px`,
                 borderRadius: scale(1, true),
+                height: `${scale(11, true)}px + 4`,
                 ...(typography('xs') as any),
             },
         };
@@ -21,8 +23,10 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             primary: {
                 backgroundColor: colors.blue,
                 color: colors.white,
+                border: `0`,
                 ':hover': {
                     backgroundColor: colors.blueHover,
+                    cursor: 'pointer',
                 },
                 ...(state.disabled && {
                     backgroundColor: colors.grey200,
@@ -32,8 +36,10 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             secondary: {
                 backgroundColor: colors.grey900,
                 color: colors.white,
+                border: `0`,
                 ':hover': {
                     backgroundColor: colors.black,
+                    cursor: 'pointer',
                 },
                 ...(state.disabled && {
                     backgroundColor: colors.grey200,
