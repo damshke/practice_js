@@ -4,7 +4,7 @@ function newMap<Input, Output>(
   fn: (a: Input, index: number, array: Input[]) => Output,
   arr: Input[]
 ) {
-  let new_arr: Array<ReturnType<typeof fn>> = [];
+  let new_arr: Array<Output> = [];
   arr.forEach((element, index, array) =>
     new_arr.push(fn(element, index, array))
   );
