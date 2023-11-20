@@ -170,6 +170,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                         css={{
                             height: expandedDescription ? 'fit-content' : '200px',
                             overflow: expandedDescription ? 'visible' : 'hidden',
+                            ...typography('m'),
                         }}
                         dangerouslySetInnerHTML={{ __html: description }}
                     />

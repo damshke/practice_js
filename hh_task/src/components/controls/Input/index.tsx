@@ -18,6 +18,7 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
         focus = false,
         textArea = false,
     }: InputBaseProps<V, S>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ref: Ref<HTMLInputElement>
 ) => {
     const hasChildren = !!children;

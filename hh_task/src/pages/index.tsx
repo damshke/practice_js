@@ -1,11 +1,12 @@
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import FeedbackForm from '@views/FeedbackForm';
-import Filters from '@views/Filters';
 import CardList from '@views/CardList';
 import useVacancies from '@api/vacancies';
 import Pagination from '@views/Pagination';
 import { useState } from 'react';
+import { Filters } from '@views/Filters';
+import { Option } from '@views/Filters/types';
 
 export default function Home() {
     const [page, setPage] = useState(0);

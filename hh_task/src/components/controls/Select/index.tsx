@@ -13,54 +13,43 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         label,
         optionsList = new Set(),
         isOpen = false,
-        isDisabled = true,
         handleClick,
-        utils,
         meta,
-    }: SelectBaseProps<EnumLike, EnumLike>,
+        helpers,
+    }: SelectBaseProps<V, S>,
     ref: Ref<HTMLSelectElement>
 ) => {
-    const state = useMemo<SelectStateFull<EnumLike, EnumLike>>(
+    const state = useMemo<SelectStateFull<V, S>>(
         () => ({
-            isOpen,
-            isDisabled,
             size,
             variant,
             label,
+            isOpen,
         }),
-        [isOpen, isDisabled, size, variant, label]
+        [size, variant, label, isOpen]
     );
-
     if (!theme) {
         throw new Error('[Select] theme is required');
     }
-
     const {
         select: totalCSS,
         arrowButton: iconCSS,
         option: optionCSS,
-        optionsList: optionsListCSS,
         label: labelCSS,
+        optionsList: optionsGroupCSS,
         selectContainer: selectContainerCSS,
-        disabledSelect: disabledSelectCSS,
     } = useThemeCSS(theme!, state);
 
-    const handleItemClick = (item: string) => {
-        if (utils && utils.setValue) {
-            utils.setValue(item);
-        }
-    };
-
     return (
-        <div css={selectContainerCSS as CSSProperties} onClick={handleClick}>
-            <span css={labelCSS as CSSProperties}>{label}</span>
-            <div css={meta?.value ? (totalCSS as CSSObject) : (disabledSelectCSS as CSSObject)}>
+        <div css={selectContainerCSS as CSSObject} onClick={handleClick}>
+            <span css={labelCSS as CSSObject}>{label}</span>
+            <div css={totalCSS as CSSObject}>
                 {meta?.value || 'Not selected'}
-                {Icon && <Icon css={iconCSS as CSSProperties} />}
+                {Icon && <Icon css={iconCSS as CSSObject} />}
             </div>
-            <ul css={optionsListCSS as CSSProperties}>
+            <ul css={optionsGroupCSS as CSSObject}>
                 {[...optionsList].map((item, i) => (
-                    <li key={i} css={optionCSS as CSSProperties} onClick={() => handleItemClick(item)}>
+                    <li key={i} css={optionCSS as CSSObject} onClick={() => helpers.setValue(item)}>
                         {item}
                     </li>
                 ))}
@@ -79,8 +68,8 @@ export const createSelectWithTheme = <V extends EnumLike, S extends EnumLike>(
     type SelectReturn = ReturnType<typeof SelectRef>;
     const ThemedSelect = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }, ref) => (
         <SelectRef theme={theme} variant={variant} size={size} {...props} />
-    )) as (props: SelectBaseProps<V, S>, ref: Ref<HTMLSelectElement>) => SelectReturn;
-    (ThemedSelect as any).displayName = 'Select';
+    )) as (props: SelectBaseProps<V, S>, ref: Ref<HTMLButtonElement>) => SelectReturn;
+    (ThemedSelect as any).displayName = 'Button';
 
     return forwardRef(ThemedSelect) as typeof ThemedSelect;
 };

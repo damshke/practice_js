@@ -4,7 +4,6 @@ import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import { FC, ReactNode } from 'react';
 
 export interface SelectState {
-    isDisabled: boolean;
     isOpen: boolean;
 }
 
@@ -17,7 +16,6 @@ export interface SelectTheme<V extends EnumLike, S extends EnumLike> {
     selectContainer: StyleDefinition<SelectStateFull<V, S>>;
     select: StyleDefinition<SelectStateFull<V, S>>;
     arrowButton: StyleDefinition<SelectStateFull<V, S>>;
-    disabledSelect: StyleDefinition<SelectStateFull<V, S>>;
 }
 
 export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
@@ -31,6 +29,6 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     optionsList?: Set<string>;
     isOpen?: boolean;
     meta?: any;
-    utils?: any;
+    helpers?: any;
     handleClick?: () => void;
 }
