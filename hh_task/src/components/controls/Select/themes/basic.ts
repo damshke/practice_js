@@ -97,6 +97,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     optionsList: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
+                listStyleType: 'none',
                 boxShadow: shadows.box,
                 ...(state.isOpen && {
                     display: 'block',
@@ -120,7 +121,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         const varianted: OptionizedCSS<typeof Variants> = {
             primary: {
                 color: colors.black,
-                backgroundColor: colors.black,
+                backgroundColor: colors.white,
                 ...(state.isOpen && {
                     color: colors.white,
                     backgroundColor: colors.blue,

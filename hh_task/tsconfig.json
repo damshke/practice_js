@@ -21,7 +21,8 @@
             "@components/*": ["src/components/*"],
             "@views/*": ["src/views/*"],
             "@scripts/*": ["src/scripts/*"],
-            "@api/*": ["src/api/*"]
+            "@api/*": ["src/api/*"],
+            "@helpers/*": ["src/helpers/*"]
         },
         "incremental": true
     },

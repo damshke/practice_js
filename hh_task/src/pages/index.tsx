@@ -4,29 +4,26 @@ import FeedbackForm from '@views/FeedbackForm';
 import Filters from '@views/Filters';
 import CardList from '@views/CardList';
 import useVacancies from '@api/vacancies';
-import Pagination from '@views/index';
+import Pagination from '@views/Pagination';
 import { useState } from 'react';
-import Button from '@components/controls/Button';
 
 export default function Home() {
     const [page, setPage] = useState(0);
     const pageSize = 5;
 
-    const { isLoading, isError, error, data, isFetching, isPreviousData } = useVacancies(page, pageSize);
-
-    if (isLoading) {
-        return <span>Loading...</span>;
-    }
-
-    if (isError) {
-        return <span>Error: {error.message}</span>;
-    }
+    const { isLoading, isError, error, data } = useVacancies(page, pageSize);
 
     return (
         <main>
             <Header />
             <Filters />
-            <CardList vacancies={data.items} />
+            {isLoading ? (
+                <span>Loading...</span>
+            ) : isError ? (
+                <span>Error: {error.message}</span>
+            ) : (
+                <CardList vacancies={data.items} />
+            )}
             <Pagination setPage={setPage} page={page} />
             <FeedbackForm />
             <Footer />

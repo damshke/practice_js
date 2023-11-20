@@ -1,7 +1,4 @@
 import { scale } from '@greensight/gds';
-import { useState } from 'react';
-import useVacancies from '@api/vacancies';
-import Pagination from '..';
 import Card from './Card';
 import { Item } from './types';
 
