@@ -15,13 +15,7 @@ export default function FeedbackForm() {
     });
 
     return (
-        <div
-            css={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}
-        >
+        <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
             <h2 css={{ ...typography('h2'), textAlign: 'center' }}>Leave a request</h2>
             <p css={{ ...typography('l'), textAlign: 'center', marginBottom: scale(5) }}>
                 We will advise you and help you start a new project
@@ -51,7 +45,13 @@ export default function FeedbackForm() {
                     <Form.Field name="email" label="Email" placeholder="ivanov@gmail.com" />
                     <Form.Field name="phone" label="Phone number" placeholder="+7 (999) 000 00 00" />
                     <Form.Field name="comment" label="Comment" placeholder="Message text" textArea />
-                    <Button variant="primary" size="md" css={{ width: '322px', marginBottom: scale(2) }}>
+                    <Button
+                        block
+                        variant="primary"
+                        type="submit"
+                        size="md"
+                        css={{ width: `${scale(48) + 2}px`, marginBottom: scale(2) }}
+                    >
                         Send
                     </Button>
                 </div>

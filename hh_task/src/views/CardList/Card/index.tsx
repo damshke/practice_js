@@ -155,14 +155,14 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <div
                     css={{
                         ':after': {
+                            content: '""',
                             display: expandedDescription ? 'none' : 'block',
-                            content: expandedDescription ? 'none' : '',
-                            position: expandedDescription ? 'none' : 'absolute',
-                            backgroundImage: expandedDescription
-                                ? 'none'
-                                : 'linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgb(255, 255, 255))',
-                            height: expandedDescription ? '0' : '100px',
-                            width: expandedDescription ? '0' : '100%',
+                            position: 'absolute',
+                            backgroundImage:
+                                'linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgb(255, 255, 255))',
+                            bottom: '0',
+                            height: '100px',
+                            width: '100%',
                         },
                     }}
                 >
@@ -176,7 +176,6 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 </div>
             </Layout.Item>
             <Layout.Item>
-                {/* поменять размер кнопки */}
                 <Button
                     variant="link"
                     size="md"

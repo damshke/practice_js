@@ -17,9 +17,15 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
         const varianted: OptionizedCSS<typeof Variants> = {
             primary: {
-                borderColor: `${scale(1, true) - 3}px solid ${colors.grey400}`,
-                backgroundColor: colors.white,
-                color: colors.grey600,
+                borderRadius: scale(1, true),
+                border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
+                background: colors.white,
+                color: colors.black,
+                height: scale(11, true),
+                padding: `${scale(1, true)}px ${scale(3, true)}px`,
+                ...(state.textArea && {
+                    height: `${scale(13) + 4}px`,
+                }),
             },
         };
 
@@ -32,21 +38,23 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
     inputBlock: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             sm: {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: scale(1, true),
                 width: '100%',
                 ...(typography('s') as any),
             },
             md: {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: scale(1, true),
+                width: '100%',
                 ...(typography('s') as any),
             },
         };
 
-        const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {},
-        };
-
         return {
             ...extractCSSOption(sized, state.size),
-            ...extractCSSOption(varianted, state.variant),
         };
     },
 
