@@ -59,7 +59,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
         const varianted: OptionizedCSS<typeof Variants> = {
             primary: {
-                color: colors.grey600,
+                color: colors.black,
                 backgroundColor: colors.white,
                 border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
                 background: colors.white,

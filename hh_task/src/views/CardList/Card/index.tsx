@@ -46,6 +46,9 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 borderRadius: scale(2),
                 padding: `${scale(5)}px ${scale(5)}px ${scale(6)}px ${scale(5)}px`,
                 boxShadow: shadows.boxLight,
+                [MEDIA_QUERIES.sm]: {
+                    padding: `${scale(5, true)}px`,
+                },
             }}
         >
             <Layout.Item
@@ -56,6 +59,9 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     gap: scale(3),
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    [MEDIA_QUERIES.sm]: {
+                        flexDirection: 'column',
+                    },
                 }}
             >
                 <h4
@@ -69,6 +75,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     {vacancy.name}
                 </h4>
                 {logo(vacancy) !== '' && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                         css={{
                             marginRight: '50%',
@@ -88,7 +95,15 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                         alt={vacancy.name}
                     />
                 )}
-                <Button size="md" variant="secondary">
+                <Button
+                    size="md"
+                    variant="secondary"
+                    css={{
+                        [MEDIA_QUERIES.sm]: {
+                            width: '100%',
+                        },
+                    }}
+                >
                     Respond
                 </Button>
             </Layout.Item>
@@ -98,6 +113,11 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     display: 'flex',
                     flexDirection: 'rows',
                     gap: scale(6),
+                    flexWrap: 'wrap',
+                    [MEDIA_QUERIES.sm]: {
+                        width: '100%',
+                        gap: scale(1),
+                    },
                 }}
             >
                 <dl

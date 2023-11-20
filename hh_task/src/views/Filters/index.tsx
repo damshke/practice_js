@@ -3,11 +3,11 @@ import { Select } from '@components/controls/Select';
 import { scale, MEDIA_QUERIES } from '@scripts/gds';
 import useFilters from '@api/filters';
 import { useCallback, useState } from 'react';
+import { API_URL } from '@api/const';
 
 import { Option } from './types';
 import CloseIcon from '../../icons/16/close.svg';
 import ArrowDown from '../../icons/16/chevronDown.svg';
-import { API_URL } from '@api/const';
 
 export const Filters = () => {
     const { data: filterData } = useFilters();
@@ -36,11 +36,13 @@ export const Filters = () => {
         setSelectedForm(null);
     };
 
-    // const handleSearch = async () => {
-    //     const data = await fetch(`${API_URL}?page=$0&per_page=$5&${selectedForm}&${selectedExperience}`);
-    //     const response = await data.json();
-    //     return response;
-    // };
+    //  вытащить id
+
+    const handleSearch = async () => {
+        const data = await fetch(`${API_URL}?page=$0&per_page=$5&${selectedForm}&${selectedExperience}`);
+        const response = await data.json();
+        return response;
+    };
 
     return (
         <div
@@ -83,14 +85,12 @@ export const Filters = () => {
                         handleClick={handleOpenSelectEmployment}
                         isOpen={isOpenSelectEmployment}
                         meta={{ value: selectedForm }}
-                        helpers={{ setValue: setSelectedForm }}
+                        helpers={{ setValue: setSelectedForm(prev => ({ ...prev, id: String(meta.value) })) }}
                     />
 
                     <Select
                         Icon={ArrowDown}
                         label="Experience"
-                        value={selectedExperience?.id || ''}
-                        onChange={e => setSelectedExperience({ id: String(e.target.value) })}
                         optionsList={experienceOptions.map((item: { name: String }) => item.name)}
                         handleClick={handleOpenSelectExperience}
                         isOpen={isOpenSelectExperience}
@@ -98,7 +98,7 @@ export const Filters = () => {
                         helpers={{ setValue: setSelectedExperience }}
                     />
 
-                    <Button variant="primary" size="md" onClick={handleSearch}>
+                    <Button variant="primary" size="md" css={{ margin: scale(5, true) }} onClick={handleSearch}>
                         Search
                     </Button>
                 </div>
