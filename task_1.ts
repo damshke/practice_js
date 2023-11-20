@@ -1,18 +1,15 @@
 enum Sex {
-    MALE = 'male',
-    FEMALE = 'female',
+  MALE = "male",
+  FEMALE = "female",
 }
 
 type Person = {
-    name: string,
-    age: number,
-    sex: Sex,
-}
+  name: string;
+  age: number;
+  sex: Sex;
+};
 
-interface User {
-    name: string,
-    age: number,
-    sex: Sex,
-    email: string,
-    password: string,
+interface User extends Person {
+  email: string;
+  password: string;
 }
