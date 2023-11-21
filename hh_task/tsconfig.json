@@ -22,7 +22,8 @@
             "@views/*": ["src/views/*"],
             "@scripts/*": ["src/scripts/*"],
             "@api/*": ["src/api/*"],
-            "@helpers/*": ["src/helpers/*"]
+            "@helpers/*": ["src/helpers/*"],
+            "@containers/*": ["src/containers/*"]
         },
         "incremental": true
     },

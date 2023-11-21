@@ -6,7 +6,7 @@ import { PHONE_REGEX } from '../../helpers/regex';
 
 export default function FeedbackForm() {
     const validationSchema = Yup.object({
-        initials: Yup.string().required('Введите имя!').min(3, 'Min lenght is 3').max(30, 'Max lenght is 30'),
+        initials: Yup.string().required('Введите имя!').min(3, 'Min length is 3').max(30, 'Max length is 30'),
         email: Yup.string().required('Введите email!').email('Invalid email!'),
         phone: Yup.string()
             .required('Без телефона работодатель не сможет позвонить :(')
@@ -23,10 +23,13 @@ export default function FeedbackForm() {
             <Form
                 initialValues={{ initials: '', phone: '', email: '', comment: '' }}
                 onSubmit={values => {
-                    // eslint-disable-next-line no-alert
-                    alert(
-                        `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
-                    );
+                    try {
+                        alert(
+                            `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
+                        );
+                    } catch (error) {
+                        console.error('Form submission error:', error);
+                    }
                 }}
                 validationSchema={validationSchema}
             >

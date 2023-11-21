@@ -29,7 +29,9 @@ export default function Card({ vacancy }: { vacancy: Item }) {
     };
 
     const logo = (vacancy: Item) => {
-        if (vacancy.employer && vacancy.employer.logo_urls) vacancy.employer.logo_urls.original;
+        if (vacancy.employer && vacancy.employer.logo_urls) {
+            return vacancy.employer.logo_urls.original;
+        }
         return '';
     };
 

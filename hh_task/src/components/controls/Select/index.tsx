@@ -49,7 +49,11 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
             </div>
             <ul css={optionsGroupCSS as CSSObject}>
                 {[...optionsList].map((item, i) => (
-                    <li key={i} css={optionCSS as CSSObject} onClick={() => helpers.setValue(item)}>
+                    <li
+                        key={i}
+                        css={optionCSS as CSSObject}
+                        onClick={() => helpers?.setValue && helpers.setValue(item)}
+                    >
                         {item}
                     </li>
                 ))}

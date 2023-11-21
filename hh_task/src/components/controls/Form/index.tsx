@@ -1,5 +1,6 @@
-import React, { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback } from 'react';
-import { useForm, SubmitHandler, UseFormReturn, FieldValues } from 'react-hook-form';
+import React, { FC, HTMLProps, ReactNode, SyntheticEvent, useCallback, useMemo, useRef } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, UseFormReturn, FieldValues, DefaultValues } from 'react-hook-form';
 import { CSSObject } from '@emotion/core';
 import { AnyObjectSchema } from 'yup';
 
@@ -12,9 +13,9 @@ export interface FormCompositionProps {
 
 export interface FormProps<T extends FieldValues>
     extends Omit<HTMLProps<HTMLFormElement>, 'onSubmit' | 'children' | 'onChange'> {
-    initialValues: T;
+    initialValues: DefaultValues<T>;
     validationSchema?: AnyObjectSchema;
-    onSubmit: SubmitHandler<T>;
+    onSubmit: (values: T, formProps?: UseFormReturn<T, any>) => void | Promise<any>;
     children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T>) => ReactNode | ReactNode[]);
     css?: CSSObject;
 }
@@ -27,27 +28,27 @@ const Form = <T extends FieldValues>({
     css,
     ...props
 }: FormProps<T> & Partial<FormCompositionProps>) => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<T>({
+    const form = useForm<T>({
         defaultValues: initialValues,
-        resolver: validationSchema,
+        ...(validationSchema && { resolver: yupResolver(validationSchema) }),
+        ...props,
     });
 
     const onSubmitHandler = useCallback(
         (data: T, event: SyntheticEvent) => {
-            event.preventDefault();
             onSubmit(data);
+            event.stopPropagation();
         },
         [onSubmit]
     );
 
-    const children: ReactNode = typeof childrenProp === 'function' ? childrenProp({ register, errors }) : childrenProp;
+    const children: typeof childrenProp = useMemo(
+        () => (typeof childrenProp === 'function' ? childrenProp({ ...form }) : childrenProp),
+        [childrenProp, form]
+    );
 
     return (
-        <form onSubmit={handleSubmit(onSubmitHandler)} css={css} {...props}>
+        <form onSubmit={onSubmitHandler} css={css} {...props}>
             {children}
         </form>
     );

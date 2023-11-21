@@ -4,20 +4,25 @@ import FeedbackForm from '@views/FeedbackForm';
 import CardList from '@views/CardList';
 import useVacancies from '@api/vacancies';
 import Pagination from '@views/Pagination';
-import { useState } from 'react';
-import { Filters } from '@views/Filters';
-import { Option } from '@views/Filters/types';
+import { useCallback, useState } from 'react';
+import Filters from '@views/Filters';
 
 export default function Home() {
     const [page, setPage] = useState(0);
+    const [filters, setFilters] = useState(false);
     const pageSize = 5;
 
     const { isLoading, isError, error, data } = useVacancies(page, pageSize);
 
+    const handleClearFilters = useCallback(() => {
+        setFilters(false);
+        setPage(0);
+    }, [filters]);
+
     return (
         <main>
             <Header />
-            <Filters />
+            <Filters handleClearFilters={handleClearFilters} />
             {isLoading ? (
                 <span>Loading...</span>
             ) : isError ? (
