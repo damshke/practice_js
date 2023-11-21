@@ -4,14 +4,15 @@ import * as yup from 'yup';
 import { FilterFields } from './components';
 
 const validationSchema = {
-    form: yup.string(),
+    employment: yup.string(),
     experience: yup.string(),
 };
 
 export default function Filters({ handleClearFilters }: { handleClearFilters: () => void }) {
-    const handleSearch = values => {
-        console.log('Performing search with values:', values);
+    const handleSearch = () => {
+        console.log('ok');
     };
+
     return (
         <div
             css={{
@@ -19,7 +20,7 @@ export default function Filters({ handleClearFilters }: { handleClearFilters: ()
             }}
         >
             <Form
-                initialValues={{ form: '', experience: '' }}
+                initialValues={{ employment: '', experience: '' }}
                 onSubmit={handleSearch}
                 validationSchema={yup.object().shape(validationSchema)}
             >

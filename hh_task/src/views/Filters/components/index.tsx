@@ -1,6 +1,6 @@
 import Button from '@components/controls/Button';
 import { Select } from '@components/controls/Select';
-import { useForm, FieldValues, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, FieldValues } from 'react-hook-form';
 import { scale, MEDIA_QUERIES } from '@scripts/gds';
 import { FC, useCallback, useState } from 'react';
 import useFilters from '@api/filters';
@@ -19,14 +19,14 @@ interface FormInputs {
 }
 
 export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
-    const { control, watch, setValue } = useForm<FormInputs>({
+    const { watch, setValue } = useForm<FormInputs>({
         defaultValues: {
             employment: '',
             experience: '',
         },
     });
 
-    const selectedForm = watch('employment');
+    const selectedEmployment = watch('employment');
     const selectedExperience = watch('experience');
 
     const { data: filterData } = useFilters();
@@ -48,7 +48,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
     }, []);
 
     const handleSearch = () => {
-        onSubmit({ employment: selectedForm, experience: selectedExperience });
+        console.log(selectedExperience);
     };
 
     const handleClearFilters = () => {
@@ -87,20 +87,12 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
                 }}
             >
                 <FormField name="employment">
-                    <Controller
-                        name="employment"
-                        control={control}
-                        rules={{ required: true }}
-                        render={({ field }) => (
-                            <Select
-                                label="Employment"
-                                Icon={ArrowDown}
-                                optionsList={employmentOptions.map((item: { name: String }) => item.name)}
-                                isOpen={isOpenSelectEmployment}
-                                handleClick={handleOpenSelectEmployment}
-                                {...field}
-                            />
-                        )}
+                    <Select
+                        label="Employment"
+                        Icon={ArrowDown}
+                        isOpen={isOpenSelectEmployment}
+                        handleClick={handleOpenSelectEmployment}
+                        optionsList={employmentOptions}
                     />
                 </FormField>
 
@@ -110,7 +102,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
                         isOpen={isOpenSelectExperience}
                         label="Experience"
                         Icon={ArrowDown}
-                        optionsList={experienceOptions.map((item: { name: String }) => item.name)}
+                        optionsList={experienceOptions}
                     />
                 </FormField>
 
@@ -124,7 +116,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
                     Search
                 </Button>
             </div>
-            <Button variant="link" Icon={CloseIcon} block hidden={!selectedForm || !selectedExperience}>
+            <Button variant="link" Icon={CloseIcon} block hidden>
                 Clear filters
             </Button>
         </div>

@@ -1,7 +1,7 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
 import { typography, scale, colors } from '@scripts/gds';
-import { FormProvider, useFormContext, useForm } from 'react-hook-form';
+import { useForm, useFormContext } from 'react-hook-form';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
 
@@ -22,9 +22,25 @@ export default function FeedbackForm() {
         comment: Yup.string(),
     });
 
-    const { handleSubmit } = useForm<FormData>();
+    const { watch } = useForm<FormData>({
+        defaultValues: {
+            initials: '',
+            phone: '',
+            email: '',
+            comment: '',
+        },
+    });
 
-    const onSubmit = handleSubmit(data => console.log(data));
+    const initials = watch('initials');
+    const phone = watch('phone');
+    const email = watch('email');
+    const comment = watch('comment');
+
+    const handleSearch = (values: FormData) => {
+        alert(
+            `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
+        );
+    };
 
     return (
         <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
@@ -34,7 +50,7 @@ export default function FeedbackForm() {
             </p>
             <Form
                 initialValues={{ initials: '', phone: '', email: '', comment: '' }}
-                onSubmit={onSubmit}
+                onSubmit={handleSearch}
                 validationSchema={validationSchema}
             >
                 <div
@@ -57,6 +73,7 @@ export default function FeedbackForm() {
                         variant="primary"
                         type="submit"
                         size="md"
+                        onClick={handleSearch}
                         css={{ width: `${scale(48) + 2}px`, marginBottom: scale(2) }}
                     >
                         Send

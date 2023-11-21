@@ -139,10 +139,7 @@ export const FormField = forwardRef<HTMLInputElement, FieldProps>(({ name, child
                         field.onChange(e);
                         onChangeHandler(e);
                     }}
-                    onClear={() => {
-                        setValue(name, '');
-                        onChangeHandler(undefined, '');
-                    }}
+                    E
                     {...inputProps}
                 />
             )}
