@@ -14,11 +14,14 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
         variant,
         label = '',
         placeholder = '',
+        name = '',
         meta,
+        helpers,
+        field,
         focus = false,
         textArea = false,
+        ...props
     }: InputBaseProps<V, S>,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ref: Ref<HTMLInputElement>
 ) => {
     const hasChildren = !!children;
@@ -32,24 +35,42 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
             placeholder,
             focus,
             textArea,
+            meta,
+            helpers,
+            field,
         }),
-        [hasChildren, size, variant, block, label, placeholder, focus, textArea]
+        [hasChildren, size, variant, block, label, placeholder, focus, textArea, meta, helpers, field]
     );
 
     if (!theme) {
         throw new Error('[Input] theme is required');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const { input: totalCSS, inputBlock: inputBlockCSS, error: errorCSS, label: labelCSS } = useThemeCSS(theme!, state);
 
     return (
         <div css={inputBlockCSS as CSSObject}>
-            <label css={labelCSS as CSSObject}>{label}</label>
+            <label css={labelCSS as CSSObject} htmlFor={name}>
+                {label}
+            </label>
             {textArea ? (
-                <textarea css={totalCSS as CSSObject} placeholder={placeholder} />
+                <textarea
+                    css={totalCSS as CSSObject}
+                    placeholder={placeholder}
+                    id={name}
+                    name={name}
+                    ref={ref}
+                    {...props}
+                />
             ) : (
-                <input css={totalCSS as CSSObject} placeholder={placeholder} />
+                <input
+                    css={totalCSS as CSSObject}
+                    placeholder={placeholder}
+                    id={name}
+                    name={name}
+                    ref={ref}
+                    {...props}
+                />
             )}
             <span css={errorCSS as CSSObject}>{meta?.error}</span>
         </div>

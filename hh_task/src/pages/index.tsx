@@ -1,5 +1,5 @@
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+import Header from '@containers/Header';
+import Footer from '@containers/Footer';
 import FeedbackForm from '@views/FeedbackForm';
 import CardList from '@views/CardList';
 import useVacancies from '@api/vacancies';

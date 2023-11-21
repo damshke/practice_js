@@ -26,7 +26,7 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     iconRight?: boolean;
     css?: CSSObject;
     label?: string;
-    optionsList?: Set<string>;
+    optionsList?: [];
     isOpen?: boolean;
     meta?: any;
     helpers?: any;

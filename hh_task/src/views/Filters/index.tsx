@@ -1,6 +1,5 @@
 import Form from '@components/controls/Form';
 import { scale } from '@scripts/gds';
-import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { FilterFields } from './components';
 
@@ -10,7 +9,6 @@ const validationSchema = {
 };
 
 export default function Filters({ handleClearFilters }: { handleClearFilters: () => void }) {
-    const { control } = useForm();
     const handleSearch = values => {
         console.log('Performing search with values:', values);
     };
@@ -25,7 +23,7 @@ export default function Filters({ handleClearFilters }: { handleClearFilters: ()
                 onSubmit={handleSearch}
                 validationSchema={yup.object().shape(validationSchema)}
             >
-                <FilterFields onClear={handleClearFilters} control={control} onSubmit={handleSearch} />
+                <FilterFields onClear={handleClearFilters} onSubmit={handleSearch} />
             </Form>
         </div>
     );

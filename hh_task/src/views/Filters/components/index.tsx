@@ -1,6 +1,6 @@
 import Button from '@components/controls/Button';
 import { Select } from '@components/controls/Select';
-import { useForm, FieldValues, Control } from 'react-hook-form';
+import { useForm, FieldValues, SubmitHandler, Controller } from 'react-hook-form';
 import { scale, MEDIA_QUERIES } from '@scripts/gds';
 import { FC, useCallback, useState } from 'react';
 import useFilters from '@api/filters';
@@ -11,14 +11,18 @@ import CloseIcon from '../../../icons/16/close.svg';
 interface FiltersFormProps {
     onSubmit: (values: FieldValues) => void;
     onClear: () => void;
-    control: Control<FieldValues, any>;
 }
 
-export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, control }) => {
-    const { setValue, watch } = useForm({
+interface FormInputs {
+    employment: string;
+    experience: string;
+}
+
+export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
+    const { control, watch, setValue } = useForm<FormInputs>({
         defaultValues: {
-            employment: null,
-            experience: null,
+            employment: '',
+            experience: '',
         },
     });
 
@@ -48,8 +52,8 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, control 
     };
 
     const handleClearFilters = () => {
-        setValue('employment', null);
-        setValue('experience', null);
+        setValue('employment', '');
+        setValue('experience', '');
         onClear();
     };
 
@@ -82,17 +86,25 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, control 
                     },
                 }}
             >
-                <FormField name="employment" control={control}>
-                    <Select
-                        label="Employment"
-                        Icon={ArrowDown}
-                        optionsList={employmentOptions.map((item: { name: String }) => item.name)}
-                        isOpen={isOpenSelectEmployment}
-                        handleClick={handleOpenSelectEmployment}
+                <FormField name="employment">
+                    <Controller
+                        name="employment"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <Select
+                                label="Employment"
+                                Icon={ArrowDown}
+                                optionsList={employmentOptions.map((item: { name: String }) => item.name)}
+                                isOpen={isOpenSelectEmployment}
+                                handleClick={handleOpenSelectEmployment}
+                                {...field}
+                            />
+                        )}
                     />
                 </FormField>
 
-                <FormField name="experience" control={control}>
+                <FormField name="experience">
                     <Select
                         handleClick={handleOpenSelectExperience}
                         isOpen={isOpenSelectExperience}
@@ -112,13 +124,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, control 
                     Search
                 </Button>
             </div>
-            <Button
-                variant="link"
-                Icon={CloseIcon}
-                block
-                hidden={!selectedForm || !selectedExperience}
-                onClick={handleClearFilters}
-            >
+            <Button variant="link" Icon={CloseIcon} block hidden={!selectedForm || !selectedExperience}>
                 Clear filters
             </Button>
         </div>
