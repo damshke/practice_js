@@ -72,7 +72,9 @@ const Form = <T extends FieldValues>({
     );
 
     const formHandlerRef = useRef<any>();
-    formHandlerRef.current = form.handleSubmit(v => onSubmit(v, form));
+    formHandlerRef.current = form.handleSubmit(v => {
+        onSubmit(v, form);
+    });
 
     const onSubmitHandler = useCallback((event: SyntheticEvent) => {
         event.stopPropagation();

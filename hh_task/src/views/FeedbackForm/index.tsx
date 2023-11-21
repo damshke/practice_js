@@ -1,8 +1,16 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
 import { typography, scale, colors } from '@scripts/gds';
+import { FormProvider, useFormContext, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
+
+type FormData = {
+    initials: string;
+    phone: string;
+    email: string;
+    comment: string;
+};
 
 export default function FeedbackForm() {
     const validationSchema = Yup.object().shape({
@@ -14,6 +22,10 @@ export default function FeedbackForm() {
         comment: Yup.string(),
     });
 
+    const { handleSubmit } = useForm<FormData>();
+
+    const onSubmit = handleSubmit(data => console.log(data));
+
     return (
         <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
             <h2 css={{ ...typography('h2'), textAlign: 'center' }}>Leave a request</h2>
@@ -22,15 +34,7 @@ export default function FeedbackForm() {
             </p>
             <Form
                 initialValues={{ initials: '', phone: '', email: '', comment: '' }}
-                onSubmit={values => {
-                    try {
-                        alert(
-                            `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
-                        );
-                    } catch (error) {
-                        console.error('Form submission error:', error);
-                    }
-                }}
+                onSubmit={onSubmit}
                 validationSchema={validationSchema}
             >
                 <div

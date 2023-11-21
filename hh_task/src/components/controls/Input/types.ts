@@ -1,6 +1,7 @@
 import { CSSObject } from '@emotion/core';
+import { ChangeEvent, MouseEvent, ReactNode, Ref } from 'react';
+
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds';
-import { ReactNode } from 'react';
 
 export interface InputState {
     focus: boolean;
@@ -23,16 +24,22 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     extends Partial<BaseThemeState<V, S, InputTheme<V, S>>>,
         Partial<InputState> {
     value?: string;
-    children?: ReactNode;
-    block?: boolean;
-    label?: string;
     name?: string;
     placeholder?: string;
+    defaultValue?: string;
+    block?: boolean;
     error?: ReactNode | boolean;
     showError?: boolean;
-    type?: 'number' | 'email' | 'tel' | 'text';
+    hint?: ReactNode;
+    label?: ReactNode;
+    type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
+    wrapperRef?: Ref<HTMLDivElement>;
+    children?: ReactNode;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, payload: { value: string }) => void;
+    onClear?: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (event: MouseEvent<HTMLDivElement>) => void;
+    css?: CSSObject;
     field?: any;
     meta?: any;
     helpers?: any;
-    css?: CSSObject;
 }

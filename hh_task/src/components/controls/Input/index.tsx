@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/core';
 import { EnumLike, useThemeCSS } from '@greensight/gds';
-import { Ref, forwardRef, useMemo } from 'react';
+import { Ref, forwardRef, useMemo, useState, useCallback, ChangeEvent, useEffect } from 'react';
 import { InputBaseProps, InputStateFull, InputTheme } from './types';
 import { Variants, Sizes } from './enums';
 import { INPUT_THEMES } from './themes/basic';
@@ -9,8 +9,10 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
     {
         children,
         block = false,
-        size,
+        size = 'md',
         theme,
+        onChange,
+        value,
         variant,
         label = '',
         placeholder = '',
@@ -25,6 +27,28 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
     ref: Ref<HTMLInputElement>
 ) => {
     const hasChildren = !!children;
+    const uncontrolled = value === undefined;
+
+    const [stateValue, setStateValue] = useState('');
+
+    const handleInputChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            if (field && field.onChange) field.onChange(event);
+            if (onChange) {
+                onChange(event, { value: event.target.value });
+            }
+
+            if (uncontrolled) {
+                setStateValue(event.target.value);
+            }
+        },
+        [onChange, uncontrolled, field]
+    );
+
+    useEffect(() => {
+        if (uncontrolled) setStateValue(field?.value);
+    }, [field?.value, uncontrolled, setStateValue]);
+
     const state = useMemo<InputStateFull<V, S>>(
         () => ({
             hasChildren,
@@ -58,8 +82,11 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
                     css={totalCSS as CSSObject}
                     placeholder={placeholder}
                     id={name}
+                    onChange={handleInputChange}
                     name={name}
-                    ref={ref}
+                    value={uncontrolled ? stateValue : value}
+                    {...field}
+                    {...meta}
                     {...props}
                 />
             ) : (
@@ -67,8 +94,11 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
                     css={totalCSS as CSSObject}
                     placeholder={placeholder}
                     id={name}
+                    onChange={handleInputChange}
                     name={name}
-                    ref={ref}
+                    value={uncontrolled ? stateValue : value}
+                    {...field}
+                    {...meta}
                     {...props}
                 />
             )}
