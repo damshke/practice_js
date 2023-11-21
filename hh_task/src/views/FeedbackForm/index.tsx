@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
 
 export default function FeedbackForm() {
-    const validationSchema = Yup.object({
+    const validationSchema = Yup.object().shape({
         initials: Yup.string().required('Введите имя!').min(3, 'Min length is 3').max(30, 'Max length is 30'),
         email: Yup.string().required('Введите email!').email('Invalid email!'),
         phone: Yup.string()

@@ -1,9 +1,10 @@
-import React, { ReactNode, useCallback, useMemo } from 'react';
+import React, { ReactNode, SyntheticEvent, useCallback, useMemo, useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, UseFormReturn, FieldValues, SubmitHandler, UseFormProps, DefaultValues } from 'react-hook-form';
+import { useForm, UseFormReturn, FieldValues, UseFormProps, DefaultValues, FormProvider } from 'react-hook-form';
 import { CSSObject } from '@emotion/core';
 import { AnyObjectSchema } from 'yup';
 import FormField from './Field';
+import { FormContext } from './useForm';
 
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
@@ -11,9 +12,35 @@ export interface FormProps<T extends FieldValues>
     initialValues: DefaultValues<T>;
     validationSchema?: AnyObjectSchema;
     onSubmit: (values: T, formProps?: UseFormReturn<T>) => void | Promise<any>;
+    onChange?: (
+        values: T,
+        formProps: UseFormReturn<T, any>,
+        exactChange: { [name: string]: any }
+    ) => void | Promise<any>;
+
     onReset?: (values: T, formProps: UseFormReturn<T>) => void | Promise<any>;
     children?: ReactNode | ((props: UseFormReturn<T>) => ReactNode);
+    isForm?: boolean;
     css?: CSSObject;
+}
+
+export interface FieldProps<T> {
+    field?: {
+        value: T;
+        onChange: (
+            eventOrValue:
+                | {
+                      target: {
+                          value: T;
+                      };
+                  }
+                | T
+        ) => void;
+    };
+    meta?: {
+        error?: string;
+    };
+    helpers?: { setValue: (value: T) => void };
 }
 
 const Form = <T extends FieldValues>({
@@ -21,6 +48,8 @@ const Form = <T extends FieldValues>({
     validationSchema,
     onSubmit,
     onReset,
+    onChange,
+    isForm = true,
     children: childrenProp,
     mode = 'all',
     css,
@@ -42,17 +71,43 @@ const Form = <T extends FieldValues>({
         [form, onReset]
     );
 
-    const handlerSubmit: SubmitHandler<FieldValues> = data => onSubmit(data);
+    const formHandlerRef = useRef<any>();
+    formHandlerRef.current = form.handleSubmit(v => onSubmit(v, form));
+
+    const onSubmitHandler = useCallback((event: SyntheticEvent) => {
+        event.stopPropagation();
+        if (formHandlerRef.current) formHandlerRef.current(event);
+    }, []);
+
+    const onChangeHandler = useCallback(
+        (key: string, value: any) => {
+            if (onChange) onChange(form.getValues(), form, { [key]: value });
+        },
+        [form, onChange]
+    );
 
     const children: typeof childrenProp = useMemo(
         () => (typeof childrenProp === 'function' ? childrenProp({ ...form }) : childrenProp),
         [childrenProp, form]
     );
 
+    const providerValue = useMemo(
+        () => ({ onChange: onChangeHandler, onSubmitHandler }),
+        [onChangeHandler, onSubmitHandler]
+    );
+
     return (
-        <form onSubmit={form.handleSubmit(handlerSubmit)} css={css} {...props} onReset={reset}>
-            {children}
-        </form>
+        <FormProvider {...form} reset={reset}>
+            <FormContext.Provider value={providerValue}>
+                {isForm ? (
+                    <form onSubmit={onSubmitHandler} css={css}>
+                        {children}
+                    </form>
+                ) : (
+                    <div css={css}>{children}</div>
+                )}
+            </FormContext.Provider>
+        </FormProvider>
     );
 };
 
