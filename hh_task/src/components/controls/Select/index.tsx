@@ -1,22 +1,23 @@
 import React, { CSSProperties, Ref, forwardRef, useMemo } from 'react';
 import { EnumLike, useThemeCSS } from '@scripts/gds';
+import { Option } from '@views/Filters/types';
 import { SelectBaseProps, SelectStateFull, SelectTheme } from './types';
 import { Sizes, Variants } from './enums';
-import { Option } from '../../../views/Filters/types';
 import { SELECT_THEMES } from './themes/basic';
 
 export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
     {
         theme,
         size,
+        name,
         variant,
         Icon,
         label,
         optionsList = [],
         isOpen = false,
         handleClick,
-        meta,
-        helpers,
+        register,
+        ...props
     }: SelectBaseProps<V, S>,
     ref: Ref<HTMLDivElement>
 ) => {
@@ -40,28 +41,17 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         optionsList: optionsGroupCSS,
         selectContainer: selectContainerCSS,
     } = useThemeCSS(theme!, state);
-    // как забирать ключ либо отображать не id
     return (
         <div css={selectContainerCSS as CSSProperties} onClick={handleClick} ref={ref}>
             <span css={labelCSS as CSSProperties}>{label}</span>
-            <div css={totalCSS as CSSProperties}>
-                {meta.value || 'Not selected'}
+            <select css={totalCSS} {...register(name)} {...props}>
                 {Icon && <Icon css={iconCSS as CSSProperties} />}
-            </div>
-            <ul css={optionsGroupCSS as CSSProperties}>
-                {optionsList.map((item: Option) => (
-                    <li
-                        key={item.id}
-                        css={optionCSS as CSSProperties}
-                        onClick={() => {
-                            helpers.setValue(item.id);
-                            console.log(meta);
-                        }}
-                    >
-                        {item.name}
-                    </li>
+                {optionsList.map((value: Option) => (
+                    <option css={optionCSS} key={value.id} value={value.name}>
+                        {value.name}
+                    </option>
                 ))}
-            </ul>
+            </select>
         </div>
     );
 };

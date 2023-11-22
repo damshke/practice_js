@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <main>
             <Header />
-            <Filters handleClearFilters={handleClearFilters} />
+            <Filters />
             {isLoading ? (
                 <span>Loading...</span>
             ) : isError ? (

@@ -1,7 +1,7 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
 import { typography, scale, colors } from '@scripts/gds';
-import { useForm, useFormContext } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
 
@@ -22,25 +22,13 @@ export default function FeedbackForm() {
         comment: Yup.string(),
     });
 
-    const { watch } = useForm<FormData>({
-        defaultValues: {
-            initials: '',
-            phone: '',
-            email: '',
-            comment: '',
-        },
-    });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>();
 
-    const initials = watch('initials');
-    const phone = watch('phone');
-    const email = watch('email');
-    const comment = watch('comment');
-
-    const handleSearch = (values: FormData) => {
-        alert(
-            `Name: ${values.initials} \nPhone: ${values.phone} \nEmail: ${values.email} \nComment: ${values.comment}`
-        );
-    };
+    const onSubmit = (data: FormData) => console.log(data);
 
     return (
         <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
@@ -50,7 +38,9 @@ export default function FeedbackForm() {
             </p>
             <Form
                 initialValues={{ initials: '', phone: '', email: '', comment: '' }}
-                onSubmit={handleSearch}
+                onSubmit={onSubmit}
+                register={register}
+                handleSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
                 <div
@@ -64,16 +54,36 @@ export default function FeedbackForm() {
                         alignItems: 'center',
                     }}
                 >
-                    <Form.Field name="initials" label="Your name" placeholder="Please introduce yourself" />
-                    <Form.Field name="email" label="Email" placeholder="ivanov@gmail.com" />
-                    <Form.Field name="phone" label="Phone number" placeholder="+7 (999) 000 00 00" />
-                    <Form.Field name="comment" label="Comment" placeholder="Message text" textArea />
+                    <Form.Field
+                        name="initials"
+                        label="Your name"
+                        placeholder="Please introduce yourself"
+                        error={errors.email?.message}
+                    />
+                    <Form.Field
+                        name="email"
+                        label="Email"
+                        placeholder="ivanov@gmail.com"
+                        error={errors.email?.message}
+                    />
+                    <Form.Field
+                        name="phone"
+                        label="Phone number"
+                        placeholder="+7 (999) 000 00 00"
+                        error={errors.email?.message}
+                    />
+                    <Form.Field
+                        name="comment"
+                        label="Comment"
+                        placeholder="Message text"
+                        textArea
+                        error={errors.email?.message}
+                    />
                     <Button
                         block
                         variant="primary"
                         type="submit"
                         size="md"
-                        onClick={handleSearch}
                         css={{ width: `${scale(48) + 2}px`, marginBottom: scale(2) }}
                     >
                         Send

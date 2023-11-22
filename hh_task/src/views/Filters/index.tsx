@@ -1,7 +1,9 @@
 import Form from '@components/controls/Form';
 import { scale } from '@scripts/gds';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { FilterFields } from './components';
+import { FormInputs } from './types';
 
 const validationSchema = {
     employment: yup.string(),
@@ -13,6 +15,12 @@ export default function Filters({ handleClearFilters }: { handleClearFilters: ()
         console.log('ok');
     };
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormInputs>();
+
     return (
         <div
             css={{
@@ -22,9 +30,11 @@ export default function Filters({ handleClearFilters }: { handleClearFilters: ()
             <Form
                 initialValues={{ employment: '', experience: '' }}
                 onSubmit={handleSearch}
+                handleSubmit={handleSubmit}
+                register={register}
                 validationSchema={yup.object().shape(validationSchema)}
             >
-                <FilterFields onClear={handleClearFilters} onSubmit={handleSearch} />
+                <FilterFields onClear={handleClearFilters} onSubmit={handleSearch} errors={errors} />
             </Form>
         </div>
     );

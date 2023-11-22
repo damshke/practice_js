@@ -1,11 +1,15 @@
 import { CSSObject } from '@emotion/core';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface FieldProps extends Omit<HTMLInputElement, 'label' | 'size'> {
-    size?: HTMLInputElement['size'];
+export interface FieldProps extends HTMLAttributes<HTMLInputElement> {
+    size?: string;
     name: string;
-    label?: string | ReactNode;
+    label?: string;
+    placeholder?: string;
     css?: CSSObject;
     wrapperCSS?: CSSObject;
     showError?: boolean;
+    register?: any;
+    error?: string;
+    children?: ReactNode;
 }

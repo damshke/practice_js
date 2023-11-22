@@ -11,24 +11,10 @@ import CloseIcon from '../../../icons/16/close.svg';
 interface FiltersFormProps {
     onSubmit: (values: FieldValues) => void;
     onClear: () => void;
+    errors?: any;
 }
 
-interface FormInputs {
-    employment: string;
-    experience: string;
-}
-
-export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
-    const { watch, setValue } = useForm<FormInputs>({
-        defaultValues: {
-            employment: '',
-            experience: '',
-        },
-    });
-
-    const selectedEmployment = watch('employment');
-    const selectedExperience = watch('experience');
-
+export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, errors }) => {
     const { data: filterData } = useFilters();
 
     const employmentOptions = filterData?.employment || [];
@@ -46,10 +32,6 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
         setOpenSelectExperience(prevIsOpen => !prevIsOpen);
         setOpenSelectEmployment(false);
     }, []);
-
-    const handleSearch = () => {
-        console.log(selectedExperience);
-    };
 
     const handleClearFilters = () => {
         setValue('employment', '');
@@ -86,7 +68,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
                     },
                 }}
             >
-                <FormField name="employment">
+                <FormField name="employment" error={errors.employment?.message}>
                     <Select
                         label="Employment"
                         Icon={ArrowDown}
@@ -106,13 +88,7 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit }) => {
                     />
                 </FormField>
 
-                <Button
-                    variant="primary"
-                    size="md"
-                    css={{ margin: scale(5, true) }}
-                    type="submit"
-                    onClick={handleSearch}
-                >
+                <Button variant="primary" size="md" css={{ margin: scale(5, true) }} type="submit">
                     Search
                 </Button>
             </div>
