@@ -65,7 +65,6 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
                 <FormField name="employment" error={errors.employment?.message}>
                     <Select
                         label="Employment"
-                        Icon={ArrowDown}
                         isOpen={isOpenSelectEmployment}
                         handleClick={handleOpenSelectEmployment}
                         optionsList={employmentOptions}
@@ -77,7 +76,6 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
                         handleClick={handleOpenSelectExperience}
                         isOpen={isOpenSelectExperience}
                         label="Experience"
-                        Icon={ArrowDown}
                         optionsList={experienceOptions}
                     />
                 </FormField>
