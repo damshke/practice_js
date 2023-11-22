@@ -31,5 +31,4 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     ref?: any;
     type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
     children?: ReactNode;
-    css?: CSSObject;
 }

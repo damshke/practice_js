@@ -12,6 +12,8 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnyObjectSchema } from 'yup';
 import FormField from './Field';
+import Button from '../Button';
+import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
@@ -20,13 +22,19 @@ export interface FormProps<T extends FieldValues>
     validationSchema?: AnyObjectSchema;
     onSubmit: SubmitHandler<any>;
     children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T, any>) => ReactNode | ReactNode[]);
+    isFilters?: boolean;
+    Icon?: SVGRIcon;
+    resetText?: string;
 }
 
 const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,
     onSubmit,
+    isFilters = false,
     children,
+    resetText,
+    Icon,
     mode = 'all',
     ...props
 }: FormProps<T>) => {
@@ -36,10 +44,22 @@ const Form = <T extends FieldValues>({
         ...(validationSchema && { resolver: yupResolver(validationSchema) }),
     });
 
+    const isDirty = Object.keys(methods.formState.dirtyFields).length > 0;
+
     return (
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)} {...props}>
                 {children}
+                {isFilters && isDirty && (
+                    <Button
+                        css={{ margin: '0', width: '10%' }}
+                        variant="link"
+                        Icon={Icon}
+                        onClick={() => methods.reset()}
+                    >
+                        {resetText}
+                    </Button>
+                )}
             </form>
         </FormProvider>
     );

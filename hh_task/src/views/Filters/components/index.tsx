@@ -1,20 +1,11 @@
 import Button from '@components/controls/Button';
 import { Select } from '@components/controls/Select';
-import { useForm, FieldValues } from 'react-hook-form';
 import { scale, MEDIA_QUERIES } from '@scripts/gds';
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import useFilters from '@api/filters';
 import FormField from '@components/controls/Form/Field';
-import ArrowDown from '../../../icons/16/chevronDown.svg';
-import CloseIcon from '../../../icons/16/close.svg';
 
-interface FiltersFormProps {
-    onSubmit: (values: FieldValues) => void;
-    onClear: () => void;
-    errors?: any;
-}
-
-export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
+export const FilterFields = () => {
     const { data: filterData } = useFilters();
 
     const employmentOptions = filterData?.employment || [];
@@ -37,69 +28,51 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
         <div
             css={{
                 display: 'flex',
-                flexDirection: 'column',
-                gap: scale(2),
-                padding: `${scale(0)}px ${scale(15)}px ${scale(6)}px`,
-                marginRight: scale(2),
+                flexDirection: 'row',
+                maxWidth: scale(86),
+                gap: scale(4),
                 [MEDIA_QUERIES.md]: {
                     flexDirection: 'column',
-                    maxWidth: '100%',
+                    gap: scale(3),
+                    width: '100%',
+                    alignItems: 'flex-start',
+                    padding: `${scale(4)}px ${scale(2)}px`,
                 },
             }}
         >
-            <div
+            <FormField name="employment">
+                <Select
+                    name="employment"
+                    label="Employment"
+                    isOpen={isOpenSelectEmployment}
+                    handleClick={handleOpenSelectEmployment}
+                    optionsList={employmentOptions}
+                />
+            </FormField>
+
+            <FormField name="experience">
+                <Select
+                    name="experience"
+                    handleClick={handleOpenSelectExperience}
+                    isOpen={isOpenSelectExperience}
+                    label="Experience"
+                    optionsList={experienceOptions}
+                />
+            </FormField>
+
+            <Button
+                variant="primary"
+                size="md"
                 css={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    maxWidth: scale(86),
-                    marginBottom: scale(5),
-                    gap: scale(4),
+                    margin: scale(2) + 2,
                     [MEDIA_QUERIES.md]: {
-                        flexDirection: 'column',
-                        gap: scale(3),
+                        margin: '0',
                         width: '100%',
-                        alignItems: 'flex-start',
-                        padding: `${scale(4)}px ${scale(2)}px`,
                     },
                 }}
+                type="submit"
             >
-                <FormField name="employment" error={errors.employment?.message}>
-                    <Select
-                        name="employment"
-                        label="Employment"
-                        isOpen={isOpenSelectEmployment}
-                        handleClick={handleOpenSelectEmployment}
-                        optionsList={employmentOptions}
-                    />
-                </FormField>
-
-                <FormField name="experience" error={errors.experience?.message}>
-                    <Select
-                        name="experience"
-                        handleClick={handleOpenSelectExperience}
-                        isOpen={isOpenSelectExperience}
-                        label="Experience"
-                        optionsList={experienceOptions}
-                    />
-                </FormField>
-
-                <Button
-                    variant="primary"
-                    size="md"
-                    css={{
-                        margin: scale(2) + 2,
-                        [MEDIA_QUERIES.md]: {
-                            margin: '0',
-                            width: '100%',
-                        },
-                    }}
-                    type="submit"
-                >
-                    Search
-                </Button>
-            </div>
-            <Button variant="link" Icon={CloseIcon} block hidden>
-                Clear filters
+                Search
             </Button>
         </div>
     );

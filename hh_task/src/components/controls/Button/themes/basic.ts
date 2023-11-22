@@ -97,11 +97,13 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             md: {
                 width: scale(2),
                 height: scale(2),
+                alignItems: 'center',
                 ...typography('xs'),
             },
             sm: {
                 width: scale(2),
                 height: scale(2),
+                alignItems: 'center',
                 ...typography('xs'),
             },
         };

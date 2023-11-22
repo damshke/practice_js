@@ -25,8 +25,6 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     name: string;
     Icon?: SVGRIcon | FC<any>;
     iconRight?: boolean;
-    register?: any;
-    css?: CSSObject;
     label?: string;
     optionsList?: { id: string; name: string };
     isOpen?: boolean;
