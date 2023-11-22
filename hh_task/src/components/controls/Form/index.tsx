@@ -1,6 +1,14 @@
 import { CSSObject } from '@emotion/core';
 import React, { ReactNode } from 'react';
-import { useForm, FieldValues, UseFormProps, DefaultValues, FormProvider } from 'react-hook-form';
+import {
+    useForm,
+    FieldValues,
+    UseFormProps,
+    DefaultValues,
+    FormProvider,
+    SubmitHandler,
+    UseFormReturn,
+} from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnyObjectSchema } from 'yup';
 import FormField from './Field';
@@ -10,9 +18,8 @@ export interface FormProps<T extends FieldValues>
         Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit' | 'ref' | 'onReset' | 'children' | 'onChange'> {
     initialValues: DefaultValues<T>;
     validationSchema?: AnyObjectSchema;
-    onSubmit?: any;
-    children?: ReactNode;
-    css?: CSSObject;
+    onSubmit: SubmitHandler<any>;
+    children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T, any>) => ReactNode | ReactNode[]);
 }
 
 const Form = <T extends FieldValues>({
@@ -21,7 +28,6 @@ const Form = <T extends FieldValues>({
     onSubmit,
     children,
     mode = 'all',
-    css,
     ...props
 }: FormProps<T>) => {
     const methods = useForm({
@@ -32,7 +38,7 @@ const Form = <T extends FieldValues>({
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)} css={css} {...props}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} {...props}>
                 {children}
             </form>
         </FormProvider>

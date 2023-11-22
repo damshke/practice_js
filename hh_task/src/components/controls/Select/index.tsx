@@ -8,10 +8,10 @@ import { SELECT_THEMES } from './themes/basic';
 export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
     {
         theme,
-        size,
-        name,
+        size = 'md',
+        name = '',
         variant,
-        label,
+        label = '',
         optionsList = [],
         isOpen = false,
         handleClick,
@@ -41,6 +41,7 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         <div css={selectContainerCSS as CSSProperties} onClick={handleClick} ref={ref}>
             <span css={labelCSS as CSSProperties}>{label}</span>
             <select name={name} css={totalCSS} {...props}>
+                <option value="">Not selected</option>
                 {optionsList.map((value: Option) => (
                     <option css={optionCSS} key={value.id} value={value.name}>
                         {value.name}

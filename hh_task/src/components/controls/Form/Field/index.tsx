@@ -1,13 +1,21 @@
 import { Input } from '@components/controls/Input';
 import React, { cloneElement, isValidElement } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import { FieldProps } from './types';
 
 const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, children, size = 'md', ...props }) => {
     const {
         register,
+        control,
         formState: { errors },
     } = useFormContext();
+
+    const { field } = useController({
+        name,
+        control,
+    });
+
+    const inputProps = { value: field.value, name, onChange: field.onChange, onBlur: field.onBlur };
 
     return (
         <div css={{ width: '100%' }}>
@@ -16,18 +24,25 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                     {React.Children.map(children, child => {
                         if (isValidElement<any>(child)) {
                             const formProps: FieldProps = {
-                                size,
                                 error: errors[name]?.message,
-                                ...props,
+                                ...child.props,
                                 ...register(name),
-                                name,
+                                ...props,
+                                ...inputProps,
                             };
                             return cloneElement(child, { ...formProps });
                         }
                     })}
                 </>
             ) : (
-                <Input error={errors[name]?.message} id={name} {...register(name)} name={name} {...props} />
+                <Input
+                    error={errors[name]?.message}
+                    id={name}
+                    {...register(name)}
+                    {...inputProps}
+                    name={name}
+                    {...props}
+                />
             )}
         </div>
     );

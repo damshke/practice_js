@@ -1,7 +1,7 @@
 import { API_URL, VACANCIES_KEY } from '@api/const';
 import { useQuery } from '@tanstack/react-query';
 
-const getVacancies = async (page: number, per_page: number) => {
+export const getVacancies = async (page: number, per_page: number) => {
     const data = await fetch(`${API_URL}?page=${page}&per_page=${per_page}`);
     const response = await data.json();
     return response;

@@ -1,44 +1,26 @@
-import FeedbackForm from '@views/FeedbackForm';
-import CardList from '@containers/CardList';
-import useVacancies from '@api/vacancies';
-import Pagination from '@views/Pagination';
-import { useCallback, useState } from 'react';
-import Filters from '@views/Filters';
 import HeaderContainer from '@containers/HeaderContainer';
 import FooterContainer from '@containers/FooterContainer';
+import Main from '@containers/Main';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { getVacancies } from '@api/vacancies';
+import { VACANCIES_KEY } from '@api/const';
 
-export default function Home() {
-    const [page, setPage] = useState(0);
-    const [filters, setFilters] = useState(false);
-    const pageSize = 5;
-
-    const { isLoading, isError, error, data } = useVacancies(page, pageSize);
-
+export default function Home({ dehydrateState }) {
     return (
-        <main>
+        <HydrationBoundary state={dehydrateState}>
             <HeaderContainer />
-            <Filters />
-            {isLoading ? (
-                <span>Loading...</span>
-            ) : isError ? (
-                <span>Error: {error.message}</span>
-            ) : (
-                <CardList vacancies={data.items} />
-            )}
-            <Pagination setPage={setPage} page={page} />
-            <FeedbackForm />
+            <Main />
             <FooterContainer />
-        </main>
+        </HydrationBoundary>
     );
 }
 
-export const getServerSideProps = async () => {
-    const data = await fetch('https://api.hh.ru/vacancies?page=0&per_page=5');
-    const initialData = await data.json();
-
+export async function getServerSideProps() {
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery(VACANCIES_KEY, () => getVacancies(0, 5));
     return {
         props: {
-            initialData,
+            dehydrateState: dehydrate(queryClient),
         },
     };
-};
+}
