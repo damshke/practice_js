@@ -37,33 +37,35 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
         <div
             css={{
                 display: 'flex',
-                flexDirection: 'row',
-                padding: 0,
-                position: 'relative',
-                maxWidth: scale(86),
-                marginBottom: scale(5),
-                gap: scale(4),
-                [MEDIA_QUERIES.sm]: {
+                flexDirection: 'column',
+                gap: scale(2),
+                padding: `${scale(0)}px ${scale(15)}px ${scale(6)}px`,
+                marginRight: scale(2),
+                [MEDIA_QUERIES.md]: {
                     flexDirection: 'column',
-                    gap: scale(3),
-                    width: '100%',
+                    maxWidth: '100%',
                 },
             }}
         >
             <div
                 css={{
-                    width: '80%',
                     display: 'flex',
-                    gap: scale(2),
-                    [MEDIA_QUERIES.sm]: {
+                    flexDirection: 'row',
+                    maxWidth: scale(86),
+                    marginBottom: scale(5),
+                    gap: scale(4),
+                    [MEDIA_QUERIES.md]: {
                         flexDirection: 'column',
+                        gap: scale(3),
                         width: '100%',
-                        gap: scale(2),
+                        alignItems: 'flex-start',
+                        padding: `${scale(4)}px ${scale(2)}px`,
                     },
                 }}
             >
                 <FormField name="employment" error={errors.employment?.message}>
                     <Select
+                        name="employment"
                         label="Employment"
                         isOpen={isOpenSelectEmployment}
                         handleClick={handleOpenSelectEmployment}
@@ -71,8 +73,9 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
                     />
                 </FormField>
 
-                <FormField name="experience">
+                <FormField name="experience" error={errors.experience?.message}>
                     <Select
+                        name="experience"
                         handleClick={handleOpenSelectExperience}
                         isOpen={isOpenSelectExperience}
                         label="Experience"
@@ -80,7 +83,18 @@ export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
                     />
                 </FormField>
 
-                <Button variant="primary" size="md" css={{ margin: scale(5, true) }} type="submit">
+                <Button
+                    variant="primary"
+                    size="md"
+                    css={{
+                        margin: scale(2) + 2,
+                        [MEDIA_QUERIES.md]: {
+                            margin: '0',
+                            width: '100%',
+                        },
+                    }}
+                    type="submit"
+                >
                     Search
                 </Button>
             </div>

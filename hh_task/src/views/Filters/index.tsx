@@ -1,5 +1,5 @@
 import Form from '@components/controls/Form';
-import { scale } from '@scripts/gds';
+import { MEDIA_QUERIES, scale } from '@scripts/gds';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { FilterFields } from './components';
@@ -11,27 +11,20 @@ const validationSchema = {
 };
 
 export default function Filters({ handleClearFilters }: { handleClearFilters: () => void }) {
+    // переести в контейнер
     const onSubmit = (data: FormInputs) => console.log(data);
 
     const {
-        handleSubmit,
         formState: { errors },
     } = useForm<FormInputs>();
 
     return (
-        <div
-            css={{
-                padding: `${scale(0)}px ${scale(15)}px ${scale(6)}px`,
-            }}
+        <Form
+            initialValues={{ employment: '', experience: '' }}
+            onSubmit={onSubmit}
+            validationSchema={yup.object().shape(validationSchema)}
         >
-            <Form
-                initialValues={{ employment: '', experience: '' }}
-                onSubmit={onSubmit}
-                handleSubmit={handleSubmit}
-                validationSchema={yup.object().shape(validationSchema)}
-            >
-                <FilterFields errors={errors} />
-            </Form>
-        </div>
+            <FilterFields errors={errors} />
+        </Form>
     );
 }

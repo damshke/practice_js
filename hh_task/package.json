@@ -15,6 +15,7 @@
         "@emotion/styled": "^11.3.0",
         "@greensight/gds": "3.0.2",
         "@hookform/resolvers": "^3.3.2",
+        "@react-input/mask": "^1.0.20",
         "@tanstack/react-form": "^0.9.0",
         "@tanstack/react-query": "^5.8.3",
         "@tanstack/react-query-devtools": "^5.8.3",

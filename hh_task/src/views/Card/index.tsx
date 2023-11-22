@@ -1,9 +1,9 @@
 import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
 import { useEffect, useState } from 'react';
-import { Item } from '../types';
-import ArrowDown from '../../../icons/16/chevronDown.svg';
-import ArrowUp from '../../../icons/16/chevronUp.svg';
+import { Item } from '../../helpers/types';
+import ArrowDown from '../../icons/16/chevronDown.svg';
+import ArrowUp from '../../icons/16/chevronUp.svg';
 
 export default function Card({ vacancy }: { vacancy: Item }) {
     const [description, setDescription] = useState('');
@@ -48,7 +48,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 borderRadius: scale(2),
                 padding: `${scale(5)}px ${scale(5)}px ${scale(6)}px ${scale(5)}px`,
                 boxShadow: shadows.boxLight,
-                [MEDIA_QUERIES.sm]: {
+                [MEDIA_QUERIES.md]: {
                     padding: `${scale(5, true)}px`,
                 },
             }}
@@ -61,7 +61,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     gap: scale(3),
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    [MEDIA_QUERIES.sm]: {
+                    [MEDIA_QUERIES.md]: {
                         flexDirection: 'column',
                     },
                 }}
@@ -69,7 +69,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <h4
                     css={{
                         ...typography('h4'),
-                        [MEDIA_QUERIES.sm]: {
+                        [MEDIA_QUERIES.md]: {
                             maxWidth: '100%',
                         },
                     }}
@@ -77,15 +77,13 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     {vacancy.name}
                 </h4>
                 {logo(vacancy) !== '' && (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                         css={{
                             marginRight: '50%',
                             height: '100%',
                             maxWidth: scale(20),
-                            [MEDIA_QUERIES.sm]: {
-                                height: scale(7),
-                                marginTop: scale(3),
+                            [MEDIA_QUERIES.md]: {
+                                marginRight: 0,
                                 order: -1,
                             },
                             [MEDIA_QUERIES.xs]: {
@@ -101,7 +99,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     size="md"
                     variant="secondary"
                     css={{
-                        [MEDIA_QUERIES.sm]: {
+                        [MEDIA_QUERIES.md]: {
                             width: '100%',
                         },
                     }}

@@ -28,6 +28,7 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     showError?: boolean;
     register?: any;
     label?: ReactNode;
+    ref?: any;
     type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
     children?: ReactNode;
     css?: CSSObject;

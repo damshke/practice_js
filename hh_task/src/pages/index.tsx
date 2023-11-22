@@ -1,11 +1,11 @@
-import Header from '@containers/Header';
-import Footer from '@containers/Footer';
 import FeedbackForm from '@views/FeedbackForm';
-import CardList from '@views/CardList';
+import CardList from '@containers/CardList';
 import useVacancies from '@api/vacancies';
 import Pagination from '@views/Pagination';
 import { useCallback, useState } from 'react';
 import Filters from '@views/Filters';
+import HeaderContainer from '@containers/HeaderContainer';
+import FooterContainer from '@containers/FooterContainer';
 
 export default function Home() {
     const [page, setPage] = useState(0);
@@ -16,7 +16,7 @@ export default function Home() {
 
     return (
         <main>
-            <Header />
+            <HeaderContainer />
             <Filters />
             {isLoading ? (
                 <span>Loading...</span>
@@ -27,7 +27,7 @@ export default function Home() {
             )}
             <Pagination setPage={setPage} page={page} />
             <FeedbackForm />
-            <Footer />
+            <FooterContainer />
         </main>
     );
 }

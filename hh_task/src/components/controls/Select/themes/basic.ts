@@ -45,7 +45,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     select: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             md: {
-                height: scale(9, true),
+                height: scale(5) + 4,
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
                 gap: scale(1),
                 borderRadius: scale(1, true),

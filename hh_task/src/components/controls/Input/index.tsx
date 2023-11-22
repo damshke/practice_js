@@ -19,6 +19,7 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>({
     ...props
 }: InputBaseProps<V, S>) => {
     const hasChildren = !!children;
+    const showError = !!error;
 
     const state = useMemo<InputStateFull<V, S>>(
         () => ({
@@ -48,7 +49,7 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>({
             ) : (
                 <input css={totalCSS as CSSObject} placeholder={placeholder} name={name} {...props} />
             )}
-            <span css={errorCSS as CSSObject}>{error}</span>
+            {showError && <span css={errorCSS as CSSObject}>{error}</span>}
         </div>
     );
 };
@@ -62,9 +63,13 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
 ) => {
     type InputReturn = ReturnType<typeof InputRef>;
 
-    const renderThemedInput = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }) => (
-        <InputRef theme={theme} variant={variant} size={size} {...props} />
-    )) as (props: InputBaseProps<V, S>, ref: Ref<HTMLInputElement>) => InputReturn;
+    const renderThemedInput = ((
+        { theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props },
+        ref: Ref<HTMLInputElement>
+    ) => <InputRef theme={theme} variant={variant} size={size} {...props} />) as (
+        props: InputBaseProps<V, S>,
+        ref: Ref<HTMLInputElement>
+    ) => InputReturn;
     (renderThemedInput as any).displayName = 'Input';
 
     return forwardRef(renderThemedInput) as typeof renderThemedInput;

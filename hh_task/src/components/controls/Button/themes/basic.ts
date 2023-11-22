@@ -79,12 +79,11 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                 ':hover': { cursor: 'pointer' },
             },
             nonactive: {
-                ackgroundColor: colors.grey200,
+                backgroundColor: colors.grey200,
                 color: colors.grey800,
+                border: 0,
                 size: 44,
-                ':hover': {
-                    backgroundColor: colors.blueHover,
-                },
+                ':hover': { backgroundColor: colors.grey200 },
             },
         };
 

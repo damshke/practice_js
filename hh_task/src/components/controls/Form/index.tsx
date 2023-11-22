@@ -12,7 +12,6 @@ export interface FormProps<T extends FieldValues>
     validationSchema?: AnyObjectSchema;
     onSubmit?: any;
     children?: ReactNode;
-    handleSubmit?: any;
     css?: CSSObject;
 }
 
@@ -20,7 +19,6 @@ const Form = <T extends FieldValues>({
     initialValues,
     validationSchema,
     onSubmit,
-    handleSubmit,
     children,
     mode = 'all',
     css,
@@ -34,7 +32,7 @@ const Form = <T extends FieldValues>({
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} css={css} {...props}>
+            <form onSubmit={methods.handleSubmit(onSubmit)} css={css} {...props}>
                 {children}
             </form>
         </FormProvider>

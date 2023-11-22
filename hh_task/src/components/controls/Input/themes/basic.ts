@@ -42,14 +42,12 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
                 flexDirection: 'column',
                 gap: scale(1, true),
                 width: '100%',
-                ...(typography('s') as any),
             },
             md: {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: scale(1, true),
                 width: '100%',
-                ...(typography('s') as any),
             },
         };
 
@@ -60,8 +58,8 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     label: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            sm: {},
-            md: {},
+            sm: { ...(typography('s') as any) },
+            md: { ...(typography('s') as any) },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
@@ -76,12 +74,18 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     error: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            sm: {},
-            md: {},
+            sm: {
+                ...(typography('s') as any),
+            },
+            md: {
+                ...(typography('s') as any),
+            },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {},
+            primary: {
+                color: 'red',
+            },
         };
 
         return {
