@@ -43,7 +43,7 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
             <select name={name} css={totalCSS} {...props}>
                 <option value="">Not selected</option>
                 {optionsList.map((value: Option) => (
-                    <option css={optionCSS} key={value.id} value={value.name}>
+                    <option css={optionCSS} key={value.id} value={value.id}>
                         {value.name}
                     </option>
                 ))}

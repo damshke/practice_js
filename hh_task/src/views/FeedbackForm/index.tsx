@@ -1,7 +1,7 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
 import { typography, scale, colors } from '@scripts/gds';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
 
@@ -13,21 +13,20 @@ type FormData = {
 };
 
 const validationSchema = Yup.object().shape({
-    initials: Yup.string().required('Введите имя!').min(3, 'Min length is 3').max(30, 'Max length is 30'),
-    email: Yup.string().required('Введите email!').email('Invalid email!'),
+    initials: Yup.string()
+        .required('Введите имя!')
+        .min(2, 'Минимальная длина имени - 2 символа')
+        .max(30, 'Максимальная длина имени - 30 символов'),
+    email: Yup.string().required('Введите email!').email('Неверный формат!'),
     phone: Yup.string()
         .required('Без телефона работодатель не сможет позвонить :(')
-        .matches(PHONE_REGEX, 'Invalid phone!'),
+        .matches(PHONE_REGEX, 'Неверный формат!'),
     comment: Yup.string(),
 });
 
 export default function FeedbackForm() {
-    const {
-        formState: { errors },
-    } = useForm<FormData>();
-
     const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-        console.log(data);
+        alert(`Name: ${data.initials} \nPhone: ${data.phone} \nEmail: ${data.email} \nComment: ${data.comment}`);
     };
 
     return (
