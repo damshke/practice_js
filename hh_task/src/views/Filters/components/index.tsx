@@ -14,7 +14,7 @@ interface FiltersFormProps {
     errors?: any;
 }
 
-export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, errors }) => {
+export const FilterFields: FC<FiltersFormProps> = ({ errors }) => {
     const { data: filterData } = useFilters();
 
     const employmentOptions = filterData?.employment || [];
@@ -32,12 +32,6 @@ export const FilterFields: FC<FiltersFormProps> = ({ onClear, onSubmit, errors }
         setOpenSelectExperience(prevIsOpen => !prevIsOpen);
         setOpenSelectEmployment(false);
     }, []);
-
-    const handleClearFilters = () => {
-        setValue('employment', '');
-        setValue('experience', '');
-        onClear();
-    };
 
     return (
         <div

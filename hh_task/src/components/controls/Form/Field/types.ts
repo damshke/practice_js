@@ -10,6 +10,6 @@ export interface FieldProps extends HTMLAttributes<HTMLInputElement> {
     wrapperCSS?: CSSObject;
     showError?: boolean;
     register?: any;
-    error?: string;
+    error?: any;
     children?: ReactNode;
 }

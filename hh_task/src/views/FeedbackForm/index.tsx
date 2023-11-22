@@ -12,23 +12,20 @@ type FormData = {
     comment: string;
 };
 
-export default function FeedbackForm() {
-    const validationSchema = Yup.object().shape({
-        initials: Yup.string().required('Введите имя!').min(3, 'Min length is 3').max(30, 'Max length is 30'),
-        email: Yup.string().required('Введите email!').email('Invalid email!'),
-        phone: Yup.string()
-            .required('Без телефона работодатель не сможет позвонить :(')
-            .matches(PHONE_REGEX, 'Invalid phone!'),
-        comment: Yup.string(),
-    });
+const validationSchema = Yup.object().shape({
+    initials: Yup.string().required('Введите имя!').min(3, 'Min length is 3').max(30, 'Max length is 30'),
+    email: Yup.string().required('Введите email!').email('Invalid email!'),
+    phone: Yup.string()
+        .required('Без телефона работодатель не сможет позвонить :(')
+        .matches(PHONE_REGEX, 'Invalid phone!'),
+    comment: Yup.string(),
+});
 
+export default function FeedbackForm() {
     const {
-        register,
         handleSubmit,
         formState: { errors },
     } = useForm<FormData>();
-
-    const onSubmit = (data: FormData) => console.log(data);
 
     return (
         <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
@@ -38,8 +35,7 @@ export default function FeedbackForm() {
             </p>
             <Form
                 initialValues={{ initials: '', phone: '', email: '', comment: '' }}
-                onSubmit={onSubmit}
-                register={register}
+                onSubmit={(values: FormData) => alert('form submitted with', values)}
                 handleSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
@@ -58,7 +54,7 @@ export default function FeedbackForm() {
                         name="initials"
                         label="Your name"
                         placeholder="Please introduce yourself"
-                        error={errors.email?.message}
+                        error={errors.initials?.message}
                     />
                     <Form.Field
                         name="email"
@@ -70,14 +66,14 @@ export default function FeedbackForm() {
                         name="phone"
                         label="Phone number"
                         placeholder="+7 (999) 000 00 00"
-                        error={errors.email?.message}
+                        error={errors.phone?.message}
                     />
                     <Form.Field
                         name="comment"
                         label="Comment"
                         placeholder="Message text"
                         textArea
-                        error={errors.email?.message}
+                        error={errors.comment?.message}
                     />
                     <Button
                         block

@@ -1,69 +1,35 @@
 import { CSSObject } from '@emotion/core';
 import { EnumLike, useThemeCSS } from '@greensight/gds';
-import { Ref, forwardRef, useMemo, useState, useCallback, ChangeEvent, useEffect } from 'react';
+import { Ref, forwardRef, useMemo } from 'react';
 import { InputBaseProps, InputStateFull, InputTheme } from './types';
 import { Variants, Sizes } from './enums';
 import { INPUT_THEMES } from './themes/basic';
 
-export const BaseInput = <V extends EnumLike, S extends EnumLike>(
-    {
-        children,
-        block = false,
-        size = 'md',
-        theme,
-        onChange,
-        value,
-        variant,
-        label = '',
-        placeholder = '',
-        name = '',
-        meta,
-        helpers,
-        field,
-        focus = false,
-        textArea = false,
-        ...props
-    }: InputBaseProps<V, S>,
-    ref: Ref<HTMLInputElement>
-) => {
+export const BaseInput = <V extends EnumLike, S extends EnumLike>({
+    id,
+    children,
+    size = 'md',
+    theme,
+    variant,
+    label = '',
+    placeholder = '',
+    name = '',
+    textArea = false,
+    error,
+    ...props
+}: InputBaseProps<V, S>) => {
     const hasChildren = !!children;
-    const uncontrolled = value === undefined;
-
-    const [stateValue, setStateValue] = useState('');
-
-    const handleInputChange = useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => {
-            if (field && field.onChange) field.onChange(event);
-            if (onChange) {
-                onChange(event, { value: event.target.value });
-            }
-
-            if (uncontrolled) {
-                setStateValue(event.target.value);
-            }
-        },
-        [onChange, uncontrolled, field]
-    );
-
-    useEffect(() => {
-        if (uncontrolled) setStateValue(field?.value);
-    }, [field?.value, uncontrolled, setStateValue]);
 
     const state = useMemo<InputStateFull<V, S>>(
         () => ({
             hasChildren,
             size,
             variant,
-            block,
             label,
             placeholder,
-            focus,
             textArea,
-            meta,
-            helpers,
-            field,
         }),
-        [hasChildren, size, variant, block, label, placeholder, focus, textArea, meta, helpers, field]
+        [hasChildren, size, variant, label, placeholder, textArea]
     );
 
     if (!theme) {
@@ -78,31 +44,11 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>(
                 {label}
             </label>
             {textArea ? (
-                <textarea
-                    css={totalCSS as CSSObject}
-                    placeholder={placeholder}
-                    id={name}
-                    onChange={handleInputChange}
-                    name={name}
-                    value={uncontrolled ? stateValue : value}
-                    {...field}
-                    {...meta}
-                    {...props}
-                />
+                <textarea id={id} css={totalCSS as CSSObject} placeholder={placeholder} name={name} {...props} />
             ) : (
-                <input
-                    css={totalCSS as CSSObject}
-                    placeholder={placeholder}
-                    id={name}
-                    onChange={handleInputChange}
-                    name={name}
-                    value={uncontrolled ? stateValue : value}
-                    {...field}
-                    {...meta}
-                    {...props}
-                />
+                <input css={totalCSS as CSSObject} placeholder={placeholder} name={name} {...props} />
             )}
-            <span css={errorCSS as CSSObject}>{meta?.error}</span>
+            <span css={errorCSS as CSSObject}>{error}</span>
         </div>
     );
 };

@@ -11,9 +11,7 @@ const validationSchema = {
 };
 
 export default function Filters({ handleClearFilters }: { handleClearFilters: () => void }) {
-    const handleSearch = () => {
-        console.log('ok');
-    };
+    const onSubmit = (data: FormInputs) => console.log(data);
 
     const {
         register,
@@ -29,12 +27,12 @@ export default function Filters({ handleClearFilters }: { handleClearFilters: ()
         >
             <Form
                 initialValues={{ employment: '', experience: '' }}
-                onSubmit={handleSearch}
+                onSubmit={onSubmit}
                 handleSubmit={handleSubmit}
                 register={register}
                 validationSchema={yup.object().shape(validationSchema)}
             >
-                <FilterFields onClear={handleClearFilters} onSubmit={handleSearch} errors={errors} />
+                <FilterFields errors={errors} />
             </Form>
         </div>
     );

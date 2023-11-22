@@ -14,11 +14,6 @@ export default function Home() {
 
     const { isLoading, isError, error, data } = useVacancies(page, pageSize);
 
-    const handleClearFilters = useCallback(() => {
-        setFilters(false);
-        setPage(0);
-    }, [filters]);
-
     return (
         <main>
             <Header />

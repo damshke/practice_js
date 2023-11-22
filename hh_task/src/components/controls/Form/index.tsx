@@ -13,7 +13,6 @@ export interface FormProps<T extends FieldValues>
     onSubmit?: any;
     children?: ReactNode;
     handleSubmit?: any;
-    register?: any;
     css?: CSSObject;
 }
 
@@ -23,7 +22,7 @@ const Form = <T extends FieldValues>({
     onSubmit,
     handleSubmit,
     children,
-    mode,
+    mode = 'all',
     css,
     ...props
 }: FormProps<T>) => {
@@ -31,7 +30,6 @@ const Form = <T extends FieldValues>({
         defaultValues: initialValues,
         mode,
         ...(validationSchema && { resolver: yupResolver(validationSchema) }),
-        ...props,
     });
 
     return (

@@ -11,12 +11,10 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         size,
         name,
         variant,
-        Icon,
         label,
         optionsList = [],
         isOpen = false,
         handleClick,
-        register,
         ...props
     }: SelectBaseProps<V, S>,
     ref: Ref<HTMLDivElement>
@@ -35,17 +33,14 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
     }
     const {
         select: totalCSS,
-        arrowButton: iconCSS,
         option: optionCSS,
         label: labelCSS,
-        optionsList: optionsGroupCSS,
         selectContainer: selectContainerCSS,
     } = useThemeCSS(theme!, state);
     return (
         <div css={selectContainerCSS as CSSProperties} onClick={handleClick} ref={ref}>
             <span css={labelCSS as CSSProperties}>{label}</span>
-            <select css={totalCSS} {...register(name)} {...props}>
-                {Icon && <Icon css={iconCSS as CSSProperties} />}
+            <select name={name} css={totalCSS} {...props}>
                 {optionsList.map((value: Option) => (
                     <option css={optionCSS} key={value.id} value={value.name}>
                         {value.name}
@@ -64,7 +59,7 @@ export const createSelectWithTheme = <V extends EnumLike, S extends EnumLike>(
     defaultSize: S | keyof S
 ) => {
     type SelectReturn = ReturnType<typeof SelectRef>;
-    const ThemedSelect = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }, ref) => (
+    const ThemedSelect = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }) => (
         <SelectRef theme={theme} variant={variant} size={size} {...props} />
     )) as (props: SelectBaseProps<V, S>, ref: Ref<HTMLDivElement>) => SelectReturn;
     (ThemedSelect as any).displayName = 'Select';

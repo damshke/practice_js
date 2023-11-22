@@ -3,7 +3,7 @@ import React, { cloneElement, isValidElement } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FieldProps } from './types';
 
-const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, children, size = 'md', ...props }) => {
+const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, error, children, size = 'md', ...props }) => {
     const { register } = useFormContext();
 
     return (
@@ -14,8 +14,9 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                         if (isValidElement<any>(child)) {
                             const formProps: FieldProps = {
                                 size,
-                                register,
+                                error,
                                 ...props,
+                                ...register(name),
                                 name,
                             };
                             return cloneElement(child, { ...formProps });
@@ -23,7 +24,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                     })}
                 </>
             ) : (
-                <Input {...props} {...register(name)} name={name} />
+                <Input id={name} {...register(name)} name={name} error={error} {...props} />
             )}
         </div>
     );
