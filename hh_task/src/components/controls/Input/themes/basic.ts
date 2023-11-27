@@ -21,7 +21,7 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
                 border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
                 background: colors.white,
                 color: colors.black,
-                height: scale(11, true),
+                height: `${scale(10, true) + 4}px`,
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
                 ...(state.textArea && {
                     height: `${scale(13) + 4}px`,

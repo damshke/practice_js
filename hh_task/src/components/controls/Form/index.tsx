@@ -1,19 +1,11 @@
 import React, { ReactNode } from 'react';
-import {
-    useForm,
-    FieldValues,
-    UseFormProps,
-    DefaultValues,
-    FormProvider,
-    SubmitHandler,
-    UseFormReturn,
-} from 'react-hook-form';
+import { useForm, FieldValues, UseFormProps, DefaultValues, FormProvider, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnyObjectSchema } from 'yup';
 import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
+import { MEDIA_QUERIES, scale } from '@scripts/gds';
 import FormField from './Field';
 import Button from '../Button';
-import { MEDIA_QUERIES, scale } from '@scripts/gds';
 
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
@@ -21,7 +13,7 @@ export interface FormProps<T extends FieldValues>
     initialValues: DefaultValues<T>;
     validationSchema?: AnyObjectSchema;
     onSubmit: SubmitHandler<any>;
-    children?: ReactNode | ReactNode[] | ((props: UseFormReturn<T, any>) => ReactNode | ReactNode[]);
+    children?: ReactNode;
     isFilters?: boolean;
     Icon?: SVGRIcon;
     resetText?: string;
@@ -46,10 +38,21 @@ const Form = <T extends FieldValues>({
 
     const isDirty = Object.keys(methods.formState.dirtyFields).length > 0;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { css: _, ...restProps } = props;
+
     return (
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)} {...props}>
-                {children}
+            <form onSubmit={methods.handleSubmit(onSubmit)} {...restProps}>
+                {React.Children.map(children, child =>
+                    child && React.isValidElement(child) && child.props.name
+                        ? React.cloneElement(child, {
+                              ...child.props,
+                              register: methods.register,
+                              key: child.props.name,
+                          })
+                        : child
+                )}
                 {isFilters && isDirty && (
                     <Button
                         css={{

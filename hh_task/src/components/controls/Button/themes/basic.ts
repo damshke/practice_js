@@ -15,7 +15,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             sm: {
                 padding: `${scale(1)}px ${scale(4)}px`,
                 borderRadius: scale(1, true),
-                height: `${scale(11, true)}px + 4`,
+                height: `${scale(10, true) + 4}px`,
                 ...(typography('xs') as any),
             },
         };

@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/core';
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds/types/src';
 import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import { FC, ReactNode } from 'react';
@@ -26,7 +25,7 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     Icon?: SVGRIcon | FC<any>;
     iconRight?: boolean;
     label?: string;
-    optionsList?: { id: string; name: string };
+    optionsList?: { id: string; name: string }[];
     isOpen?: boolean;
     handleClick?: () => void;
 }

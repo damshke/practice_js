@@ -26,7 +26,7 @@ const AppProviders = ({ children }: AppProvidersProps) => {
         <ThemeProvider theme={theme}>
             <QueryClientProvider client={queryClient}>
                 {children}
-                <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+                <ReactQueryDevtools initialIsOpen={false} position="bottom" />
             </QueryClientProvider>
         </ThemeProvider>
     );

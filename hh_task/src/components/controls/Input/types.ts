@@ -1,6 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds';
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 
 export interface InputState {
     textArea: boolean;
@@ -23,7 +24,7 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     id: string;
     name?: string;
     placeholder?: string;
-    error?: string;
+    error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
     showError?: boolean;
     label?: ReactNode;
     type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';

@@ -1,6 +1,7 @@
-import React, { CSSProperties, Ref, forwardRef, useMemo } from 'react';
+import React, { Ref, forwardRef, useMemo } from 'react';
 import { EnumLike, useThemeCSS } from '@scripts/gds';
 import { Option } from '@views/Filters/types';
+import { CSSObject } from '@emotion/core';
 import { SelectBaseProps, SelectStateFull, SelectTheme } from './types';
 import { Sizes, Variants } from './enums';
 import { SELECT_THEMES } from './themes/basic';
@@ -38,12 +39,12 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         selectContainer: selectContainerCSS,
     } = useThemeCSS(theme!, state);
     return (
-        <div css={selectContainerCSS as CSSProperties} onClick={handleClick} ref={ref}>
-            <span css={labelCSS as CSSProperties}>{label}</span>
-            <select name={name} css={totalCSS} {...props}>
+        <div css={selectContainerCSS as CSSObject} onClick={handleClick} ref={ref}>
+            <span css={labelCSS as CSSObject}>{label}</span>
+            <select name={name} css={totalCSS as CSSObject} {...props}>
                 <option value="">Not selected</option>
                 {optionsList.map((value: Option) => (
-                    <option css={optionCSS} key={value.id} value={value.id}>
+                    <option css={optionCSS as CSSObject} key={value.id} value={value.id}>
                         {value.name}
                     </option>
                 ))}

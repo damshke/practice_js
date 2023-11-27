@@ -3,7 +3,7 @@ import React, { cloneElement, isValidElement } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { FieldProps } from './types';
 
-const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, children, size = 'md', ...props }) => {
+const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, children, size = 'md', ...props }, ref) => {
     const {
         register,
         control,
@@ -15,7 +15,12 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
         control,
     });
 
-    const inputProps = { value: field.value, name, onChange: field.onChange, onBlur: field.onBlur };
+    const inputProps = {
+        value: field.value,
+        name,
+        onChange: field.onChange,
+        onBlur: field.onBlur,
+    };
 
     return (
         <div css={{ width: '100%' }}>
@@ -23,12 +28,13 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                 <>
                     {React.Children.map(children, child => {
                         if (isValidElement<any>(child)) {
-                            const formProps: FieldProps = {
-                                error: errors[name]?.message,
+                            const formProps = {
                                 ...child.props,
+                                error: errors[name]?.message,
                                 ...register(name),
                                 ...props,
                                 size,
+                                ref,
                                 ...inputProps,
                             };
                             return cloneElement(child, { ...formProps });
@@ -37,9 +43,9 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                 </>
             ) : (
                 <Input
-                    error={errors[name]?.message}
                     id={name}
                     {...register(name)}
+                    error={errors[name]?.message}
                     {...inputProps}
                     name={name}
                     {...props}

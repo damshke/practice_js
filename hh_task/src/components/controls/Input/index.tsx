@@ -63,13 +63,9 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
 ) => {
     type InputReturn = ReturnType<typeof InputRef>;
 
-    const renderThemedInput = ((
-        { theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props },
-        ref: Ref<HTMLInputElement>
-    ) => <InputRef theme={theme} variant={variant} size={size} {...props} />) as (
-        props: InputBaseProps<V, S>,
-        ref: Ref<HTMLInputElement>
-    ) => InputReturn;
+    const renderThemedInput = (({ theme = defaultTheme, variant = defaultVariant, size = defaultSize, ...props }) => (
+        <InputRef theme={theme} variant={variant} size={size} {...props} />
+    )) as (props: InputBaseProps<V, S>, ref: Ref<HTMLInputElement>) => InputReturn;
     (renderThemedInput as any).displayName = 'Input';
 
     return forwardRef(renderThemedInput) as typeof renderThemedInput;
