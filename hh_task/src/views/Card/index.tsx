@@ -37,7 +37,6 @@ export default function Card({ vacancy }: { vacancy: Item }) {
     };
 
     const { isLoading, isError, error, data } = useDescription(vacancy.id, vacancy.url);
-    console.log(data);
 
     return (
         <Layout
