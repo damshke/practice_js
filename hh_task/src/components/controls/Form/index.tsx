@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/core';
 import React, { ReactNode } from 'react';
 import {
     useForm,
@@ -14,6 +13,7 @@ import { AnyObjectSchema } from 'yup';
 import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import FormField from './Field';
 import Button from '../Button';
+import { MEDIA_QUERIES, scale } from '@scripts/gds';
 
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
@@ -52,7 +52,14 @@ const Form = <T extends FieldValues>({
                 {children}
                 {isFilters && isDirty && (
                     <Button
-                        css={{ margin: '0', width: '10%' }}
+                        css={{
+                            marginTop: scale(-4),
+                            minWidth: '10%',
+                            marginLeft: scale(-13),
+                            [MEDIA_QUERIES.md]: {
+                                flexDirection: 'column',
+                            },
+                        }}
                         variant="link"
                         Icon={Icon}
                         onClick={() => methods.reset()}

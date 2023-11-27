@@ -1,9 +1,10 @@
+/* eslint-disable no-nested-ternary */
 import FeedbackForm from '@views/FeedbackForm';
 import CardList from '@containers/CardList';
-import useVacancies from '@api/vacancies';
 import Pagination from '@views/Pagination';
 import { useState } from 'react';
 import Filters from '@views/Filters';
+import { useVacancies } from '@api/vacancies';
 
 export default function Main() {
     const [page, setPage] = useState(0);

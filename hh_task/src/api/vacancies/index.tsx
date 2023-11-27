@@ -8,7 +8,7 @@ export const getVacancies = async (page: number, filters?: { employment: string;
     return response;
 };
 
-export default function useVacancies(page: number, filters?: { employment: string; experience: string }) {
+export function useVacancies(page: number, filters?: { employment: string; experience: string }) {
     return useQuery({
         queryKey: [VACANCIES_KEY, page, filters],
         queryFn: () => getVacancies(page, filters),

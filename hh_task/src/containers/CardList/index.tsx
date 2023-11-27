@@ -11,7 +11,7 @@ export default function CardList({ vacancies }: { vacancies: Item[] }) {
                     gap: scale(4),
                     display: 'flex',
                     flexDirection: 'column',
-                    padding: `0 ${scale(15)}px`,
+                    marginBottom: scale(2),
                     [MEDIA_QUERIES.md]: {
                         padding: `0 ${scale(2)}px`,
                     },

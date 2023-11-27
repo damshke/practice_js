@@ -1,6 +1,6 @@
 import Button from '@components/controls/Button';
 import Form from '@components/controls/Form';
-import { typography, scale, colors } from '@scripts/gds';
+import { typography, scale, colors, MEDIA_QUERIES } from '@scripts/gds';
 import { SubmitHandler } from 'react-hook-form';
 import * as Yup from 'yup';
 import { PHONE_REGEX } from '../../helpers/regex';
@@ -30,8 +30,15 @@ export default function FeedbackForm() {
     };
 
     return (
-        <div css={{ padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px` }}>
-            <h2 css={{ ...typography('h2'), textAlign: 'center' }}>Leave a request</h2>
+        <div
+            css={{
+                padding: `${scale(8)}px ${scale(15)}px ${scale(11)}px`,
+                [MEDIA_QUERIES.md]: {
+                    padding: `${scale(4)}px ${scale(2)}px`,
+                },
+            }}
+        >
+            <h2 css={{ ...typography('h2'), textAlign: 'center', marginBottom: scale(5, true) }}>Leave a request</h2>
             <p css={{ ...typography('l'), textAlign: 'center', marginBottom: scale(5) }}>
                 We will advise you and help you start a new project
             </p>
@@ -60,7 +67,13 @@ export default function FeedbackForm() {
                         variant="primary"
                         type="submit"
                         size="md"
-                        css={{ width: `${scale(48) + 2}px`, marginBottom: scale(2) }}
+                        css={{
+                            width: `${scale(48) + 2}px`,
+                            marginBottom: scale(2),
+                            [MEDIA_QUERIES.md]: {
+                                width: '100%',
+                            },
+                        }}
                     >
                         Send
                     </Button>

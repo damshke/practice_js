@@ -32,7 +32,8 @@ export default function Filters({
                 marginBottom: scale(5),
                 [MEDIA_QUERIES.md]: {
                     flexDirection: 'column',
-                    maxWidth: '100%',
+                    padding: `${scale(4)}px ${scale(2)}px`,
+                    margin: '0',
                 },
             }}
             initialValues={{ employment: '', experience: '' }}

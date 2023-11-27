@@ -1,12 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useDescription from '@api/description';
 import { Item } from '../../helpers/types';
 import ArrowDown from '../../icons/16/chevronDown.svg';
 import ArrowUp from '../../icons/16/chevronUp.svg';
 
 export default function Card({ vacancy }: { vacancy: Item }) {
-    const [description, setDescription] = useState('');
     const [expandedDescription, setExpandedDescription] = useState(false);
 
     const address = (vacancy: Item) => (vacancy.address ? vacancy.address.raw : vacancy.area ? vacancy.area.name : '');
@@ -35,11 +36,8 @@ export default function Card({ vacancy }: { vacancy: Item }) {
         return '';
     };
 
-    useEffect(() => {
-        fetch(vacancy.url)
-            .then(res => res.json())
-            .then(data => setDescription(data.description));
-    }, [vacancy.url]);
+    const { isLoading, isError, error, data } = useDescription(vacancy.id, vacancy.url);
+    console.log(data);
 
     return (
         <Layout
@@ -77,6 +75,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     {vacancy.name}
                 </h4>
                 {logo(vacancy) !== '' && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                         css={{
                             marginRight: '50%',
@@ -104,7 +103,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                         },
                     }}
                 >
-                    Respond
+                    <a href={vacancy.alternate_url}>Respond</a>
                 </Button>
             </Layout.Item>
             <Layout.Item
@@ -186,14 +185,20 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                         },
                     }}
                 >
-                    <div
-                        css={{
-                            height: expandedDescription ? 'fit-content' : '200px',
-                            overflow: expandedDescription ? 'visible' : 'hidden',
-                            ...typography('m'),
-                        }}
-                        dangerouslySetInnerHTML={{ __html: description }}
-                    />
+                    {isLoading ? (
+                        <span>Loading...</span>
+                    ) : isError ? (
+                        <span>Error: {error.message}</span>
+                    ) : (
+                        <div
+                            css={{
+                                height: expandedDescription ? 'fit-content' : '200px',
+                                overflow: expandedDescription ? 'visible' : 'hidden',
+                                ...typography('m'),
+                            }}
+                            dangerouslySetInnerHTML={{ __html: data.description }}
+                        />
+                    )}
                 </div>
             </Layout.Item>
             <Layout.Item>

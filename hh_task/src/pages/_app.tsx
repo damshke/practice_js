@@ -1,5 +1,7 @@
+import AppProviders from '@components/AppProviders';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -15,8 +17,18 @@ export default function App({ Component, pageProps }: AppProps) {
     );
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
-        </QueryClientProvider>
+        <>
+            <Head>
+                <title>List Vacancies</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="description" content="Список вакансий с hh.ru" />
+                <meta name="keywords" content="hh, работа, вакансии, стажировка" />
+            </Head>
+            <AppProviders>
+                <QueryClientProvider client={queryClient}>
+                    <Component {...pageProps} />
+                </QueryClientProvider>
+            </AppProviders>
+        </>
     );
 }

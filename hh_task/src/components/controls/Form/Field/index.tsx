@@ -28,6 +28,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                                 ...child.props,
                                 ...register(name),
                                 ...props,
+                                size,
                                 ...inputProps,
                             };
                             return cloneElement(child, { ...formProps });

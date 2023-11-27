@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/core';
 import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds';
@@ -24,11 +23,9 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     id: string;
     name?: string;
     placeholder?: string;
-    error?: any;
+    error?: string;
     showError?: boolean;
-    register?: any;
     label?: ReactNode;
-    ref?: any;
     type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';
     children?: ReactNode;
 }

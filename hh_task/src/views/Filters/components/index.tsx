@@ -33,10 +33,9 @@ export const FilterFields = () => {
                 gap: scale(4),
                 [MEDIA_QUERIES.md]: {
                     flexDirection: 'column',
-                    gap: scale(3),
                     width: '100%',
+                    gap: scale(2),
                     alignItems: 'flex-start',
-                    padding: `${scale(4)}px ${scale(2)}px`,
                 },
             }}
         >
