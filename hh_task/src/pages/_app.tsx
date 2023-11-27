@@ -2,9 +2,11 @@ import AppProviders from '@components/AppProviders';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import React from 'react';
+import React, { FC } from 'react';
 
-export default function App({ Component, pageProps }: AppProps) {
+const AppContent: FC<AppProps> = ({ Component, pageProps }) => <Component {...pageProps} />;
+
+function MyApp(props: AppProps) {
     const [queryClient] = React.useState(
         () =>
             new QueryClient({
@@ -26,9 +28,11 @@ export default function App({ Component, pageProps }: AppProps) {
             </Head>
             <AppProviders>
                 <QueryClientProvider client={queryClient}>
-                    <Component {...pageProps} />
+                    <AppContent {...props} />
                 </QueryClientProvider>
             </AppProviders>
         </>
     );
 }
+
+export default MyApp;
