@@ -54,7 +54,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 cols={2}
                 css={{
                     display: 'flex',
-                    flexDirection: 'rows',
+                    flexDirection: 'row',
                     gap: scale(3),
                     justifyContent: 'space-between',
                     alignItems: 'center',
@@ -109,7 +109,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 cols={5}
                 css={{
                     display: 'flex',
-                    flexDirection: 'rows',
+                    flexDirection: 'row',
                     gap: scale(6),
                     flexWrap: 'wrap',
                     [MEDIA_QUERIES.sm]: {
@@ -121,7 +121,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <dl
                     css={{
                         display: 'flex',
-                        flexDirection: 'rows',
+                        flexDirection: 'row',
                         gap: scale(1),
                     }}
                 >
@@ -131,7 +131,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <dl
                     css={{
                         display: 'flex',
-                        flexDirection: 'rows',
+                        flexDirection: 'row',
                         gap: scale(1),
                     }}
                 >
@@ -141,7 +141,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <dl
                     css={{
                         display: 'flex',
-                        flexDirection: 'rows',
+                        flexDirection: 'row',
                         gap: scale(1),
                     }}
                 >
@@ -151,7 +151,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <dl
                     css={{
                         display: 'flex',
-                        flexDirection: 'rows',
+                        flexDirection: 'row',
                         gap: scale(1),
                     }}
                 >
@@ -161,7 +161,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                 <dl
                     css={{
                         display: 'flex',
-                        flexDirection: 'rows',
+                        flexDirection: 'row',
                         gap: scale(1),
                     }}
                 >

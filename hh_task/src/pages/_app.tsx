@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React, { FC } from 'react';
 
+// @ts-ignore next-line
 const AppContent: FC<AppProps> = ({ Component, pageProps }) => <Component {...pageProps} />;
 
 function MyApp(props: AppProps) {

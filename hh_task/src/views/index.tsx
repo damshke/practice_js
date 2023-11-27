@@ -5,6 +5,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 import { VACANCIES_KEY } from '@api/const';
 import { getVacancies } from '@api/vacancies';
 
+// @ts-ignore next-line
 export default function Home({ dehydrateState }) {
     return (
         <HydrationBoundary state={dehydrateState}>
