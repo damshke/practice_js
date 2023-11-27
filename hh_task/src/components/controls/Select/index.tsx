@@ -10,13 +10,15 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
     {
         theme,
         size = 'md',
-        name = '',
         variant,
         label = '',
+        name = '',
+        onClick,
         optionsList = [],
+        Icon,
         isOpen = false,
         handleClick,
-        ...props
+        value,
     }: SelectBaseProps<V, S>,
     ref: Ref<HTMLDivElement>
 ) => {
@@ -29,6 +31,7 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         }),
         [size, variant, label, isOpen]
     );
+
     if (!theme) {
         throw new Error('[Select] theme is required');
     }
@@ -37,18 +40,32 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
         option: optionCSS,
         label: labelCSS,
         selectContainer: selectContainerCSS,
+        arrowButton: arrowCSS,
+        optionsList: optionsListCSS,
     } = useThemeCSS(theme!, state);
+
     return (
         <div css={selectContainerCSS as CSSObject} onClick={handleClick} ref={ref}>
             <span css={labelCSS as CSSObject}>{label}</span>
-            <select name={name} css={totalCSS as CSSObject} {...props}>
-                <option value="">Not selected</option>
-                {optionsList.map((value: Option) => (
-                    <option css={optionCSS as CSSObject} key={value.id} value={value.id}>
+            <div css={totalCSS as CSSObject}>
+                {optionsList.find(i => i.id === value)?.name || 'Not selected'}
+                {Icon && <Icon css={arrowCSS as CSSObject} />}
+            </div>
+            <ul css={optionsListCSS as CSSObject}>
+                {[...optionsList].map((value: Option) => (
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                    <li
+                        key={value.id}
+                        css={optionCSS as CSSObject}
+                        value={value.id}
+                        onClick={() => {
+                            if (onClick) onClick(name, value.id);
+                        }}
+                    >
                         {value.name}
-                    </option>
+                    </li>
                 ))}
-            </select>
+            </ul>
         </div>
     );
 };

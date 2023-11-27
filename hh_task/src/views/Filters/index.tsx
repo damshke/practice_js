@@ -6,19 +6,19 @@ import CloseIcon from '../../icons/16/close.svg';
 import { FilterFields } from './components';
 
 type FilterData = {
+    schedule: string;
     employment: string;
-    experience: string;
 };
 
 const validationSchema = {
+    schedule: yup.string(),
     employment: yup.string(),
-    experience: yup.string(),
 };
 
 export default function Filters({
     onSubmit,
 }: {
-    onSubmit: Dispatch<SetStateAction<{ employment: string; experience: string }>>;
+    onSubmit: Dispatch<SetStateAction<{ schedule: string; employment: string }>>;
 }) {
     return (
         <Form
@@ -36,8 +36,8 @@ export default function Filters({
                     margin: '0',
                 },
             }}
-            initialValues={{ employment: '', experience: '' }}
-            onSubmit={(data: FilterData) => onSubmit({ employment: data.employment, experience: data.experience })}
+            initialValues={{ schedule: '', employment: '' }}
+            onSubmit={(data: FilterData) => onSubmit({ schedule: data.schedule, employment: data.employment })}
             validationSchema={yup.object().shape(validationSchema)}
             isFilters
             resetText="Clear filters"

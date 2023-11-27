@@ -4,24 +4,25 @@ import { scale, MEDIA_QUERIES } from '@scripts/gds';
 import { useCallback, useState } from 'react';
 import useFilters from '@api/filters';
 import FormField from '@components/controls/Form/Field';
+import ArrowDown from '../../../icons/16/chevronDown.svg';
 
 export const FilterFields = () => {
     const { data: filterData } = useFilters();
 
-    const employmentOptions = filterData?.employment || [];
-    const experienceOptions = filterData?.experience || [];
+    const scheduleOptions = filterData?.schedule || [];
+    const positionOptions = filterData?.employment || [];
 
-    const [isOpenSelectEmployment, setOpenSelectEmployment] = useState(false);
-    const [isOpenSelectExperience, setOpenSelectExperience] = useState(false);
+    const [isOpenSelectSchedule, setOpenSelectSchedule] = useState(false);
+    const [isOpenSelectPosition, setOpenSelectPosition] = useState(false);
 
-    const handleOpenSelectEmployment = useCallback(() => {
-        setOpenSelectEmployment(prevIsOpen => !prevIsOpen);
-        setOpenSelectExperience(false);
+    const handleOpenSelectSchedule = useCallback(() => {
+        setOpenSelectSchedule(prevIsOpen => !prevIsOpen);
+        setOpenSelectPosition(false);
     }, []);
 
-    const handleOpenSelectExperience = useCallback(() => {
-        setOpenSelectExperience(prevIsOpen => !prevIsOpen);
-        setOpenSelectEmployment(false);
+    const handleOpenSelectPosition = useCallback(() => {
+        setOpenSelectPosition(prevIsOpen => !prevIsOpen);
+        setOpenSelectSchedule(false);
     }, []);
 
     return (
@@ -39,23 +40,25 @@ export const FilterFields = () => {
                 },
             }}
         >
-            <FormField name="employment">
+            <FormField name="schedule">
                 <Select
-                    name="employment"
-                    label="Employment"
-                    isOpen={isOpenSelectEmployment}
-                    handleClick={handleOpenSelectEmployment}
-                    optionsList={employmentOptions}
+                    name="schedule"
+                    label="Form"
+                    isOpen={isOpenSelectSchedule}
+                    handleClick={handleOpenSelectSchedule}
+                    optionsList={scheduleOptions}
+                    Icon={ArrowDown}
                 />
             </FormField>
 
-            <FormField name="experience">
+            <FormField name="employment">
                 <Select
-                    name="experience"
-                    handleClick={handleOpenSelectExperience}
-                    isOpen={isOpenSelectExperience}
-                    label="Experience"
-                    optionsList={experienceOptions}
+                    name="employment"
+                    handleClick={handleOpenSelectPosition}
+                    isOpen={isOpenSelectPosition}
+                    label="Position"
+                    optionsList={positionOptions}
+                    Icon={ArrowDown}
                 />
             </FormField>
 

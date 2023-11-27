@@ -1,6 +1,7 @@
 import { BaseThemeState, EnumLike, StyleDefinition } from '@greensight/gds/types/src';
 import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import { FC, ReactNode } from 'react';
+import { FieldValues, UseFormSetValue } from 'react-hook-form';
 
 export interface SelectState {
     isOpen: boolean;
@@ -27,5 +28,8 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     label?: string;
     optionsList?: { id: string; name: string }[];
     isOpen?: boolean;
+    value?: string;
+    onChange: (...event: any[]) => void;
     handleClick?: () => void;
+    onClick?: UseFormSetValue<FieldValues> | undefined;
 }

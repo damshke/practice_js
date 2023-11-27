@@ -1,14 +1,15 @@
-import { API_URL, VACANCIES_KEY, URLHelper } from '@api/const';
+import { API_URL, VACANCIES_KEY } from '@api/const';
+import { URLHelper } from '@api/utils';
 import { useQuery } from '@tanstack/react-query';
 
-export const getVacancies = async (page: number, filters?: { employment: string; experience: string }) => {
+export const getVacancies = async (page: number, filters?: { schedule: string; employment: string }) => {
     const params = URLHelper(page, filters);
     const data = await fetch(`${API_URL}?${params}`);
     const response = await data.json();
     return response;
 };
 
-export function useVacancies(page: number, filters?: { employment: string; experience: string }) {
+export function useVacancies(page: number, filters?: { schedule: string; employment: string }) {
     return useQuery({
         queryKey: [VACANCIES_KEY, page, filters],
         queryFn: () => getVacancies(page, filters),

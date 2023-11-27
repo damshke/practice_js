@@ -7,6 +7,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
     const {
         register,
         control,
+        setValue,
         formState: { errors },
     } = useFormContext();
 
@@ -32,6 +33,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                                 ...child.props,
                                 error: errors[name]?.message,
                                 ...register(name),
+                                onClick: setValue,
                                 ...props,
                                 size,
                                 ref,
