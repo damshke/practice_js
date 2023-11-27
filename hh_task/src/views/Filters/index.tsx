@@ -1,17 +1,25 @@
-import { getVacancies } from '@api/vacancies';
 import Form from '@components/controls/Form';
 import { MEDIA_QUERIES, scale } from '@scripts/gds';
+import { Dispatch, SetStateAction } from 'react';
 import * as yup from 'yup';
 import CloseIcon from '../../icons/16/close.svg';
 import { FilterFields } from './components';
-import { FormInputs } from './types';
+
+type FilterData = {
+    employment: string;
+    experience: string;
+};
 
 const validationSchema = {
     employment: yup.string(),
     experience: yup.string(),
 };
 
-export default function Filters({ onSubmit }) {
+export default function Filters({
+    onSubmit,
+}: {
+    onSubmit: Dispatch<SetStateAction<{ employment: string; experience: string }>>;
+}) {
     return (
         <Form
             css={{
@@ -28,7 +36,7 @@ export default function Filters({ onSubmit }) {
                 },
             }}
             initialValues={{ employment: '', experience: '' }}
-            onSubmit={onSubmit}
+            onSubmit={(data: FilterData) => onSubmit({ employment: data.employment, experience: data.experience })}
             validationSchema={yup.object().shape(validationSchema)}
             isFilters
             resetText="Clear filters"

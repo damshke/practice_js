@@ -11,9 +11,9 @@ import {
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnyObjectSchema } from 'yup';
+import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import FormField from './Field';
 import Button from '../Button';
-import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 
 export interface FormProps<T extends FieldValues>
     extends Omit<UseFormProps<T>, 'children'>,
