@@ -1,14 +1,10 @@
+import { API_URL } from '@api/const';
 import { useQuery } from '@tanstack/react-query';
+import { getMethod } from '..';
 
-const getDescription = async (id: string, url: string) => {
-    const data = await fetch(url);
-    const response = await data.json();
-    return response;
-};
-
-export default function useDescription(id: string, url: string) {
+export default function useDescription(id: string) {
     return useQuery({
-        queryKey: [id, url],
-        queryFn: () => getDescription(id, url),
+        queryKey: [id],
+        queryFn: () => getMethod(`${API_URL}/${id}`),
     });
 }
