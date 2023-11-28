@@ -3,7 +3,7 @@ import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scri
 import Button from '@components/controls/Button';
 import { useState } from 'react';
 import useDescription from '@api/description';
-import { Item } from '../../helpers/types';
+import { Item } from '../../scripts/types';
 import ArrowDown from '../../icons/16/chevronDown.svg';
 import ArrowUp from '../../icons/16/chevronUp.svg';
 

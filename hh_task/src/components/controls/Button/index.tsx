@@ -12,8 +12,8 @@ function customTypography(
 
 const Button = createFutureButtonWithTheme<typeof Variants, typeof Sizes, TypographyParam>(
     BUTTON_THEMES.basic,
-    Variants.primary,
-    Sizes.sm,
+    Variants.PRIMARY,
+    Sizes.SM,
     customTypography
 );
 

@@ -1,11 +1,11 @@
 export enum Variants {
-    primary = 'primary',
-    secondary = 'secondary',
-    nonactive = 'nonactive',
-    link = 'link',
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    NONACTIVE = 'nonactive',
+    LINK = 'link',
 }
 
 export enum Sizes {
-    md = 'md',
-    sm = 'sm',
+    MD = 'md',
+    SM = 'sm',
 }

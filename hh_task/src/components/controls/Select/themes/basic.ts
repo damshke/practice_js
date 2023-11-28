@@ -6,13 +6,13 @@ import { SelectTheme } from '../types';
 export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
     label: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
-                ...(typography('xsMedium') as any),
+            MD: {
+                ...typography('xsMedium'),
             },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {
+            PRIMARY: {
                 color: colors.black,
             },
         };
@@ -25,7 +25,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
     selectContainer: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
+            MD: {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
@@ -44,7 +44,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
     select: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
+            MD: {
                 height: scale(5) + 4,
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
                 gap: scale(1),
@@ -58,13 +58,13 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {
+            PRIMARY: {
                 color: colors.black,
                 backgroundColor: colors.white,
-                border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
+                border: `1px solid ${colors.grey400}`,
                 background: colors.white,
                 ':hover': {
-                    border: `${scale(1, true) - 3}px solid ${colors.blue}`,
+                    border: `1px solid ${colors.blue}`,
                 },
             },
         };
@@ -77,7 +77,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
     arrowButton: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
+            MD: {
                 width: scale(2),
                 height: scale(2),
                 ...(state.isOpen && {
@@ -87,7 +87,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {
+            PRIMARY: {
                 backgroundColor: colors.white,
                 color: colors.grey800,
             },
@@ -101,7 +101,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
     optionsList: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
+            MD: {
                 marginTop: scale(1, true),
                 borderRadius: scale(1, true),
                 padding: '0',
@@ -109,7 +109,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {
+            PRIMARY: {
                 listStyle: 'none',
                 width: '100%',
                 position: 'absolute',
@@ -131,7 +131,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
 
     option: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            md: {
+            MD: {
                 padding: `${scale(1)}px ${scale(3, true)}px`,
                 width: '100%',
                 ...typography('s'),
@@ -139,7 +139,7 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            primary: {
+            PRIMARY: {
                 color: colors.black,
                 backgroundColor: colors.white,
                 cursor: 'pointer',

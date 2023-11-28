@@ -1,7 +1,7 @@
 import { Container, scale } from '@greensight/gds';
 import { MEDIA_QUERIES } from '@scripts/gds';
 import Card from '@views/Card';
-import { Item } from '../../helpers/types';
+import { Item } from '../../scripts/types';
 
 export default function CardList({ vacancies }: { vacancies: Item[] }) {
     return (

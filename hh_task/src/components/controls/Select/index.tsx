@@ -88,6 +88,6 @@ export const createSelectWithTheme = <V extends EnumLike, S extends EnumLike>(
 
 export const Select = createSelectWithTheme<typeof Variants, typeof Sizes>(
     SELECT_THEMES.basic,
-    Variants.primary,
-    Sizes.md
+    Variants.PRIMARY,
+    Sizes.MD
 );

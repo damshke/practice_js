@@ -18,7 +18,7 @@ export const BaseInput = <V extends EnumLike, S extends EnumLike>({
     error,
     ...props
 }: InputBaseProps<V, S>) => {
-    const hasChildren = !!children;
+    const hasChildren = useMemo(() => !!children, [children]);
     const showError = !!error;
 
     const state = useMemo<InputStateFull<V, S>>(
@@ -73,6 +73,6 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
 
 export const Input = createInputWithTheme<typeof Variants, typeof Sizes>(
     INPUT_THEMES.basic,
-    Variants.primary,
-    Sizes.md
+    Variants.PRIMARY,
+    Sizes.MD
 );

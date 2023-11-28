@@ -30,7 +30,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
             {children ? (
                 <>
                     {React.Children.map(children, child => {
-                        if (isValidElement<any>(child)) {
+                        if (isValidElement(child)) {
                             const formProps = {
                                 ...child.props,
                                 error: errors[name]?.message,

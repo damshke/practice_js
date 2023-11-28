@@ -3,7 +3,7 @@ import Form from '@components/controls/Form';
 import { typography, scale, colors, MEDIA_QUERIES } from '@scripts/gds';
 import { SubmitHandler } from 'react-hook-form';
 import * as Yup from 'yup';
-import { PHONE_REGEX } from '../../helpers/regex';
+import { PHONE_REGEX } from '../../scripts/regex';
 
 type FormData = {
     initials: string;

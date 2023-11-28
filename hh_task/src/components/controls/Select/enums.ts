@@ -1,7 +1,7 @@
 export enum Variants {
-    primary = 'primary',
+    PRIMARY = 'primary',
 }
 
 export enum Sizes {
-    md = 'md',
+    MD = 'md',
 }
