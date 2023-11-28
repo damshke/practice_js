@@ -36,7 +36,7 @@ const Form = <T extends FieldValues>({
         ...(validationSchema && { resolver: yupResolver(validationSchema) }),
     });
 
-    const isDirty = Object.keys(methods.formState.dirtyFields).length > 0;
+    const isDirty = Object.values(methods.watch())[0] ? true : !!Object.values(methods.watch())[1];
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { css: _, ...restProps } = props;
@@ -49,6 +49,7 @@ const Form = <T extends FieldValues>({
                         ? React.cloneElement(child, {
                               ...child.props,
                               register: methods.register,
+                              control: methods.control,
                               key: child.props.name,
                           })
                         : child
@@ -65,7 +66,9 @@ const Form = <T extends FieldValues>({
                         }}
                         variant="link"
                         Icon={Icon}
-                        onClick={() => methods.reset()}
+                        onClick={() => {
+                            methods.reset();
+                        }}
                     >
                         {resetText}
                     </Button>

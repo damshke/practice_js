@@ -116,7 +116,6 @@ export const basicSelectTheme: SelectTheme<typeof Variants, typeof Sizes> = {
                 top: scale(8),
                 boxShadow: shadows.box,
                 zIndex: 2,
-                borderRadius: scale(1, true),
                 display: 'none',
                 ...(state.isOpen && {
                     display: 'block',

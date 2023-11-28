@@ -52,17 +52,17 @@ export const BaseSelect = <V extends EnumLike, S extends EnumLike>(
                 {Icon && <Icon css={arrowCSS as CSSObject} />}
             </div>
             <ul css={optionsListCSS as CSSObject}>
-                {[...optionsList].map((value: Option) => (
+                {[...optionsList].map((item: Option) => (
                     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                     <li
-                        key={value.id}
+                        key={item.id}
                         css={optionCSS as CSSObject}
-                        value={value.id}
+                        value={item.id}
                         onClick={() => {
-                            if (onClick) onClick(name, value.id);
+                            if (onClick) onClick(name, item.id);
                         }}
                     >
-                        {value.name}
+                        {item.name}
                     </li>
                 ))}
             </ul>

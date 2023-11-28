@@ -7,6 +7,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
     const {
         register,
         control,
+        getValues,
         setValue,
         formState: { errors },
     } = useFormContext();
@@ -19,6 +20,7 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
     const inputProps = {
         value: field.value,
         name,
+        control,
         onChange: field.onChange,
         onBlur: field.onBlur,
     };
@@ -34,11 +36,13 @@ const FormField = React.forwardRef<HTMLInputElement, FieldProps>(({ name, childr
                                 error: errors[name]?.message,
                                 ...register(name),
                                 onClick: setValue,
+                                getValues,
                                 ...props,
                                 size,
                                 ref,
                                 ...inputProps,
                             };
+
                             return cloneElement(child, { ...formProps });
                         }
                     })}

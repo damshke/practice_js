@@ -21,10 +21,11 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
                 border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
                 background: colors.white,
                 color: colors.black,
-                height: `${scale(10, true) + 4}px`,
+                height: `${scale(10, true) + 6}px`,
                 padding: `${scale(1, true)}px ${scale(3, true)}px`,
                 ...(state.textArea && {
-                    height: `${scale(13) + 4}px`,
+                    minHeight: `${scale(9) + 2}px`,
+                    padding: `${scale(3, true)}px`,
                 }),
             },
         };
@@ -58,8 +59,8 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     label: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            sm: { ...(typography('s') as any) },
-            md: { ...(typography('s') as any) },
+            sm: { ...(typography('xsMedium') as any) },
+            md: { ...(typography('xsMedium') as any) },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {

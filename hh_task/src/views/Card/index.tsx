@@ -63,36 +63,49 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     },
                 }}
             >
-                <h4
+                <div
                     css={{
-                        ...typography('h4'),
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: scale(3, true),
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
                         [MEDIA_QUERIES.md]: {
-                            maxWidth: '100%',
+                            flexDirection: 'column',
                         },
                     }}
                 >
-                    {vacancy.name}
-                </h4>
-                {logo(vacancy) !== '' && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <h4
                         css={{
-                            marginRight: '50%',
-                            height: '100%',
-                            maxWidth: scale(20),
+                            ...typography('h4'),
                             [MEDIA_QUERIES.md]: {
-                                marginRight: 0,
-                                order: -1,
-                            },
-                            [MEDIA_QUERIES.xs]: {
-                                height: scale(5),
-                                width: 'auto',
+                                maxWidth: '100%',
                             },
                         }}
-                        src={logo(vacancy)}
-                        alt={vacancy.name}
-                    />
-                )}
+                    >
+                        {vacancy.name}
+                    </h4>
+                    {logo(vacancy) !== '' && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                            css={{
+                                height: '100%',
+                                maxWidth: scale(20),
+                                [MEDIA_QUERIES.md]: {
+                                    marginLeft: '0',
+                                    marginRight: '0',
+                                    order: -1,
+                                },
+                                [MEDIA_QUERIES.xs]: {
+                                    height: scale(5),
+                                    width: 'auto',
+                                },
+                            }}
+                            src={logo(vacancy)}
+                            alt={vacancy.name}
+                        />
+                    )}
+                </div>
                 <Button
                     size="md"
                     variant="secondary"

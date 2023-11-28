@@ -82,13 +82,14 @@ export default function FeedbackForm() {
                     css={{
                         display: 'flex',
                         flexDirection: 'column',
+                        gap: `${scale(1, true) - 2}px`,
                         alignItems: 'center',
                         ...typography('m'),
                     }}
                 >
                     <span>By clicking "Send" you confirm your consent to the</span>
                     <span>
-                        <a href="#" css={{ color: colors.blue }}>
+                        <a href="about:blank" css={{ color: colors.blue, textDecorationLine: 'underline' }}>
                             processing of personal data
                         </a>
                     </span>

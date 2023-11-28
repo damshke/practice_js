@@ -29,7 +29,6 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     optionsList?: { id: string; name: string }[];
     isOpen?: boolean;
     value?: string;
-    onChange: (...event: any[]) => void;
     handleClick?: () => void;
     onClick?: UseFormSetValue<FieldValues> | undefined;
 }

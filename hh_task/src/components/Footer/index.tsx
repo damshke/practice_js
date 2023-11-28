@@ -21,7 +21,9 @@ export default function Footer() {
                 </Layout.Item>
                 <Layout.Item css={typography('m')}>
                     <p>322A, 2nd Floor, Zelenograd, Moscow, Russia</p>
-                    <p>Directions</p>
+                    <a href="about:blank" css={{ textDecorationLine: 'underline' }}>
+                        Directions
+                    </a>
                 </Layout.Item>
             </Layout>
         </Container>
