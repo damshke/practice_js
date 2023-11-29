@@ -1,9 +1,9 @@
 /* eslint-disable no-nested-ternary */
-import FeedbackForm from '@views/FeedbackForm';
+import FeedbackForm from '@views/vacancies/FeedbackForm';
 import CardList from '@containers/CardList';
-import Pagination from '@views/Pagination';
+import Pagination from '@components/Pagination';
 import { useState } from 'react';
-import Filters from '@views/Filters';
+import Filters from '@views/vacancies/Filters';
 import { useVacancies } from '@api/vacancies';
 
 export default function Main() {

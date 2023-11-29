@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useMemo } from 'react';
 import { EnumLike, useThemeCSS } from '@scripts/gds';
-import { Option } from '@views/Filters/types';
+import { Option } from '@views/vacancies/Filters/types';
 import { CSSObject } from '@emotion/core';
 import { SelectBaseProps, SelectStateFull, SelectTheme } from './types';
 import { Sizes, Variants } from './enums';

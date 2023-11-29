@@ -1,11 +1,35 @@
-/* eslint-disable no-nested-ternary */
 import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
 import { useState } from 'react';
-import useDescription from '@api/description';
-import { Item } from '../../scripts/types';
+import { useDescription } from '@api/vacancies';
+import { Item } from '../../../scripts/types';
 import ArrowDown from '../../icons/16/chevronDown.svg';
 import ArrowUp from '../../icons/16/chevronUp.svg';
+
+function Description({ vacancy, expandedDescription }: { vacancy: Item; expandedDescription: boolean }) {
+    const { isLoading, isError, error, data } = useDescription(vacancy.id);
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>;
+    }
+
+    return (
+        <div>
+            <div
+                css={{
+                    height: expandedDescription ? 'fit-content' : '200px',
+                    overflow: expandedDescription ? 'visible' : 'hidden',
+                    ...typography('m'),
+                }}
+                dangerouslySetInnerHTML={{ __html: data.description }}
+            />
+        </div>
+    );
+}
 
 export default function Card({ vacancy }: { vacancy: Item }) {
     const [expandedDescription, setExpandedDescription] = useState(false);
@@ -35,8 +59,6 @@ export default function Card({ vacancy }: { vacancy: Item }) {
         }
         return '';
     };
-
-    const { isLoading, isError, error, data } = useDescription(vacancy.id);
 
     return (
         <Layout
@@ -197,20 +219,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                         },
                     }}
                 >
-                    {isLoading ? (
-                        <span>Loading...</span>
-                    ) : isError ? (
-                        <span>Error: {error.message}</span>
-                    ) : (
-                        <div
-                            css={{
-                                height: expandedDescription ? 'fit-content' : '200px',
-                                overflow: expandedDescription ? 'visible' : 'hidden',
-                                ...typography('m'),
-                            }}
-                            dangerouslySetInnerHTML={{ __html: data.description }}
-                        />
-                    )}
+                    <Description vacancy={vacancy} expandedDescription={expandedDescription} />
                 </div>
             </Layout.Item>
             <Layout.Item>
