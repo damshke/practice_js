@@ -1,8 +1,7 @@
 import React, { Ref, forwardRef, useMemo } from 'react';
 import { EnumLike, useThemeCSS } from '@scripts/gds';
-import { Option } from '@views/vacancies/Filters/types';
 import { CSSObject } from '@emotion/core';
-import { SelectBaseProps, SelectStateFull, SelectTheme } from './types';
+import { SelectBaseProps, SelectStateFull, SelectTheme, Option } from './types';
 import { Sizes, Variants } from './enums';
 import { SELECT_THEMES } from './themes/basic';
 

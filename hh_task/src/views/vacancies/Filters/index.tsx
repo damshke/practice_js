@@ -1,10 +1,10 @@
-import { Filter } from '@api/vacancies/types';
 import Form from '@components/controls/Form';
 import { MEDIA_QUERIES, scale } from '@scripts/gds';
 import { Dispatch, SetStateAction } from 'react';
 import * as yup from 'yup';
 import CloseIcon from '../../../icons/16/close.svg';
 import { FilterFields } from './components';
+import { FiltersData } from './types';
 
 const validationSchema = {
     schedule: yup.string(),
@@ -33,7 +33,7 @@ export default function Filters({
                 },
             }}
             initialValues={{ schedule: '', employment: '' }}
-            onSubmit={(data: Filter) => onSubmit({ schedule: data.schedule, employment: data.employment })}
+            onSubmit={(data: FiltersData) => onSubmit({ schedule: data.schedule, employment: data.employment })}
             validationSchema={yup.object().shape(validationSchema)}
             isFilters
             resetText="Clear filters"

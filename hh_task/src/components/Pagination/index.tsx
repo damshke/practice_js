@@ -21,7 +21,7 @@ export default function Pagination({
         >
             {page >= 1 ? <Button onClick={() => setPage(page - 1)}>←</Button> : <Button variant="nonactive">←</Button>}
             <span css={{ margin: '0 10px', ...typography('l') }}>{page + 1}</span>
-            {totalPages !== undefined && page < totalPages && <Button onClick={() => setPage(page + 1)}>→ </Button>}
+            {totalPages && page < totalPages && <Button onClick={() => setPage(page + 1)}>→ </Button>}
         </div>
     );
 }

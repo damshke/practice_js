@@ -1,4 +1,4 @@
 export type Filter = {
-    schedule: string;
-    employment: string;
+    schedule: { id: string; name: string }[];
+    employment: { id: string; name: string }[];
 };

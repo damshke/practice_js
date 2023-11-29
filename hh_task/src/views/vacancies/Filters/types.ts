@@ -1,9 +1,4 @@
-export type Option = {
-    id: string;
-    name?: string;
-};
-
-export interface FormInputs {
+export type FiltersData = {
+    schedule: string;
     employment: string;
-    experience: string;
-}
+};

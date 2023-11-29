@@ -3,6 +3,11 @@ import { SVGRIcon } from '@greensight/gds/types/src/types/Utils';
 import { FC, ReactNode } from 'react';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
 
+export type Option = {
+    id: string;
+    name: string;
+};
+
 export interface SelectState {
     isOpen: boolean;
 }
@@ -26,7 +31,7 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     Icon?: SVGRIcon | FC<any>;
     iconRight?: boolean;
     label?: string;
-    optionsList?: { id: string; name: string }[];
+    optionsList?: Option[];
     isOpen?: boolean;
     value?: string;
     handleClick?: () => void;
