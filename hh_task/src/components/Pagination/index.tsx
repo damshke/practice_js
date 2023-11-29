@@ -9,7 +9,7 @@ export default function Pagination({
 }: {
     setPage: Dispatch<SetStateAction<number>>;
     page: number;
-    totalPages: number;
+    totalPages?: number;
 }) {
     return (
         <div
@@ -21,7 +21,7 @@ export default function Pagination({
         >
             {page >= 1 ? <Button onClick={() => setPage(page - 1)}>←</Button> : <Button variant="nonactive">←</Button>}
             <span css={{ margin: '0 10px', ...typography('l') }}>{page + 1}</span>
-            {page < totalPages && <Button onClick={() => setPage(page + 1)}>→ </Button>}
+            {totalPages !== undefined && page < totalPages && <Button onClick={() => setPage(page + 1)}>→ </Button>}
         </div>
     );
 }

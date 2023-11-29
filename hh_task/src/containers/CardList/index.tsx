@@ -3,7 +3,7 @@ import { Container, scale } from '@greensight/gds';
 import { MEDIA_QUERIES } from '@scripts/gds';
 import Card from '@views/vacancies/Card';
 
-export default function CardList({ vacancies }: { vacancies: Item[] }) {
+export default function CardList({ vacancies }: { vacancies?: Item[] }) {
     return (
         <Container css={{ minWidth: '100%' }}>
             <ul

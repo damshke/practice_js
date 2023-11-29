@@ -1,37 +1,37 @@
-export type Adress = {
+type Adress = {
     city?: string;
     raw?: string;
 };
 
-export type Area = {
+type Area = {
     name: string;
 };
 
-export type Salary = {
+type Salary = {
     from?: number;
     to?: number;
     currency?: string;
 };
 
-export type Metro = {
+type Metro = {
     station_name: string;
     line_name: string;
 };
 
-export type Logos = {
+type Logos = {
     original?: string;
 };
 
-export type Employer = {
+type Employer = {
     name: string;
     logo_urls?: Logos;
 };
 
-export type Experience = {
+type Experience = {
     name?: string;
 };
 
-export type Employment = {
+type Employment = {
     name?: string;
 };
 

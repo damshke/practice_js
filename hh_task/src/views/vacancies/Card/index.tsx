@@ -1,7 +1,7 @@
 import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
 import { useMemo, useState } from 'react';
-import { Item, useDescription } from '@api/vacancies';
+import { useDescription, Item } from '@api/vacancies';
 import ArrowDown from '../../../icons/16/chevronDown.svg';
 import ArrowUp from '../../../icons/16/chevronUp.svg';
 
