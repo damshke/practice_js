@@ -21,8 +21,8 @@ export default function Main() {
                 <span>Error: {error.message}</span>
             ) : (
                 <div>
-                    <CardList vacancies={data.items} />
-                    <Pagination setPage={setPage} page={page} totalPages={data.pages} />
+                    <CardList vacancies={data?.items} />
+                    <Pagination setPage={setPage} page={page} totalPages={data?.pages} />
                 </div>
             )}
             <FeedbackForm />
