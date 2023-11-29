@@ -1,4 +1,4 @@
-import { API_URL, VACANCIES_KEY } from '@api/const';
+import { API_URL, VACANCIES_KEY } from '@scripts/const';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { URLVacanciesHelper } from '@api/utils';
 import { getMethod } from '..';

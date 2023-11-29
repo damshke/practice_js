@@ -1,4 +1,4 @@
-import { FILTERS_URL, FILTERS_KEY } from '@api/const';
+import { FILTERS_URL, FILTERS_KEY } from '@scripts/const';
 import { useQuery } from '@tanstack/react-query';
 import { getMethod } from '..';
 

@@ -1,4 +1,4 @@
-import { API_URL } from '@api/const';
+import { API_URL } from '@scripts/const';
 import { useQuery } from '@tanstack/react-query';
 import { getMethod } from '..';
 

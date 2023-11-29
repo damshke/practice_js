@@ -1,4 +1,4 @@
-import { PER_PAGE } from './const';
+import { PER_PAGE } from '@scripts/const';
 import { VacanciesParams } from './vacancies/types/vacancies';
 
 export function URLVacanciesHelper(params: VacanciesParams) {
