@@ -2,9 +2,9 @@ import Button from '@components/controls/Button';
 import { Select } from '@components/controls/Select';
 import { scale, MEDIA_QUERIES } from '@scripts/gds';
 import { useCallback, useState } from 'react';
-import useFilters from '@api/filters';
+import { useFilters } from '@api/vacancies/filters';
 import FormField from '@components/controls/Form/Field';
-import ArrowDown from '../../../icons/16/chevronDown.svg';
+import ArrowDown from '../../../../icons/16/chevronDown.svg';
 
 export const FilterFields = () => {
     const { data: filterData } = useFilters();

@@ -73,6 +73,6 @@ export const createInputWithTheme = <V extends EnumLike, S extends EnumLike>(
 
 export const Input = createInputWithTheme<typeof Variants, typeof Sizes>(
     INPUT_THEMES.basic,
-    Variants.PRIMARY,
-    Sizes.MD
+    Variants.primary,
+    Sizes.md
 );

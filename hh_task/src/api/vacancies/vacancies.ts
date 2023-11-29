@@ -1,10 +1,13 @@
 import { API_URL, VACANCIES_KEY } from '@api/const';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { URLVacanciesHelper } from '@api/utils';
 import { getMethod } from '..';
+import { VacanciesParams } from './types/vacancies';
 
-export function useVacancies(page: number, filters?: { schedule: string; employment: string }) {
+export function useVacancies(params: VacanciesParams) {
     return useQuery({
-        queryKey: [VACANCIES_KEY, page, filters],
-        queryFn: () => getMethod(API_URL, { page, filters }),
+        queryKey: [VACANCIES_KEY, params],
+        queryFn: () => getMethod(`${API_URL}?${URLVacanciesHelper(params)}`),
+        placeholderData: keepPreviousData,
     });
 }

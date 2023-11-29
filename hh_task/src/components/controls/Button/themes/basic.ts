@@ -6,13 +6,13 @@ import { Variants, Sizes } from '../enums';
 export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, TypographyParam> = {
     button: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            MD: {
+            md: {
                 padding: `${scale(1)}px ${scale(4)}px`,
                 borderRadius: scale(1, true),
                 height: `${scale(5) + 4}px`,
                 ...typography('xs'),
             },
-            SM: {
+            sm: {
                 padding: `${scale(1)}px ${scale(4)}px`,
                 borderRadius: scale(1, true),
                 height: `${scale(10, true) + 4}px`,
@@ -20,7 +20,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             },
         };
         const varianted: OptionizedCSS<typeof Variants> = {
-            PRIMARY: {
+            primary: {
                 backgroundColor: colors.blue,
                 color: colors.white,
                 border: `0`,
@@ -33,7 +33,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                     color: colors.grey800,
                 }),
             },
-            SECONDARY: {
+            secondary: {
                 backgroundColor: colors.grey900,
                 color: colors.white,
                 border: `0`,
@@ -46,7 +46,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                     color: colors.grey800,
                 }),
             },
-            LINK: {
+            link: {
                 backgroundColor: 'transparent',
                 border: 0,
                 color: colors.blue,
@@ -78,7 +78,7 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
                 }),
                 ':hover': { cursor: 'pointer' },
             },
-            NONACTIVE: {
+            nonactive: {
                 backgroundColor: colors.grey200,
                 color: colors.grey800,
                 border: 0,
@@ -94,13 +94,13 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
     },
     icon: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            MD: {
+            md: {
                 width: scale(2),
                 height: scale(2),
                 alignItems: 'center',
                 ...typography('xs'),
             },
-            SM: {
+            sm: {
                 width: scale(2),
                 height: scale(2),
                 alignItems: 'center',
@@ -108,18 +108,18 @@ export const basicButtonTheme: ButtonTheme<typeof Variants, typeof Sizes, Typogr
             },
         };
         const variant: OptionizedCSS<typeof Variants> = {
-            PRIMARY: {
+            primary: {
                 display: 'none',
             },
-            SECONDARY: {
+            secondary: {
                 display: 'none',
             },
-            LINK: {
+            link: {
                 ...(state.rounded && {
                     color: colors.blue,
                 }),
             },
-            NONACTIVE: {
+            nonactive: {
                 display: 'none',
             },
         };

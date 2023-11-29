@@ -3,8 +3,8 @@ import Button from '@components/controls/Button';
 import { useState } from 'react';
 import { useDescription } from '@api/vacancies';
 import { Item } from '../../../scripts/types';
-import ArrowDown from '../../icons/16/chevronDown.svg';
-import ArrowUp from '../../icons/16/chevronUp.svg';
+import ArrowDown from '../../../icons/16/chevronDown.svg';
+import ArrowUp from '../../../icons/16/chevronUp.svg';
 
 function Description({ vacancy, expandedDescription }: { vacancy: Item; expandedDescription: boolean }) {
     const { isLoading, isError, error, data } = useDescription(vacancy.id);

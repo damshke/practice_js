@@ -10,7 +10,7 @@ export default function Main() {
     const [page, setPage] = useState(0);
     const [filters, setFilters] = useState({ schedule: '', employment: '' });
 
-    const { isLoading, isError, error, data } = useVacancies(page, filters);
+    const { isLoading, isError, error, data } = useVacancies({ page, filters });
 
     return (
         <main>

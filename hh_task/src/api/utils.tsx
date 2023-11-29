@@ -1,12 +1,15 @@
 import { PER_PAGE } from './const';
+import { VacanciesParams } from './vacancies/types/vacancies';
 
-export function URLHelper(page: number, filters?: { schedule: string; employment: string }) {
+export function URLVacanciesHelper(params: VacanciesParams) {
     const search = {
-        page: String(page),
+        page: String(params.page),
         per_page: String(PER_PAGE),
     };
-    if (filters?.schedule !== (undefined || '')) Object.assign(search, { schedule: String(filters?.schedule) });
-    if (filters?.employment !== (undefined || '')) Object.assign(search, { employment: String(filters?.employment) });
+    if (params.filters?.schedule !== (undefined || ''))
+        Object.assign(search, { schedule: String(params.filters?.schedule) });
+    if (params.filters?.employment !== (undefined || ''))
+        Object.assign(search, { employment: String(params.filters?.employment) });
 
     return new URLSearchParams(search).toString();
 }

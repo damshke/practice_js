@@ -2,7 +2,7 @@ import Form from '@components/controls/Form';
 import { MEDIA_QUERIES, scale } from '@scripts/gds';
 import { Dispatch, SetStateAction } from 'react';
 import * as yup from 'yup';
-import CloseIcon from '../../icons/16/close.svg';
+import CloseIcon from '../../../icons/16/close.svg';
 import { FilterFields } from './components';
 
 type FilterData = {

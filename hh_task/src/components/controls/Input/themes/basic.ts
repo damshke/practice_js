@@ -6,17 +6,17 @@ import { InputTheme } from '../types';
 export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
     input: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            SM: {
+            sm: {
                 width: '100%',
                 ...typography('s'),
             },
-            MD: {
+            md: {
                 ...typography('s'),
             },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            PRIMARY: {
+            primary: {
                 borderRadius: scale(1, true),
                 border: `${scale(1, true) - 3}px solid ${colors.grey400}`,
                 background: colors.white,
@@ -38,13 +38,13 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     inputBlock: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            SM: {
+            sm: {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: scale(1, true),
                 width: '100%',
             },
-            MD: {
+            md: {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: scale(1, true),
@@ -59,12 +59,12 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     label: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            SM: { ...(typography('xsMedium') as any) },
-            MD: { ...(typography('xsMedium') as any) },
+            sm: { ...(typography('xsMedium') as any) },
+            md: { ...(typography('xsMedium') as any) },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            PRIMARY: {},
+            primary: {},
         };
 
         return {
@@ -75,16 +75,16 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     error: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            SM: {
+            sm: {
                 ...(typography('s') as any),
             },
-            MD: {
+            md: {
                 ...(typography('s') as any),
             },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
-            PRIMARY: {
+            primary: {
                 color: 'red',
             },
         };
