@@ -1,8 +1,7 @@
 import { colors, Layout, MEDIA_QUERIES, scale, shadows, typography } from '@scripts/gds';
 import Button from '@components/controls/Button';
-import { useState } from 'react';
-import { useDescription } from '@api/vacancies';
-import { Item } from '../../../scripts/types';
+import { useMemo, useState } from 'react';
+import { Item, useDescription } from '@api/vacancies';
 import ArrowDown from '../../../icons/16/chevronDown.svg';
 import ArrowUp from '../../../icons/16/chevronUp.svg';
 
@@ -34,9 +33,12 @@ function Description({ vacancy, expandedDescription }: { vacancy: Item; expanded
 export default function Card({ vacancy }: { vacancy: Item }) {
     const [expandedDescription, setExpandedDescription] = useState(false);
 
-    const address = (vacancy: Item) => (vacancy.address ? vacancy.address.raw : vacancy.area ? vacancy.area.name : '');
+    const address = useMemo(
+        () => (vacancy.address ? vacancy.address.raw : vacancy.area ? vacancy.area.name : ''),
+        [vacancy.address, vacancy.area]
+    );
 
-    const salary = (vacancy: Item) => {
+    const salary = useMemo(() => {
         const { salary } = vacancy;
 
         if (!salary) return '';
@@ -51,14 +53,12 @@ export default function Card({ vacancy }: { vacancy: Item }) {
         if (currency) parts.push(currency);
 
         return parts.join(' ');
-    };
+    }, [vacancy]);
 
-    const logo = (vacancy: Item) => {
-        if (vacancy.employer && vacancy.employer.logo_urls) {
-            return vacancy.employer.logo_urls.original;
-        }
-        return '';
-    };
+    const logo = useMemo(
+        () => (vacancy.employer && vacancy.employer.logo_urls ? vacancy.employer.logo_urls.original : ''),
+        [vacancy.employer]
+    );
 
     return (
         <Layout
@@ -107,7 +107,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     >
                         {vacancy.name}
                     </h4>
-                    {logo(vacancy) !== '' && (
+                    {logo !== '' && (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
                             css={{
@@ -123,7 +123,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                                     width: 'auto',
                                 },
                             }}
-                            src={logo(vacancy)}
+                            src={logo}
                             alt={vacancy.name}
                         />
                     )}
@@ -191,7 +191,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     }}
                 >
                     <dt css={{ color: colors.grey700, ...typography('m') }}>Address</dt>
-                    <dd css={{ color: colors.black, ...typography('mMedium') }}>{address(vacancy)}</dd>
+                    <dd css={{ color: colors.black, ...typography('mMedium') }}>{address}</dd>
                 </dl>
                 <dl
                     css={{
@@ -201,7 +201,7 @@ export default function Card({ vacancy }: { vacancy: Item }) {
                     }}
                 >
                     <dt css={{ color: colors.grey700, ...typography('m') }}>Salary </dt>
-                    <dd css={{ color: colors.black, ...typography('mMedium') }}>{salary(vacancy)}</dd>
+                    <dd css={{ color: colors.black, ...typography('mMedium') }}>{salary}</dd>
                 </dl>
             </Layout.Item>
             <Layout.Item css={{ position: 'relative' }}>

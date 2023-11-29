@@ -7,7 +7,7 @@ export interface FieldProps extends HTMLAttributes<HTMLInputElement> {
     label?: string;
     placeholder?: string;
     showError?: boolean;
-    error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+    error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
     children?: ReactNode | ReactNode[];
     textArea?: boolean;
 }

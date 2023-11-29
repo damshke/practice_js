@@ -30,5 +30,5 @@ export interface SelectBaseProps<V extends EnumLike, S extends EnumLike>
     isOpen?: boolean;
     value?: string;
     handleClick?: () => void;
-    onClick?: UseFormSetValue<FieldValues> | undefined;
+    onClick?: UseFormSetValue<FieldValues>;
 }

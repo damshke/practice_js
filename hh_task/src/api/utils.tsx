@@ -1,5 +1,5 @@
 import { PER_PAGE } from '@scripts/const';
-import { VacanciesParams } from './vacancies/types/vacancies';
+import { VacanciesParams } from './vacancies/types';
 
 export function URLVacanciesHelper(params: VacanciesParams) {
     const search = {

@@ -59,8 +59,8 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
 
     label: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
-            sm: { ...(typography('xsMedium') as any) },
-            md: { ...(typography('xsMedium') as any) },
+            sm: { ...typography('xsMedium') },
+            md: { ...typography('xsMedium') },
         };
 
         const varianted: OptionizedCSS<typeof Variants> = {
@@ -76,10 +76,10 @@ export const basicInputTheme: InputTheme<typeof Variants, typeof Sizes> = {
     error: state => {
         const sized: OptionizedCSS<typeof Sizes> = {
             sm: {
-                ...(typography('s') as any),
+                ...typography('s'),
             },
             md: {
-                ...(typography('s') as any),
+                ...typography('s'),
             },
         };
 

@@ -24,7 +24,7 @@ export interface InputBaseProps<V extends EnumLike, S extends EnumLike>
     id: string;
     name?: string;
     placeholder?: string;
-    error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
+    error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
     showError?: boolean;
     label?: ReactNode;
     type?: 'number' | 'card' | 'email' | 'money' | 'password' | 'tel' | 'text' | 'time' | 'color' | 'url';

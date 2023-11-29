@@ -1,4 +1,6 @@
 import AppProviders from '@components/AppProviders';
+import Header from '@components/Header';
+import FooterContainer from '@containers/FooterContainer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -29,7 +31,9 @@ function MyApp(props: AppProps) {
             </Head>
             <AppProviders>
                 <QueryClientProvider client={queryClient}>
+                    <Header />
                     <AppContent {...props} />
+                    <FooterContainer />
                 </QueryClientProvider>
             </AppProviders>
         </>
