@@ -1,0 +1,50 @@
+{
+    "name": "hh_task",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "repack": "rm -rf ./node_modules && yarn cache clean -all && yarn",
+        "tokens": "gds-tokens"
+    },
+    "dependencies": {
+        "@emotion/core": "^10.1.1",
+        "@emotion/styled": "^11.3.0",
+        "@greensight/gds": "3.0.2",
+        "@hookform/resolvers": "^3.3.2",
+        "@react-input/mask": "^1.0.20",
+        "@tanstack/react-form": "^0.9.0",
+        "@tanstack/react-query": "^5.8.3",
+        "@tanstack/react-query-devtools": "^5.8.3",
+        "@tanstack/solid-form": "^0.9.0",
+        "@tanstack/zod-form-adapter": "^0.9.0",
+        "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+        "emotion-rgba": "^0.0.12",
+        "next": "^14.0.3",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-hook-form": "^7.48.2",
+        "yup": "^1.3.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "18.2.22",
+        "@types/react-dom": "18.2.7",
+        "@typescript-eslint/eslint-plugin": "^6.10.0",
+        "@typescript-eslint/parser": "^6.10.0",
+        "eslint": "^8",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-next": "13.5.6",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-jsx-a11y": "^6.8.0",
+        "eslint-plugin-react": "^7.33.2",
+        "next-compose-plugins": "^2.2.1",
+        "next-plugin-svgr": "^1.1.9",
+        "prettier": "^3.1.0",
+        "typescript": "^4.9.5"
+    }
+}
